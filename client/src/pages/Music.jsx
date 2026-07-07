@@ -26,17 +26,6 @@ export default function Music() {
 
   return (
     <div className={styles.page}>
-      <section className={styles.heroBlock}>
-        <h1 className={styles.title}>
-          MUSIC <span className={styles.titleSlash}>/</span>{' '}
-          <span className={styles.titleAlt}>SESSIONS</span>
-        </h1>
-        <div className={styles.intro}>
-          Sessions live, freestyles, clips. Toutes les vidéos RBS,
-          studio et scène. Glissez pour parcourir.
-        </div>
-      </section>
-
       <section className={styles.carousel}>
         <DragCarousel ariaLabel="RBS music videos" hintLabel="DRAG TO MOVE">
           {tracks.map((t, i) => (
