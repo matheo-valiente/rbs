@@ -135,12 +135,16 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr minmax(300px, 440px);
-  gap: 72px;
+  gap: 36px;
   align-items: center;
 }
 
+.presentation2Inner .presentationBody {
+  justify-self: end;
+}
+
 .carousel {
-  padding: 32px 0 56px;
+  padding: 64px 0 56px;
 }
 
 .card {
@@ -223,6 +227,9 @@
   .presentation2Inner {
     grid-template-columns: 1fr;
     gap: 28px;
+  }
+  .presentation2Inner .presentationBody {
+    justify-self: stretch;
   }
   .presentationTitle,
   .presentationText {
