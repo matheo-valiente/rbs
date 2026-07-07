@@ -26,15 +26,6 @@ export default function Music() {
 
   return (
     <div className={styles.page}>
-      <header className={styles.head}>
-        <div className={styles.headLeft}>
-          <span className={styles.headLabel}>MUSIC</span>
-          <span className={styles.headSep}>—</span>
-          <span>RBS</span>
-        </div>
-        <div className={styles.headRight}>{tracks.length} VIDEOS · 2024 — 2025</div>
-      </header>
-
       <section className={styles.heroBlock}>
         <h1 className={styles.title}>
           MUSIC <span className={styles.titleSlash}>/</span>{' '}

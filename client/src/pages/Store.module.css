@@ -5,46 +5,12 @@
   min-height: 100vh;
 }
 
-.headBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 28px 28px 18px;
-  font-family: var(--font-mono);
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  border-bottom: 1px solid var(--line);
-  flex-wrap: wrap;
-}
-
-.headLeft {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.headLabel {
-  font-weight: 700;
-}
-
-.headSep {
-  opacity: 0.4;
-}
-
-.headRight {
-  opacity: 0.55;
-  font-variant-numeric: tabular-nums;
-}
-
 .filters {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
   padding: 0 28px;
-  margin: 48px auto 32px;
+  margin: 64px auto 32px;
   max-width: 1480px;
 }
 
@@ -395,12 +361,5 @@
   .grid {
     grid-template-columns: 1fr;
     padding: 0 18px 48px;
-  }
-  .headBar {
-    padding: 22px 18px 14px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    font-size: 10px;
   }
 }

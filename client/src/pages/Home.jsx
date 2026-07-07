@@ -52,13 +52,36 @@ export default function Home() {
         </div>
       </section>
 
+      <section className={styles.presentation2}>
+        <div className={styles.presentation2Inner}>
+          <div className={styles.presentationBody}>
+            <div className={styles.presentationIndex}>02 / LIVE</div>
+            <h2 className={styles.presentationTitle}>
+              La nuit ne s'arrête jamais.
+            </h2>
+            <p className={styles.presentationText}>
+              Entre les salles parisiennes et les block-parties
+              improvisées, RBS pousse le son là où il doit être entendu.
+              Line-up choisi, son maîtrisé, énergie brute à chaque
+              soirée.
+            </p>
+            <Link to="/ticket-office" className={styles.presentationLink}>
+              VOIR LES ÉVÉNEMENTS →
+            </Link>
+          </div>
+          <div className={styles.presentationMedia}>
+            <img src="/media/photos/live-08.jpg" alt="RBS live" />
+          </div>
+        </div>
+      </section>
+
       <section className={styles.carousel}>
         <DragCarousel
           ariaLabel="RBS featured projects"
           showHint={false}
           showControls={false}
           autoScroll
-          autoScrollSpeed={1}
+          autoScrollSpeed={2.2}
         >
           {FEATURED.map((p) => (
             <article key={p.id} data-card className={styles.card}>

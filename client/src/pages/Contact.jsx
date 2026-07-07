@@ -43,15 +43,6 @@ export default function Contact() {
 
   return (
     <div className={styles.page}>
-      <header className={styles.headBar}>
-        <div className={styles.headLeft}>
-          <span className={styles.headLabel}>CONTACT</span>
-          <span className={styles.headSep}>—</span>
-          <span>RBS</span>
-        </div>
-        <div className={styles.headRight}>BOOKING · PRESS · COLLAB</div>
-      </header>
-
       <div className={styles.inner}>
         <div className={styles.intro}>
           <h1 className={styles.title}>Contactez-nous</h1>

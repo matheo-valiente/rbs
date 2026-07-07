@@ -125,6 +125,20 @@
   border-color: var(--red);
 }
 
+.presentation2 {
+  padding: 96px 28px;
+  border-bottom: 1px solid var(--line);
+}
+
+.presentation2Inner {
+  max-width: 1480px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr minmax(220px, 320px);
+  gap: 72px;
+  align-items: center;
+}
+
 .carousel {
   padding: 32px 0 56px;
 }
@@ -202,7 +216,11 @@
   .presentation {
     padding: 64px 18px 48px;
   }
-  .presentationInner {
+  .presentation2 {
+    padding: 48px 18px;
+  }
+  .presentationInner,
+  .presentation2Inner {
     grid-template-columns: 1fr;
     gap: 28px;
   }

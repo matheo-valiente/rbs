@@ -24,11 +24,11 @@
 }
 
 .brand {
-  font-family: var(--font-display-italic);
-  font-style: italic;
-  font-size: clamp(40px, 7vw, 64px);
-  line-height: 0.85;
-  letter-spacing: -0.05em;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(32px, 6vw, 48px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
   color: #000;
 }
 

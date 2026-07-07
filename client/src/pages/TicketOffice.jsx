@@ -40,17 +40,6 @@ export default function TicketOffice() {
 
   return (
     <div className={styles.page}>
-      <header className={styles.headBar}>
-        <div className={styles.headLeft}>
-          <span className={styles.headLabel}>TICKETS</span>
-          <span className={styles.headSep}>—</span>
-          <span>RBS</span>
-        </div>
-        <div className={styles.headRight}>
-          BILLETTERIE OFFICIELLE · {events.length} EVENTS
-        </div>
-      </header>
-
       {error && <div className={styles.error}>{error}</div>}
 
       <div className={styles.list}>

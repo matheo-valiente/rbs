@@ -2,28 +2,17 @@ import { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Store.module.css';
 
-const formatDateTime = (d = new Date()) => {
-  const pad = (n) => String(n).padStart(2, '0');
-  return `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${d.getFullYear()} · ${pad(d.getHours())}:${pad(d.getMinutes())} EDT`;
-};
-
 const FILTERS = ['ALL', 'TOPS', 'ACCESSORIES', 'DROPS'];
 const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
 export default function Store() {
   const [products, setProducts] = useState([]);
   const [active, setActive] = useState('ALL');
-  const [now, setNow] = useState(formatDateTime());
   const [selected, setSelected] = useState(null);
   const [size, setSize] = useState(null);
   const [checkingOut, setCheckingOut] = useState(false);
   const [checkoutError, setCheckoutError] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const id = setInterval(() => setNow(formatDateTime()), 1000);
-    return () => clearInterval(id);
-  }, []);
 
   useEffect(() => {
     fetch('/api/products')
@@ -72,15 +61,6 @@ export default function Store() {
 
   return (
     <div className={styles.page}>
-      <header className={styles.headBar}>
-        <div className={styles.headLeft}>
-          <span className={styles.headLabel}>STORE</span>
-          <span className={styles.headSep}>—</span>
-          <span>RBS</span>
-        </div>
-        <div className={styles.headRight}>{now}</div>
-      </header>
-
       <div className={styles.filters}>
         {FILTERS.map((f) => (
           <button
