@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import DragCarousel from '../components/DragCarousel.jsx';
 import VideoPlaceholder from '../components/VideoPlaceholder.jsx';
-import Newsletter from '../components/Newsletter.jsx';
 import styles from './Live.module.css';
 
 export default function Live() {
@@ -133,7 +132,6 @@ export default function Live() {
         </section>
       )}
 
-      <Newsletter />
     </div>
   );
 }

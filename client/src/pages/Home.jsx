@@ -1,46 +1,19 @@
-import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import DragCarousel from '../components/DragCarousel.jsx';
-import VideoPlaceholder from '../components/VideoPlaceholder.jsx';
-import Newsletter from '../components/Newsletter.jsx';
 import styles from './Home.module.css';
 
 const FEATURED = [
-  { id: 1, title: 'ON STAGE', credit: 'PARIS', kind: 'MUSIC', year: '—', image: '/media/photos/live-07.jpg' },
-  { id: 2, title: 'CROWD', credit: 'PARIS', kind: 'LIVE', year: '—', image: '/media/photos/live-01.jpg' },
-  { id: 3, title: 'FRONT ROW', credit: 'PARIS', kind: 'LIVE', year: '—', image: '/media/photos/live-03.jpg' },
-  { id: 4, title: 'MIC CHECK', credit: 'PARIS', kind: 'MUSIC', year: '—', image: '/media/photos/live-05.jpg' },
-  { id: 5, title: 'NIGHT SET', credit: 'PARIS', kind: 'LIVE', year: '—', image: '/media/photos/live-06.jpg' }
+  { id: 1, title: 'CROWD ENERGY', credit: 'PARIS', kind: 'LIVE', image: '/media/photos/live-07.jpg' },
+  { id: 5, title: 'STREET SESSION', credit: 'PARIS', kind: 'LIVE', image: '/media/photos/live-06.jpg' },
+  { id: 3, title: 'ON STAGE', credit: 'PARIS', kind: 'LIVE', image: '/media/photos/live-03.jpg' },
+  { id: 4, title: 'MIC CHECK', credit: 'PARIS', kind: 'LIVE', image: '/media/photos/live-05.jpg' },
+  { id: 2, title: 'CROWD SURF', credit: 'PARIS', kind: 'LIVE', image: '/media/photos/live-01.jpg' }
 ];
 
-const formatDateTime = (d = new Date()) => {
-  const pad = (n) => String(n).padStart(2, '0');
-  return `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${d.getFullYear()} · ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())} EDT`;
-};
-
 export default function Home() {
-  const [now, setNow] = useState(formatDateTime());
-
-  useEffect(() => {
-    const id = setInterval(() => setNow(formatDateTime()), 1000);
-    return () => clearInterval(id);
-  }, []);
-
   return (
     <div className={styles.page}>
-      <header className={styles.head}>
-        <div className={styles.headLeft}>
-          <span className={styles.headLabel}>JOURNAL</span>
-          <span className={styles.headSep}>—</span>
-          <span>RBS</span>
-        </div>
-        <div className={styles.headCenter}>
-          ALL PROJECTS · DROPS · LIVE · MUSIC
-        </div>
-        <div className={styles.headRight}>{now}</div>
-      </header>
-
       <section className={styles.videoHero}>
         <video
           className={styles.videoHeroMedia}
@@ -69,29 +42,24 @@ export default function Home() {
           <span className={styles.heroTitleAlt}>WORK</span>
         </motion.h1>
         <div className={styles.heroMeta}>
-          <span>{FEATURED.length} PROJECTS</span>
           <span>2024 — 2026</span>
           <span>PARIS · FR</span>
         </div>
       </section>
 
       <section className={styles.carousel}>
-        <DragCarousel ariaLabel="RBS featured projects" hintLabel="DRAG TO MOVE">
+        <DragCarousel
+          ariaLabel="RBS featured projects"
+          showHint={false}
+          autoScroll
+        >
           {FEATURED.map((p, i) => (
             <article key={p.id} data-card className={styles.card}>
               <div className={styles.cardIndex}>
                 {String(i + 1).padStart(2, '0')} / {String(FEATURED.length).padStart(2, '0')}
               </div>
               <div className={styles.cardMedia}>
-                {p.image ? (
-                  <img src={p.image} alt={p.title} className={styles.cardImg} />
-                ) : (
-                  <VideoPlaceholder
-                    label={`[ ${p.kind} À VENIR ]`}
-                    ratio="4/5"
-                    fill={false}
-                  />
-                )}
+                <img src={p.image} alt={p.title} className={styles.cardImg} />
                 <div className={styles.cardKind}>{p.kind}</div>
               </div>
               <div className={styles.cardCaption}>
@@ -100,7 +68,6 @@ export default function Home() {
                   <span className={styles.cardCreditFor}>FOR</span>{' '}
                   <span className={styles.cardCredit}>@{p.credit}</span>
                 </h2>
-                <div className={styles.cardYear}>{p.year}</div>
               </div>
             </article>
           ))}
@@ -133,20 +100,6 @@ export default function Home() {
                 GET IN TOUCH →
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      <Newsletter />
-
-      <section className={styles.marqueeWrap}>
-        <div className={styles.marquee}>
-          <div className={styles.marqueeTrack}>
-            {Array.from({ length: 6 }).map((_, i) => (
-              <span key={i}>
-                RBS · DROPS · LIVE · MERCH · PARIS · MUSIC ·{' '}
-              </span>
-            ))}
           </div>
         </div>
       </section>

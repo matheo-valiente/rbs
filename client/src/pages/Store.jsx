@@ -1,6 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Newsletter from '../components/Newsletter.jsx';
 import styles from './Store.module.css';
 
 const formatDateTime = (d = new Date()) => {
@@ -146,7 +145,6 @@ export default function Store() {
         </div>
       )}
 
-      <Newsletter />
 
       <AnimatePresence>
         {selected && (

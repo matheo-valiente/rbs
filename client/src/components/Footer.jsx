@@ -35,12 +35,11 @@ export default function Footer() {
         <PaymentIcon label="MASTERCARD" />
         <PaymentIcon label="AMEX" />
         <PaymentIcon label="APPLE PAY" />
-        <PaymentIcon label="PAYPAL" />
-        <PaymentIcon label="STRIPE" />
       </div>
 
       <div className={styles.bottom}>
-        <span>@RBS · {year}</span>
+        <span>@_RBSFR · {year}</span>
+        <span>PAIEMENT SÉCURISÉ PAR STRIPE</span>
         <span>PARIS · FR</span>
       </div>
     </footer>

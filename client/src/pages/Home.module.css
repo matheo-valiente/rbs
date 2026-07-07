@@ -4,46 +4,6 @@
   padding-top: 56px;
 }
 
-.head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 28px 28px 18px;
-  font-family: var(--font-mono);
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  border-bottom: 1px solid var(--line);
-  flex-wrap: wrap;
-}
-
-.headLeft {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.headLabel {
-  font-weight: 700;
-}
-
-.headSep {
-  opacity: 0.4;
-}
-
-.headCenter {
-  flex: 1;
-  text-align: center;
-  opacity: 0.55;
-}
-
-.headRight {
-  opacity: 0.7;
-  font-variant-numeric: tabular-nums;
-}
-
 .videoHero {
   position: relative;
   width: 100%;
@@ -88,6 +48,7 @@
 
 .heroBlock {
   padding: 56px 28px 32px;
+  text-align: center;
 }
 
 .heroTitle {
@@ -99,6 +60,7 @@
   margin: 0;
   display: flex;
   align-items: baseline;
+  justify-content: center;
   gap: 0.08em;
   flex-wrap: wrap;
 }
@@ -114,6 +76,7 @@
 
 .heroMeta {
   display: flex;
+  justify-content: center;
   gap: 24px;
   flex-wrap: wrap;
   margin-top: 24px;
@@ -214,14 +177,6 @@
   letter-spacing: -0.02em;
 }
 
-.cardYear {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  opacity: 0.55;
-  flex-shrink: 0;
-}
-
 .about {
   padding: 96px 28px;
   border-bottom: 1px solid var(--line);
@@ -313,49 +268,7 @@
   border-color: var(--red);
 }
 
-.marqueeWrap {
-  background: #000;
-  color: #fff;
-  overflow: hidden;
-  padding: 16px 0;
-}
-
-.marquee {
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.marqueeTrack {
-  display: inline-flex;
-  gap: 24px;
-  animation: marquee 40s linear infinite;
-  font-family: var(--font-display-italic);
-  font-style: italic;
-  font-size: 24px;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  font-weight: 400;
-}
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
 @media (max-width: 880px) {
-  .head {
-    padding: 22px 18px 14px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    font-size: 10px;
-  }
-  .headCenter {
-    text-align: left;
-    flex: none;
-  }
   .heroBlock {
     padding: 40px 18px 24px;
   }
@@ -377,8 +290,5 @@
   .aboutTextCol {
     grid-template-columns: 1fr;
     gap: 24px;
-  }
-  .marqueeTrack {
-    font-size: 18px;
   }
 }

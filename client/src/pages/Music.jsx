@@ -2,7 +2,6 @@ import { useEffect, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import VideoPlaceholder from '../components/VideoPlaceholder.jsx';
 import DragCarousel from '../components/DragCarousel.jsx';
-import Newsletter from '../components/Newsletter.jsx';
 import styles from './Music.module.css';
 
 export default function Music() {
@@ -84,8 +83,6 @@ export default function Music() {
           ))}
         </DragCarousel>
       </section>
-
-      <Newsletter />
 
       <AnimatePresence>
         {open && (

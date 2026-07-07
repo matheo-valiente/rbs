@@ -6,10 +6,12 @@ export default function DragCarousel({
   ariaLabel = 'Carousel',
   showHint = true,
   hintLabel = 'DRAG TO MOVE',
-  className = ''
+  className = '',
+  autoScroll = false,
+  autoScrollSpeed = 0.4
 }) {
   const ref = useRef(null);
-  const stateRef = useRef({ down: false, startX: 0, startScroll: 0, moved: false });
+  const stateRef = useRef({ down: false, startX: 0, startScroll: 0, moved: false, hover: false });
   const [progress, setProgress] = useState(0);
   const [count, setCount] = useState(0);
   const [active, setActive] = useState(0);
@@ -50,6 +52,32 @@ export default function DragCarousel({
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [children]);
+
+  useEffect(() => {
+    if (!autoScroll) return undefined;
+    const el = ref.current;
+    if (!el) return undefined;
+    el.style.scrollBehavior = 'auto';
+    let rafId;
+    // scrollLeft rounds to whole pixels, so sub-pixel increments must be
+    // accumulated separately or they get truncated back to the same value.
+    let pos = el.scrollLeft;
+    const step = () => {
+      if (!stateRef.current.down && !stateRef.current.hover) {
+        const max = el.scrollWidth - el.clientWidth;
+        if (max > 0) {
+          pos += autoScrollSpeed;
+          if (pos >= max) pos = 0;
+          el.scrollLeft = pos;
+        }
+      } else {
+        pos = el.scrollLeft;
+      }
+      rafId = requestAnimationFrame(step);
+    };
+    rafId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(rafId);
+  }, [autoScroll, autoScrollSpeed, children]);
 
   const onPointerDown = (e) => {
     const el = ref.current;
@@ -100,7 +128,11 @@ export default function DragCarousel({
         onMouseDown={onPointerDown}
         onMouseMove={onPointerMove}
         onMouseUp={onPointerUp}
-        onMouseLeave={onPointerUp}
+        onMouseEnter={() => (stateRef.current.hover = true)}
+        onMouseLeave={(e) => {
+          stateRef.current.hover = false;
+          onPointerUp(e);
+        }}
         onTouchStart={onPointerDown}
         onTouchMove={onPointerMove}
         onTouchEnd={onPointerUp}
