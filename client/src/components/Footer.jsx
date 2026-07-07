@@ -56,6 +56,12 @@ export default function Footer() {
         <span>PAIEMENT SÉCURISÉ PAR STRIPE</span>
         <span>PARIS · FR</span>
       </div>
+
+      <div className={styles.legal}>
+        <Link to="/mentions-legales">MENTIONS LÉGALES</Link>
+        <Link to="/cgv">CGV</Link>
+        <Link to="/confidentialite">CONFIDENTIALITÉ</Link>
+      </div>
     </footer>
   );
 }

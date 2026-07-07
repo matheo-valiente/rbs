@@ -3,11 +3,11 @@ import DragCarousel from '../components/DragCarousel.jsx';
 import styles from './Home.module.css';
 
 const FEATURED = [
-  { id: 1, title: 'CROWD ENERGY', credit: 'PARIS', kind: 'LIVE', image: '/media/photos/live-07.jpg' },
-  { id: 5, title: 'STREET SESSION', credit: 'PARIS', kind: 'LIVE', image: '/media/photos/live-06.jpg' },
-  { id: 3, title: 'ON STAGE', credit: 'PARIS', kind: 'LIVE', image: '/media/photos/live-03.jpg' },
-  { id: 4, title: 'MIC CHECK', credit: 'PARIS', kind: 'LIVE', image: '/media/photos/live-05.jpg' },
-  { id: 2, title: 'CROWD SURF', credit: 'PARIS', kind: 'LIVE', image: '/media/photos/live-01.jpg' }
+  { id: 1, title: 'CROWD ENERGY', credit: 'PARIS', image: '/media/photos/live-07.jpg' },
+  { id: 5, title: 'STREET SESSION', credit: 'PARIS', image: '/media/photos/live-06.jpg' },
+  { id: 3, title: 'ON STAGE', credit: 'PARIS', image: '/media/photos/live-03.jpg' },
+  { id: 4, title: 'MIC CHECK', credit: 'PARIS', image: '/media/photos/live-05.jpg' },
+  { id: 2, title: 'CROWD SURF', credit: 'PARIS', image: '/media/photos/live-01.jpg' }
 ];
 
 export default function Home() {
@@ -60,14 +60,10 @@ export default function Home() {
           autoScroll
           autoScrollSpeed={1}
         >
-          {FEATURED.map((p, i) => (
+          {FEATURED.map((p) => (
             <article key={p.id} data-card className={styles.card}>
-              <div className={styles.cardIndex}>
-                {String(i + 1).padStart(2, '0')} / {String(FEATURED.length).padStart(2, '0')}
-              </div>
               <div className={styles.cardMedia}>
                 <img src={p.image} alt={p.title} className={styles.cardImg} />
-                <div className={styles.cardKind}>{p.kind}</div>
               </div>
               <div className={styles.cardCaption}>
                 <h2 className={styles.cardTitle}>

@@ -10,6 +10,9 @@ import TicketSuccess from './pages/TicketSuccess.jsx';
 import Music from './pages/Music.jsx';
 import Live from './pages/Live.jsx';
 import Contact from './pages/Contact.jsx';
+import MentionsLegales from './pages/MentionsLegales.jsx';
+import CGV from './pages/CGV.jsx';
+import Confidentialite from './pages/Confidentialite.jsx';
 
 const pageVariants = {
   initial: { opacity: 0 },
@@ -44,6 +47,9 @@ export default function App() {
           <Route path="/music" element={<Page><Music /></Page>} />
           <Route path="/live" element={<Page><Live /></Page>} />
           <Route path="/contact" element={<Page><Contact /></Page>} />
+          <Route path="/mentions-legales" element={<Page><MentionsLegales /></Page>} />
+          <Route path="/cgv" element={<Page><CGV /></Page>} />
+          <Route path="/confidentialite" element={<Page><Confidentialite /></Page>} />
           <Route path="*" element={<Page><Home /></Page>} />
         </Routes>
       </AnimatePresence>

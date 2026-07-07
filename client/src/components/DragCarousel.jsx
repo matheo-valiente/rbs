@@ -12,7 +12,7 @@ export default function DragCarousel({
   showControls = true
 }) {
   const ref = useRef(null);
-  const stateRef = useRef({ down: false, startX: 0, startScroll: 0, moved: false, hover: false });
+  const stateRef = useRef({ down: false, startX: 0, startScroll: 0, moved: false });
   const [progress, setProgress] = useState(0);
   const [count, setCount] = useState(0);
   const [active, setActive] = useState(0);
@@ -64,7 +64,7 @@ export default function DragCarousel({
     // accumulated separately or they get truncated back to the same value.
     let pos = el.scrollLeft;
     const step = () => {
-      if (!stateRef.current.down && !stateRef.current.hover) {
+      if (!stateRef.current.down) {
         const max = el.scrollWidth - el.clientWidth;
         if (max > 0) {
           pos += autoScrollSpeed;
@@ -129,11 +129,7 @@ export default function DragCarousel({
         onMouseDown={onPointerDown}
         onMouseMove={onPointerMove}
         onMouseUp={onPointerUp}
-        onMouseEnter={() => (stateRef.current.hover = true)}
-        onMouseLeave={(e) => {
-          stateRef.current.hover = false;
-          onPointerUp(e);
-        }}
+        onMouseLeave={onPointerUp}
         onTouchStart={onPointerDown}
         onTouchMove={onPointerMove}
         onTouchEnd={onPointerUp}

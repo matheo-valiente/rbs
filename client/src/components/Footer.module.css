@@ -1,7 +1,7 @@
 .footer {
   background: #fff;
   border-top: 1px solid var(--line);
-  padding: 64px 28px 24px;
+  padding: 96px 28px 32px;
   color: #000;
 }
 
@@ -11,9 +11,9 @@
   display: grid;
   grid-template-columns: 3fr 2fr;
   gap: 48px;
-  padding-bottom: 40px;
+  padding-bottom: 56px;
   border-bottom: 1px solid var(--line);
-  margin-bottom: 24px;
+  margin-bottom: 40px;
 }
 
 .brandCol {
@@ -82,8 +82,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 6px;
-  margin-bottom: 24px;
+  gap: 8px;
+  margin-bottom: 40px;
 }
 
 .payChip {
@@ -97,6 +97,8 @@
 }
 
 .bottom {
+  max-width: 1480px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -106,23 +108,49 @@
   opacity: 0.55;
   text-transform: uppercase;
   border-top: 1px solid var(--line);
-  padding-top: 18px;
+  padding-top: 20px;
+}
+
+.legal {
+  max-width: 1480px;
+  margin: 16px auto 0;
+  display: flex;
+  gap: 20px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.legal a {
+  color: #000;
+  opacity: 0.45;
+  transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.legal a:hover {
+  opacity: 1;
+  color: var(--red);
 }
 
 @media (max-width: 720px) {
   .footer {
-    padding: 48px 18px 18px;
+    padding: 64px 18px 24px;
   }
   .top {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 32px;
   }
   .navCol {
     justify-content: start;
   }
   .bottom {
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
     align-items: flex-start;
+  }
+  .legal {
+    flex-wrap: wrap;
+    gap: 12px 20px;
   }
 }

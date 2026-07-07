@@ -11,7 +11,7 @@
   min-height: 420px;
   overflow: hidden;
   background: #000;
-  margin-top: 28px;
+  margin-top: 64px;
 }
 
 .videoHeroMedia {
@@ -48,7 +48,7 @@
 }
 
 .presentation {
-  padding: 88px 28px;
+  padding: 140px 28px 96px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -56,8 +56,8 @@
   max-width: 1480px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 5fr 7fr;
-  gap: 64px;
+  grid-template-columns: minmax(220px, 320px) 1fr;
+  gap: 72px;
   align-items: center;
 }
 
@@ -97,7 +97,7 @@
   letter-spacing: -0.01em;
   margin: 0;
   font-weight: 400;
-  max-width: 14ch;
+  max-width: 20ch;
 }
 
 .presentationText {
@@ -106,7 +106,7 @@
   line-height: 1.85;
   letter-spacing: 0.02em;
   opacity: 0.8;
-  max-width: 46ch;
+  max-width: 68ch;
 }
 
 .presentationLink {
@@ -137,15 +137,6 @@
   cursor: grab;
 }
 
-.cardIndex {
-  font-family: var(--font-mono);
-  font-weight: 500;
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  opacity: 0.45;
-  text-transform: uppercase;
-}
-
 .cardMedia {
   position: relative;
   width: 100%;
@@ -164,21 +155,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.cardKind {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  font-family: var(--font-mono);
-  font-weight: 500;
-  font-size: 9px;
-  letter-spacing: 0.3em;
-  background: #fff;
-  border: 1px solid #000;
-  padding: 4px 8px;
-  text-transform: uppercase;
-  z-index: 2;
 }
 
 .card:hover .cardMedia {
@@ -217,14 +193,14 @@
   .videoHero {
     height: 60vh;
     min-height: 320px;
-    margin-top: 18px;
+    margin-top: 32px;
   }
   .videoHeroFoot {
     padding: 16px 18px;
     font-size: 9px;
   }
   .presentation {
-    padding: 56px 18px;
+    padding: 64px 18px 48px;
   }
   .presentationInner {
     grid-template-columns: 1fr;
