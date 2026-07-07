@@ -44,6 +44,48 @@
   font-variant-numeric: tabular-nums;
 }
 
+.videoHero {
+  position: relative;
+  width: 100%;
+  height: 78vh;
+  min-height: 420px;
+  overflow: hidden;
+  background: #000;
+}
+
+.videoHeroMedia {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.82;
+}
+
+.videoHeroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.15) 40%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+.videoHeroFoot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 28px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
 .heroBlock {
   padding: 56px 28px 32px;
 }
@@ -117,6 +159,12 @@
 
 .cardMedia > * {
   pointer-events: none;
+}
+
+.cardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .cardKind {
@@ -310,6 +358,14 @@
   }
   .heroBlock {
     padding: 40px 18px 24px;
+  }
+  .videoHero {
+    height: 60vh;
+    min-height: 320px;
+  }
+  .videoHeroFoot {
+    padding: 16px 18px;
+    font-size: 9px;
   }
   .about {
     padding: 64px 18px;

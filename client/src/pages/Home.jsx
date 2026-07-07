@@ -7,11 +7,11 @@ import Newsletter from '../components/Newsletter.jsx';
 import styles from './Home.module.css';
 
 const FEATURED = [
-  { id: 1, title: 'HEARTFUL NIGHT', credit: 'PARIS', kind: 'EVENT', year: '2025' },
-  { id: 2, title: 'HOODIE VOL.1', credit: 'TEAM RBS', kind: 'DROP', year: '2025' },
-  { id: 3, title: 'SESSION 01', credit: 'STUDIO', kind: 'MUSIC', year: '2025' },
-  { id: 4, title: 'DROPS SESSION', credit: 'LE BAIN', kind: 'EVENT', year: '2025' },
-  { id: 5, title: 'NEW YEAR ÉDITION', credit: 'PARIS', kind: 'EVENT', year: '2026' }
+  { id: 1, title: 'HEXTII PARTY VOL.2', credit: 'NOUVEAU CASINO', kind: 'EVENT', year: '13.03', image: '/media/photos/poster-hextii-vol2.jpg' },
+  { id: 2, title: 'HEXTII PARTY', credit: 'LA BELLEVILLOISE', kind: 'EVENT', year: '09.11', image: '/media/photos/poster-hextii-bellevilloise.jpg' },
+  { id: 3, title: 'ON STAGE', credit: 'PARIS', kind: 'MUSIC', year: '—', image: '/media/photos/live-07.jpg' },
+  { id: 4, title: 'CROWD', credit: 'PARIS', kind: 'EVENT', year: '—', image: '/media/photos/live-01.jpg' },
+  { id: 5, title: 'HOODIE VOL.1', credit: 'TEAM RBS', kind: 'DROP', year: '2026' }
 ];
 
 const formatDateTime = (d = new Date()) => {
@@ -41,6 +41,22 @@ export default function Home() {
         <div className={styles.headRight}>{now}</div>
       </header>
 
+      <section className={styles.videoHero}>
+        <video
+          className={styles.videoHeroMedia}
+          src="/media/video/hero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        <div className={styles.videoHeroOverlay} />
+        <div className={styles.videoHeroFoot}>
+          <span>RBS — LIVE FOOTAGE</span>
+          <span>PARIS · FR</span>
+        </div>
+      </section>
+
       <section className={styles.heroBlock}>
         <motion.h1
           className={styles.heroTitle}
@@ -67,11 +83,15 @@ export default function Home() {
                 {String(i + 1).padStart(2, '0')} / {String(FEATURED.length).padStart(2, '0')}
               </div>
               <div className={styles.cardMedia}>
-                <VideoPlaceholder
-                  label={`[ ${p.kind} À VENIR ]`}
-                  ratio="4/5"
-                  fill={false}
-                />
+                {p.image ? (
+                  <img src={p.image} alt={p.title} className={styles.cardImg} />
+                ) : (
+                  <VideoPlaceholder
+                    label={`[ ${p.kind} À VENIR ]`}
+                    ratio="4/5"
+                    fill={false}
+                  />
+                )}
                 <div className={styles.cardKind}>{p.kind}</div>
               </div>
               <div className={styles.cardCaption}>
