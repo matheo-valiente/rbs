@@ -1,72 +1,11 @@
-import { useEffect, useState, useCallback, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState, useCallback } from 'react';
+import { motion } from 'framer-motion';
 import styles from './TicketOffice.module.css';
-
-const QR_GRID = 25;
-
-const generateQRPattern = (seed = 1) => {
-  const grid = [];
-  let s = seed * 9301 + 49297;
-  const rand = () => {
-    s = (s * 9301 + 49297) % 233280;
-    return s / 233280;
-  };
-  for (let y = 0; y < QR_GRID; y++) {
-    const row = [];
-    for (let x = 0; x < QR_GRID; x++) {
-      row.push(rand() > 0.5 ? 1 : 0);
-    }
-    grid.push(row);
-  }
-  // place finder patterns at three corners
-  const drawFinder = (ox, oy) => {
-    for (let y = 0; y < 7; y++) {
-      for (let x = 0; x < 7; x++) {
-        const isBorder = x === 0 || x === 6 || y === 0 || y === 6;
-        const isInner = x >= 2 && x <= 4 && y >= 2 && y <= 4;
-        grid[oy + y][ox + x] = isBorder || isInner ? 1 : 0;
-      }
-    }
-  };
-  drawFinder(0, 0);
-  drawFinder(QR_GRID - 7, 0);
-  drawFinder(0, QR_GRID - 7);
-  return grid;
-};
-
-const FakeQR = ({ seed }) => {
-  const grid = useMemo(() => generateQRPattern(seed), [seed]);
-  const cell = 10;
-  const size = QR_GRID * cell;
-  return (
-    <svg
-      viewBox={`0 0 ${size} ${size}`}
-      width="240"
-      height="240"
-      style={{ background: '#fff', display: 'block' }}
-      aria-hidden="true"
-    >
-      {grid.flatMap((row, y) =>
-        row.map((v, x) =>
-          v ? (
-            <rect
-              key={`${x}-${y}`}
-              x={x * cell}
-              y={y * cell}
-              width={cell}
-              height={cell}
-              fill="#000"
-            />
-          ) : null
-        )
-      )}
-    </svg>
-  );
-};
 
 export default function TicketOffice() {
   const [events, setEvents] = useState([]);
-  const [open, setOpen] = useState(null);
+  const [checkingOutId, setCheckingOutId] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch('/api/events')
@@ -75,15 +14,23 @@ export default function TicketOffice() {
       .catch(() => {});
   }, []);
 
-  const close = useCallback(() => setOpen(null), []);
-
-  useEffect(() => {
-    const handler = (e) => {
-      if (e.key === 'Escape') close();
-    };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, [close]);
+  const startCheckout = useCallback(async (eventId) => {
+    setCheckingOutId(eventId);
+    setError(null);
+    try {
+      const res = await fetch('/api/checkout/ticket', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ eventId }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.url) throw new Error(data.error || 'Checkout failed');
+      window.location.href = data.url;
+    } catch (err) {
+      setError('Paiement indisponible pour le moment. Réessaie dans un instant.');
+      setCheckingOutId(null);
+    }
+  }, []);
 
   return (
     <div className={styles.page}>
@@ -109,6 +56,8 @@ export default function TicketOffice() {
         </div>
       </section>
 
+      {error && <div className={styles.error}>{error}</div>}
+
       <div className={styles.list}>
         {events.map((ev, i) => (
           <motion.article
@@ -133,66 +82,16 @@ export default function TicketOffice() {
               <div className={styles.price}>{ev.price}</div>
               <button
                 className={styles.btn}
-                onClick={() => setOpen(ev)}
+                disabled={checkingOutId === ev.id}
+                onClick={() => startCheckout(ev.id)}
               >
-                GET TICKET <span aria-hidden="true">→</span>
+                {checkingOutId === ev.id ? 'REDIRECTION…' : 'GET TICKET'}{' '}
+                <span aria-hidden="true">→</span>
               </button>
             </div>
           </motion.article>
         ))}
       </div>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            className={styles.modalBackdrop}
-            onClick={close}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <motion.div
-              className={styles.modal}
-              onClick={(e) => e.stopPropagation()}
-              initial={{ y: 24, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 24, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <button
-                className={styles.modalClose}
-                onClick={close}
-                aria-label="Close"
-              >
-                ✕
-              </button>
-
-              <div className={styles.modalLabel}>YOUR TICKET</div>
-              <h2 className={styles.modalName}>{open.name}</h2>
-              <div className={styles.modalMeta}>
-                {open.location} · {open.date}
-              </div>
-
-              <div className={styles.qrWrap}>
-                <FakeQR seed={open.id} />
-              </div>
-
-              <div className={styles.modalScan}>
-                Scannez pour finaliser le paiement
-              </div>
-
-              <div className={styles.modalCode}>
-                CODE — RBS-{String(open.id).padStart(4, '0')}-{open.price.replace(/[^0-9]/g, '')}
-              </div>
-
-              <button className={styles.modalCloseBtn} onClick={close}>
-                CLOSE
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

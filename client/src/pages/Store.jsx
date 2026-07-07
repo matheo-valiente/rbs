@@ -17,7 +17,8 @@ export default function Store() {
   const [now, setNow] = useState(formatDateTime());
   const [selected, setSelected] = useState(null);
   const [size, setSize] = useState(null);
-  const [confirmed, setConfirmed] = useState(false);
+  const [checkingOut, setCheckingOut] = useState(false);
+  const [checkoutError, setCheckoutError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -38,8 +39,27 @@ export default function Store() {
   const close = useCallback(() => {
     setSelected(null);
     setSize(null);
-    setConfirmed(false);
+    setCheckoutError(null);
   }, []);
+
+  const startCheckout = useCallback(async () => {
+    if (!selected || !size) return;
+    setCheckingOut(true);
+    setCheckoutError(null);
+    try {
+      const res = await fetch('/api/checkout/product', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ productId: selected.id, size }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.url) throw new Error(data.error || 'Checkout failed');
+      window.location.href = data.url;
+    } catch (err) {
+      setCheckoutError('Paiement indisponible pour le moment. Réessaie dans un instant.');
+      setCheckingOut(false);
+    }
+  }, [selected, size]);
 
   useEffect(() => {
     const handler = (e) => {
@@ -154,67 +174,53 @@ export default function Store() {
                 ✕
               </button>
 
-              {!confirmed ? (
-                <div className={styles.modalGrid}>
-                  <div className={styles.modalImage}>
-                    {selected.image ? (
-                      <img src={selected.image} alt={selected.name} />
-                    ) : (
-                      <span>[ IMAGE À VENIR ]</span>
-                    )}
-                  </div>
-                  <div className={styles.modalDetails}>
-                    <div className={styles.modalCategory}>{selected.category}</div>
-                    <h2 className={styles.modalName}>{selected.name}</h2>
-                    <div className={styles.modalPrice}>{selected.price}</div>
-
-                    <div className={styles.modalSection}>
-                      <div className={styles.modalLabel}>SIZE</div>
-                      <div className={styles.sizes}>
-                        {SIZES.map((s) => (
-                          <button
-                            key={s}
-                            className={`${styles.size} ${size === s ? styles.sizeActive : ''}`}
-                            onClick={() => setSize(s)}
-                          >
-                            {s}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className={styles.modalSection}>
-                      <div className={styles.modalLabel}>DESCRIPTION</div>
-                      <p className={styles.modalDesc}>
-                        [ DESCRIPTION PRODUIT À VENIR ] — pièce limitée RBS,
-                        coupe oversize, fabrication française.
-                      </p>
-                    </div>
-
-                    <button
-                      className={styles.confirm}
-                      disabled={!size}
-                      onClick={() => setConfirmed(true)}
-                    >
-                      CONFIRM ORDER
-                    </button>
-                  </div>
+              <div className={styles.modalGrid}>
+                <div className={styles.modalImage}>
+                  {selected.image ? (
+                    <img src={selected.image} alt={selected.name} />
+                  ) : (
+                    <span>[ IMAGE À VENIR ]</span>
+                  )}
                 </div>
-              ) : (
-                <motion.div
-                  className={styles.success}
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <div className={styles.successCheck}>✓</div>
-                  <div className={styles.successTitle}>MERCI ✓</div>
-                  <div className={styles.successSub}>LIVRAISON EN COURS</div>
-                  <div className={styles.successMeta}>
-                    {selected.name} — TAILLE {size}
+                <div className={styles.modalDetails}>
+                  <div className={styles.modalCategory}>{selected.category}</div>
+                  <h2 className={styles.modalName}>{selected.name}</h2>
+                  <div className={styles.modalPrice}>{selected.price}</div>
+
+                  <div className={styles.modalSection}>
+                    <div className={styles.modalLabel}>SIZE</div>
+                    <div className={styles.sizes}>
+                      {SIZES.map((s) => (
+                        <button
+                          key={s}
+                          className={`${styles.size} ${size === s ? styles.sizeActive : ''}`}
+                          onClick={() => setSize(s)}
+                        >
+                          {s}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </motion.div>
-              )}
+
+                  <div className={styles.modalSection}>
+                    <div className={styles.modalLabel}>DESCRIPTION</div>
+                    <p className={styles.modalDesc}>
+                      [ DESCRIPTION PRODUIT À VENIR ] — pièce limitée RBS,
+                      coupe oversize, fabrication française.
+                    </p>
+                  </div>
+
+                  {checkoutError && <p className={styles.checkoutError}>{checkoutError}</p>}
+
+                  <button
+                    className={styles.confirm}
+                    disabled={!size || checkingOut}
+                    onClick={startCheckout}
+                  >
+                    {checkingOut ? 'REDIRECTION…' : 'CONFIRM ORDER'}
+                  </button>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         )}
