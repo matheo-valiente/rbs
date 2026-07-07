@@ -8,7 +8,6 @@ import StoreSuccess from './pages/StoreSuccess.jsx';
 import TicketOffice from './pages/TicketOffice.jsx';
 import TicketSuccess from './pages/TicketSuccess.jsx';
 import Music from './pages/Music.jsx';
-import Live from './pages/Live.jsx';
 import Contact from './pages/Contact.jsx';
 import MentionsLegales from './pages/MentionsLegales.jsx';
 import CGV from './pages/CGV.jsx';
@@ -45,7 +44,6 @@ export default function App() {
           <Route path="/ticket-office" element={<Page><TicketOffice /></Page>} />
           <Route path="/tickets/success" element={<Page><TicketSuccess /></Page>} />
           <Route path="/music" element={<Page><Music /></Page>} />
-          <Route path="/live" element={<Page><Live /></Page>} />
           <Route path="/contact" element={<Page><Contact /></Page>} />
           <Route path="/mentions-legales" element={<Page><MentionsLegales /></Page>} />
           <Route path="/cgv" element={<Page><CGV /></Page>} />

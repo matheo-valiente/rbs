@@ -59,8 +59,8 @@ CORS est aussi activé côté serveur si besoin.
 - `/ticket-office` — **Ticket Office** : événements → paiement Stripe
 - `/tickets/success` — confirmation + QR code réel du billet après paiement
 - `/music` — **Music** : carrousel horizontal auto-scroll, modal vidéo
-- `/live` — **Live** : posters événements + CTA vers billetterie
 - `/contact` — **Contact** : formulaire stylisé + dropdown sujet
+- `/mentions-legales`, `/cgv`, `/confidentialite` — pages légales
 
 ## Paiement (Stripe)
 

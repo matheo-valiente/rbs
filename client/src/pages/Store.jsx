@@ -81,17 +81,6 @@ export default function Store() {
         <div className={styles.headRight}>{now}</div>
       </header>
 
-      <section className={styles.heroBlock}>
-        <h1 className={styles.title}>
-          STORE <span className={styles.titleSlash}>/</span>{' '}
-          <span className={styles.titleAlt}>VOL.01</span>
-        </h1>
-        <div className={styles.intro}>
-          Pièces limitées, drops capsules, fabriqué à Paris.
-          Livraison France &amp; international.
-        </div>
-      </section>
-
       <div className={styles.filters}>
         {FILTERS.map((f) => (
           <button

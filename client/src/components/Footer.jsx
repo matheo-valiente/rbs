@@ -11,7 +11,6 @@ const NAV_LINKS = [
   { to: '/store', label: 'STORE' },
   { to: '/ticket-office', label: 'TICKETS' },
   { to: '/music', label: 'MUSIC' },
-  { to: '/live', label: 'LIVE' },
   { to: '/contact', label: 'CONTACT' }
 ];
 
