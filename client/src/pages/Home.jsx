@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import DragCarousel from '../components/DragCarousel.jsx';
 import styles from './Home.module.css';
@@ -30,20 +29,26 @@ export default function Home() {
         </div>
       </section>
 
-      <section className={styles.heroBlock}>
-        <motion.h1
-          className={styles.heroTitle}
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <span>RBS</span>
-          <span className={styles.heroTitleSlash}>/</span>
-          <span className={styles.heroTitleAlt}>WORK</span>
-        </motion.h1>
-        <div className={styles.heroMeta}>
-          <span>2024 — 2026</span>
-          <span>PARIS · FR</span>
+      <section className={styles.presentation}>
+        <div className={styles.presentationInner}>
+          <div className={styles.presentationMedia}>
+            <img src="/media/photos/live-02.jpg" alt="RBS collectif" />
+          </div>
+          <div className={styles.presentationBody}>
+            <div className={styles.presentationIndex}>01 / RBS</div>
+            <h2 className={styles.presentationTitle}>
+              Un collectif. Une scène. Une nuit.
+            </h2>
+            <p className={styles.presentationText}>
+              RBS réunit artistes, DJs et organisateurs autour d'une seule
+              scène : la nuit parisienne. Des salles aux rues, on produit
+              les soirées, on sort la musique, on habille ceux qui la
+              vivent.
+            </p>
+            <Link to="/contact" className={styles.presentationLink}>
+              GET IN TOUCH →
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -51,7 +56,9 @@ export default function Home() {
         <DragCarousel
           ariaLabel="RBS featured projects"
           showHint={false}
+          showControls={false}
           autoScroll
+          autoScrollSpeed={1}
         >
           {FEATURED.map((p, i) => (
             <article key={p.id} data-card className={styles.card}>
@@ -72,36 +79,6 @@ export default function Home() {
             </article>
           ))}
         </DragCarousel>
-      </section>
-
-      <section className={styles.about}>
-        <div className={styles.aboutInner}>
-          <div className={styles.aboutLeft}>
-            <div className={styles.aboutIndex}>01 / ABOUT</div>
-          </div>
-          <div className={styles.aboutBody}>
-            <h2 className={styles.aboutTitle}>
-              UN COLLECTIF.
-              <br />
-              <span>UNE SCÈNE.</span>
-              <br />
-              <span className={styles.faded}>UNE NUIT.</span>
-            </h2>
-            <div className={styles.aboutTextCol}>
-              <p className={styles.aboutText}>
-                [ TEXTE DE PRÉSENTATION À VENIR ]
-              </p>
-              <p className={styles.aboutTextSecondary}>
-                RBS — collectif rap français basé à Paris. Événements,
-                musique, merch. Une marque, une scène, une nuit. Conçu
-                à Paris, joué partout.
-              </p>
-              <Link to="/contact" className={styles.aboutLink}>
-                GET IN TOUCH →
-              </Link>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   );

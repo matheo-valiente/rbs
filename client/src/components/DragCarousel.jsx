@@ -8,7 +8,8 @@ export default function DragCarousel({
   hintLabel = 'DRAG TO MOVE',
   className = '',
   autoScroll = false,
-  autoScrollSpeed = 0.4
+  autoScrollSpeed = 0.4,
+  showControls = true
 }) {
   const ref = useRef(null);
   const stateRef = useRef({ down: false, startX: 0, startScroll: 0, moved: false, hover: false });
@@ -146,46 +147,48 @@ export default function DragCarousel({
         <div className={styles.row}>{children}</div>
       </div>
 
-      <div className={styles.controls}>
-        <div className={styles.left}>
-          {showHint && (
-            <span className={styles.hint}>
-              <span aria-hidden>←</span> {hintLabel} <span aria-hidden>→</span>
-            </span>
-          )}
-        </div>
+      {showControls && (
+        <div className={styles.controls}>
+          <div className={styles.left}>
+            {showHint && (
+              <span className={styles.hint}>
+                <span aria-hidden>←</span> {hintLabel} <span aria-hidden>→</span>
+              </span>
+            )}
+          </div>
 
-        <div className={styles.center}>
-          <div className={styles.bar} role="presentation">
-            <span
-              className={styles.barFill}
-              style={{ transform: `translateX(${progress * 100}%)` }}
-            />
+          <div className={styles.center}>
+            <div className={styles.bar} role="presentation">
+              <span
+                className={styles.barFill}
+                style={{ transform: `translateX(${progress * 100}%)` }}
+              />
+            </div>
+          </div>
+
+          <div className={styles.right}>
+            <button
+              className={styles.arrow}
+              onClick={() => goTo(Math.max(0, active - 1))}
+              aria-label="Previous"
+            >
+              ←
+            </button>
+            <span className={styles.count}>
+              {String(active + 1).padStart(2, '0')}
+              <span className={styles.countSep}>/</span>
+              {String(count).padStart(2, '0')}
+            </span>
+            <button
+              className={styles.arrow}
+              onClick={() => goTo(Math.min(count - 1, active + 1))}
+              aria-label="Next"
+            >
+              →
+            </button>
           </div>
         </div>
-
-        <div className={styles.right}>
-          <button
-            className={styles.arrow}
-            onClick={() => goTo(Math.max(0, active - 1))}
-            aria-label="Previous"
-          >
-            ←
-          </button>
-          <span className={styles.count}>
-            {String(active + 1).padStart(2, '0')}
-            <span className={styles.countSep}>/</span>
-            {String(count).padStart(2, '0')}
-          </span>
-          <button
-            className={styles.arrow}
-            onClick={() => goTo(Math.min(count - 1, active + 1))}
-            aria-label="Next"
-          >
-            →
-          </button>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

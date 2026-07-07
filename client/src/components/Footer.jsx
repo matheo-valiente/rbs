@@ -7,27 +7,41 @@ const PaymentIcon = ({ label }) => (
   </span>
 );
 
+const NAV_LINKS = [
+  { to: '/store', label: 'STORE' },
+  { to: '/ticket-office', label: 'TICKETS' },
+  { to: '/music', label: 'MUSIC' },
+  { to: '/live', label: 'LIVE' },
+  { to: '/contact', label: 'CONTACT' }
+];
+
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className={styles.footer}>
-      <div className={styles.brandWrap}>
-        <div className={styles.brand}>RBS</div>
-      </div>
+      <div className={styles.top}>
+        <div className={styles.brandCol}>
+          <div className={styles.brand}>RBS</div>
+          <p className={styles.tagline}>
+            Collectif rap — soirées, musique &amp; merch. Paris.
+          </p>
+          <a
+            href="https://instagram.com/_rbsfr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.igLink}
+          >
+            @_RBSFR ↗
+          </a>
+        </div>
 
-      <div className={styles.navRow}>
-        <Link to="/store">STORE</Link>
-        <Link to="/ticket-office">TICKETS</Link>
-        <Link to="/music">MUSIC</Link>
-        <Link to="/live">LIVE</Link>
-        <Link to="/contact">CONTACT</Link>
-        <a
-          href="https://instagram.com/_rbsfr"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          INSTAGRAM
-        </a>
+        <nav className={styles.navCol} aria-label="Footer">
+          {NAV_LINKS.map((l) => (
+            <Link key={l.to} to={l.to}>
+              {l.label}
+            </Link>
+          ))}
+        </nav>
       </div>
 
       <div className={styles.payments}>
@@ -38,7 +52,7 @@ export default function Footer() {
       </div>
 
       <div className={styles.bottom}>
-        <span>@_RBSFR · {year}</span>
+        <span>© {year} RBS</span>
         <span>PAIEMENT SÉCURISÉ PAR STRIPE</span>
         <span>PARIS · FR</span>
       </div>

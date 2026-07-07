@@ -1,48 +1,80 @@
 .footer {
   background: #fff;
   border-top: 1px solid var(--line);
-  padding: 56px 28px 24px;
+  padding: 64px 28px 24px;
   color: #000;
-  text-align: center;
 }
 
-.brandWrap {
-  margin-bottom: 32px;
+.top {
+  max-width: 1480px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 24px;
+}
+
+.brandCol {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 .brand {
   font-family: var(--font-display-italic);
   font-style: italic;
-  font-size: clamp(48px, 10vw, 96px);
+  font-size: clamp(40px, 7vw, 64px);
   line-height: 0.85;
   letter-spacing: -0.05em;
   color: #000;
 }
 
-.navRow {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 22px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 24px;
+.tagline {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: 0.6;
+  max-width: 32ch;
 }
 
-.navRow a,
-.navRow :global(a) {
+.igLink {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  border-bottom: 1px solid #000;
+  padding-bottom: 2px;
+  width: fit-content;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.igLink:hover {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.navCol {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 12px 32px;
+  justify-content: end;
+  align-content: start;
   font-family: var(--font-sans);
   font-weight: 500;
-  font-size: 11px;
-  letter-spacing: 0.18em;
+  font-size: 12px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
+}
+
+.navCol a {
   color: #000;
   transition: color 0.2s ease;
 }
 
-.navRow a:hover {
+.navCol a:hover {
   color: var(--red);
 }
 
@@ -51,7 +83,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 6px;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 .payChip {
@@ -79,13 +111,18 @@
 
 @media (max-width: 720px) {
   .footer {
-    padding: 40px 18px 18px;
+    padding: 48px 18px 18px;
   }
-  .navRow {
-    gap: 12px;
+  .top {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .navCol {
+    justify-content: start;
   }
   .bottom {
     flex-direction: column;
     gap: 6px;
+    align-items: flex-start;
   }
 }
