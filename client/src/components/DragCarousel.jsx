@@ -12,7 +12,7 @@ export default function DragCarousel({
   showControls = true
 }) {
   const ref = useRef(null);
-  const stateRef = useRef({ down: false, startX: 0, startScroll: 0, moved: false });
+  const stateRef = useRef({ down: false, startX: 0, startScroll: 0, moved: false, downSince: 0 });
   const [progress, setProgress] = useState(0);
   const [count, setCount] = useState(0);
   const [active, setActive] = useState(0);
@@ -64,6 +64,11 @@ export default function DragCarousel({
     // accumulated separately or they get truncated back to the same value.
     let pos = el.scrollLeft;
     const step = () => {
+      // Failsafe: if a drag never resolves (touch cancelled outside the
+      // element, pointerup missed, etc.), don't let it pause forever.
+      if (stateRef.current.down && Date.now() - stateRef.current.downSince > 2000) {
+        stateRef.current.down = false;
+      }
       if (!stateRef.current.down) {
         const max = el.scrollWidth - el.clientWidth;
         if (max > 0) {
@@ -84,6 +89,7 @@ export default function DragCarousel({
     const el = ref.current;
     if (!el) return;
     stateRef.current.down = true;
+    stateRef.current.downSince = Date.now();
     stateRef.current.moved = false;
     stateRef.current.startX = e.clientX || (e.touches && e.touches[0].clientX) || 0;
     stateRef.current.startScroll = el.scrollLeft;
@@ -104,10 +110,29 @@ export default function DragCarousel({
     stateRef.current.down = false;
     if (ref.current) {
       ref.current.style.cursor = 'grab';
-      ref.current.style.scrollBehavior = '';
+      // Autoscroll drives scrollLeft every frame — CSS smooth-scroll
+      // would silently swallow those tiny increments, so keep it off
+      // whenever autoscroll owns this element instead of reverting to
+      // the stylesheet's default.
+      ref.current.style.scrollBehavior = autoScroll ? 'auto' : '';
     }
     setTimeout(() => (stateRef.current.moved = false), 50);
   };
+
+  // A drag can end outside the element (fast drag, or a touch gesture that
+  // gets cancelled by the browser instead of firing touchend) — without a
+  // window-level fallback, "down" could get stuck true and freeze autoscroll.
+  useEffect(() => {
+    window.addEventListener('mouseup', onPointerUp);
+    window.addEventListener('touchend', onPointerUp);
+    window.addEventListener('touchcancel', onPointerUp);
+    return () => {
+      window.removeEventListener('mouseup', onPointerUp);
+      window.removeEventListener('touchend', onPointerUp);
+      window.removeEventListener('touchcancel', onPointerUp);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const goTo = (idx) => {
     const el = ref.current;
@@ -133,6 +158,7 @@ export default function DragCarousel({
         onTouchStart={onPointerDown}
         onTouchMove={onPointerMove}
         onTouchEnd={onPointerUp}
+        onTouchCancel={onPointerUp}
         onClickCapture={(e) => {
           if (stateRef.current.moved) {
             e.stopPropagation();
