@@ -87,6 +87,15 @@ app.get('/api/events', (req, res) => {
   }
 });
 
+// Past events (recap only — not sellable, no checkout)
+app.get('/api/archive', (req, res) => {
+  try {
+    res.json(readJson('archive.json'));
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to load archive' });
+  }
+});
+
 app.get('/api/tracks', (req, res) => {
   try {
     res.json(readJson('tracks.json'));
@@ -219,6 +228,7 @@ app.get('/', (req, res) => {
     endpoints: [
       '/api/products',
       '/api/events',
+      '/api/archive',
       '/api/tracks',
       '/api/contact',
       '/api/checkout/product',

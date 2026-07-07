@@ -8,11 +8,16 @@ import styles from './Live.module.css';
 
 export default function Live() {
   const [events, setEvents] = useState([]);
+  const [archive, setArchive] = useState([]);
 
   useEffect(() => {
     fetch('/api/events')
       .then((r) => r.json())
       .then(setEvents)
+      .catch(() => {});
+    fetch('/api/archive')
+      .then((r) => r.json())
+      .then(setArchive)
       .catch(() => {});
   }, []);
 
@@ -97,6 +102,36 @@ export default function Live() {
           })}
         </DragCarousel>
       </section>
+
+      {archive.length > 0 && (
+        <section className={styles.archiveSection}>
+          <div className={styles.archiveHead}>
+            <h2 className={styles.archiveTitle}>PAST NIGHTS</h2>
+            <div className={styles.archiveIntro}>Retour sur les dernières soirées RBS.</div>
+          </div>
+          <div className={styles.archiveGrid}>
+            {archive.map((ev, i) => (
+              <motion.article
+                key={ev.id}
+                className={styles.archiveCard}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.05, duration: 0.35 }}
+              >
+                <div className={styles.archiveImageWrap}>
+                  <img src={ev.image} alt={ev.name} className={styles.archiveImg} />
+                </div>
+                <div className={styles.archiveCaption}>
+                  <div className={styles.archiveName}>{ev.name}</div>
+                  <div className={styles.archiveMeta}>
+                    {ev.location} · {ev.date}
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+      )}
 
       <Newsletter />
     </div>
