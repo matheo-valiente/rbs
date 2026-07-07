@@ -1,0 +1,361 @@
+.page {
+  position: relative;
+  background: #fff;
+  color: #000;
+  min-height: 100vh;
+  padding-top: 56px;
+  overflow: hidden;
+}
+
+.headBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 28px 28px 18px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+}
+
+.headLeft {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.headLabel {
+  font-weight: 700;
+}
+
+.headSep {
+  opacity: 0.4;
+}
+
+.headRight {
+  opacity: 0.55;
+}
+
+.titleSlash {
+  opacity: 0.25;
+}
+
+.titleAlt {
+  opacity: 0.18;
+}
+
+.bgWord {
+  position: absolute;
+  font-family: var(--font-display-italic);
+  font-style: italic;
+  font-size: clamp(220px, 38vw, 600px);
+  line-height: 0.85;
+  color: #000;
+  opacity: 0.04;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  transform: rotate(-90deg);
+  transform-origin: center center;
+  top: 50%;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 64px 28px 96px;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  opacity: 0.6;
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: var(--font-display-italic);
+  font-style: italic;
+  font-size: clamp(56px, 11vw, 180px);
+  line-height: 0.86;
+  margin: 0;
+  letter-spacing: -0.04em;
+  display: flex;
+  align-items: baseline;
+  gap: 0.06em;
+  flex-wrap: wrap;
+}
+
+.lede {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.85;
+  opacity: 0.7;
+  max-width: 420px;
+}
+
+.email {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid #000;
+  padding-bottom: 4px;
+  align-self: flex-start;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.email:hover {
+  color: var(--red);
+  border-color: var(--red);
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  opacity: 0.45;
+  text-transform: uppercase;
+}
+
+.input,
+.textarea {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  background: transparent;
+  color: #000;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 9px 0 11px;
+  width: 100%;
+  border-radius: 0;
+  transition: border-color 0.2s ease;
+  text-align: left;
+}
+
+.input:focus,
+.textarea:focus {
+  border-bottom-color: #000;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: rgba(0, 0, 0, 0.35);
+  font-family: var(--font-mono);
+}
+
+.textarea {
+  resize: none;
+  line-height: 1.6;
+}
+
+.select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  padding-right: 18px;
+}
+
+.placeholder {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+.chevron {
+  font-size: 12px;
+  opacity: 0.6;
+  transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid #000;
+  z-index: 10;
+}
+
+.option {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 11px 14px;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background 0.15s ease, color 0.15s ease;
+  border-bottom: 1px solid var(--line);
+}
+
+.option:last-child {
+  border-bottom: none;
+}
+
+.option:hover {
+  background: #000;
+  color: #fff;
+}
+
+.optionActive {
+  background: var(--red);
+  color: #fff;
+}
+
+.error {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--red);
+  letter-spacing: 0.06em;
+}
+
+.submit {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  width: 100%;
+  background: #000;
+  color: #fff;
+  padding: 20px;
+  border-radius: 0;
+  border: 1px solid #000;
+  margin-top: 4px;
+  transition: all 0.2s ease;
+}
+
+.submit:hover:not(:disabled) {
+  background: #fff;
+  color: #000;
+}
+
+.submit:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.bottomMail {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  opacity: 0.6;
+  text-align: center;
+}
+
+.bottomMail a {
+  color: #000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 22px;
+  padding: 48px 16px;
+}
+
+.successCheck {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: 2px solid var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: var(--red);
+}
+
+.successTitle {
+  font-family: var(--font-display-italic);
+  font-style: italic;
+  font-size: clamp(48px, 8vw, 80px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+
+.successSub {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  opacity: 0.6;
+}
+
+@media (max-width: 880px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 40px 18px 64px;
+  }
+  .row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .headBar {
+    padding: 22px 18px 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 10px;
+  }
+  .bgWord {
+    font-size: 70vw;
+    opacity: 0.03;
+  }
+}

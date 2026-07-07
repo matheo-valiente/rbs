@@ -1,0 +1,238 @@
+.page {
+  background: #fff;
+  color: #000;
+  padding-top: 56px;
+  min-height: 100vh;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 28px 28px 18px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+
+.headLeft {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.headLabel {
+  font-weight: 700;
+}
+
+.headSep {
+  opacity: 0.4;
+}
+
+.headRight {
+  opacity: 0.55;
+}
+
+.heroBlock {
+  padding: 48px 28px 24px;
+}
+
+.title {
+  font-family: var(--font-display-italic);
+  font-style: italic;
+  font-size: clamp(72px, 16vw, 240px);
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.08em;
+  flex-wrap: wrap;
+}
+
+.titleSlash {
+  opacity: 0.25;
+}
+
+.titleAlt {
+  opacity: 0.18;
+}
+
+.intro {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.85;
+  max-width: 540px;
+  opacity: 0.7;
+  margin-top: 24px;
+}
+
+.carousel {
+  padding: 32px 0 56px;
+  border-bottom: 1px solid var(--line);
+}
+
+.card {
+  flex: 0 0 clamp(300px, 38vw, 540px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  cursor: grab;
+}
+
+.cardIndex {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  opacity: 0.55;
+  text-transform: uppercase;
+}
+
+.upcoming {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--red);
+  border: 1px solid var(--red);
+  padding: 3px 7px;
+  opacity: 1;
+}
+
+.dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--red);
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.cardMedia {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  background: var(--soft);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+}
+
+.cardMedia > * {
+  pointer-events: auto;
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.cardOverlay > * {
+  pointer-events: auto;
+}
+
+.cardOverlayTop,
+.cardOverlayBottom {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.cardOverlayName {
+  font-family: var(--font-display-italic);
+  font-style: italic;
+  font-size: clamp(24px, 3.5vw, 44px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  text-align: center;
+  margin: auto 0;
+}
+
+.cardCta {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  padding: 5px 9px;
+  background: #000;
+  color: #fff;
+  transition: background 0.2s ease;
+}
+
+.cardCta:hover {
+  background: var(--red);
+}
+
+.cardCaption {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 1.8vw, 26px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-weight: 400;
+  flex: 1;
+}
+
+.cardCreditFor {
+  opacity: 0.4;
+}
+
+.cardCredit {
+  font-family: var(--font-display-italic);
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+
+.cardYear {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+
+@media (max-width: 720px) {
+  .head {
+    padding: 22px 18px 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 10px;
+  }
+  .heroBlock {
+    padding: 32px 18px 20px;
+  }
+}

@@ -1,0 +1,8 @@
+[
+  { "id": 1, "name": "RBS HOODIE VOL.1", "price": "65€", "category": "TOPS", "image": null },
+  { "id": 2, "name": "RBS TEE CLASSIC", "price": "35€", "category": "TOPS", "image": null },
+  { "id": 3, "name": "RBS CAP DROP", "price": "40€", "category": "ACCESSORIES", "image": null },
+  { "id": 4, "name": "RBS LONGSLEEVE", "price": "45€", "category": "TOPS", "image": null },
+  { "id": 5, "name": "RBS CREWNECK", "price": "70€", "category": "DROPS", "image": null },
+  { "id": 6, "name": "RBS TOTE BAG", "price": "20€", "category": "ACCESSORIES", "image": null }
+]

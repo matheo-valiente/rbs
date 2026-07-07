@@ -1,0 +1,237 @@
+.page {
+  background: #fff;
+  color: #000;
+  padding-top: 56px;
+  min-height: 100vh;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 28px 28px 18px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+
+.headLeft {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.headLabel {
+  font-weight: 700;
+}
+
+.headSep {
+  opacity: 0.4;
+}
+
+.headRight {
+  opacity: 0.55;
+}
+
+.heroBlock {
+  padding: 48px 28px 24px;
+}
+
+.title {
+  font-family: var(--font-display-italic);
+  font-style: italic;
+  font-size: clamp(72px, 16vw, 240px);
+  line-height: 0.86;
+  letter-spacing: -0.05em;
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.08em;
+  flex-wrap: wrap;
+}
+
+.titleSlash {
+  opacity: 0.25;
+}
+
+.titleAlt {
+  opacity: 0.18;
+}
+
+.intro {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.85;
+  max-width: 540px;
+  opacity: 0.7;
+  margin-top: 24px;
+}
+
+.carousel {
+  padding: 32px 0 56px;
+  border-bottom: 1px solid var(--line);
+}
+
+.card {
+  flex: 0 0 clamp(280px, 36vw, 520px);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.cardIndex {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  opacity: 0.45;
+  text-transform: uppercase;
+}
+
+.cardMedia {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  background: var(--soft);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.cardMedia > * {
+  pointer-events: none;
+}
+
+.play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  z-index: 2;
+}
+
+.card:hover .play {
+  opacity: 1;
+}
+
+.cardCaption {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 1.8vw, 26px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0;
+  font-weight: 400;
+  flex: 1;
+}
+
+.cardCreditFor {
+  opacity: 0.4;
+}
+
+.cardCredit {
+  font-family: var(--font-display-italic);
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+
+.cardYear {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  opacity: 0.55;
+  flex-shrink: 0;
+}
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.modalClose {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  color: #fff;
+  z-index: 5;
+}
+
+.modalClose:hover {
+  color: var(--red);
+}
+
+.modalVideoWrap {
+  width: 100%;
+  border: 1px solid #fff;
+}
+
+.modalCaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: #fff;
+}
+
+.modalTitle {
+  font-family: var(--font-display-italic);
+  font-style: italic;
+  font-size: clamp(24px, 3.5vw, 36px);
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+}
+
+.modalDesc {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+
+@media (max-width: 720px) {
+  .head {
+    padding: 22px 18px 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 10px;
+  }
+  .heroBlock {
+    padding: 32px 18px 20px;
+  }
+}
