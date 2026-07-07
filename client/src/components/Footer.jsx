@@ -22,18 +22,11 @@ export default function Footer() {
         <Link to="/live">LIVE</Link>
         <Link to="/contact">CONTACT</Link>
         <a
-          href="https://instagram.com/rbs"
+          href="https://instagram.com/_rbsfr"
           target="_blank"
           rel="noopener noreferrer"
         >
           INSTAGRAM
-        </a>
-        <a
-          href="https://youtube.com/@rbs"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          YOUTUBE
         </a>
       </div>
 

@@ -20,13 +20,6 @@ const InstaIcon = () => (
   </svg>
 );
 
-const YoutubeIcon = () => (
-  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.4">
-    <rect x="2.5" y="5.5" width="19" height="13" rx="3" />
-    <path d="M10.5 9.5L15 12l-4.5 2.5z" fill="currentColor" stroke="none" />
-  </svg>
-);
-
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
@@ -66,22 +59,13 @@ export default function Navbar() {
 
         <div className={styles.right}>
           <a
-            href="https://instagram.com/rbs"
+            href="https://instagram.com/_rbsfr"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.social}
             aria-label="Instagram"
           >
             <InstaIcon />
-          </a>
-          <a
-            href="https://youtube.com/@rbs"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.social}
-            aria-label="YouTube"
-          >
-            <YoutubeIcon />
           </a>
           <Link to="/store" className={styles.bag} aria-label="Bag">
             BAG <span>(0)</span>
@@ -137,18 +121,11 @@ export default function Navbar() {
 
             <div className={styles.overlaySocials}>
               <a
-                href="https://instagram.com/rbs"
+                href="https://instagram.com/_rbsfr"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <InstaIcon /> <span>INSTAGRAM</span>
-              </a>
-              <a
-                href="https://youtube.com/@rbs"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <YoutubeIcon /> <span>YOUTUBE</span>
               </a>
               <a href="mailto:contact@rbs.fr">
                 <span>CONTACT@RBS.FR</span>

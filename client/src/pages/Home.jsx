@@ -7,11 +7,11 @@ import Newsletter from '../components/Newsletter.jsx';
 import styles from './Home.module.css';
 
 const FEATURED = [
-  { id: 1, title: 'HEXTII PARTY VOL.2', credit: 'NOUVEAU CASINO', kind: 'EVENT', year: '13.03', image: '/media/photos/poster-hextii-vol2.jpg' },
-  { id: 2, title: 'HEXTII PARTY', credit: 'LA BELLEVILLOISE', kind: 'EVENT', year: '09.11', image: '/media/photos/poster-hextii-bellevilloise.jpg' },
-  { id: 3, title: 'ON STAGE', credit: 'PARIS', kind: 'MUSIC', year: '—', image: '/media/photos/live-07.jpg' },
-  { id: 4, title: 'CROWD', credit: 'PARIS', kind: 'EVENT', year: '—', image: '/media/photos/live-01.jpg' },
-  { id: 5, title: 'HOODIE VOL.1', credit: 'TEAM RBS', kind: 'DROP', year: '2026' }
+  { id: 1, title: 'ON STAGE', credit: 'PARIS', kind: 'MUSIC', year: '—', image: '/media/photos/live-07.jpg' },
+  { id: 2, title: 'CROWD', credit: 'PARIS', kind: 'LIVE', year: '—', image: '/media/photos/live-01.jpg' },
+  { id: 3, title: 'FRONT ROW', credit: 'PARIS', kind: 'LIVE', year: '—', image: '/media/photos/live-03.jpg' },
+  { id: 4, title: 'MIC CHECK', credit: 'PARIS', kind: 'MUSIC', year: '—', image: '/media/photos/live-05.jpg' },
+  { id: 5, title: 'NIGHT SET', credit: 'PARIS', kind: 'LIVE', year: '—', image: '/media/photos/live-06.jpg' }
 ];
 
 const formatDateTime = (d = new Date()) => {

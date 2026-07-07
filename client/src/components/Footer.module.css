@@ -15,7 +15,7 @@
 .brand {
   font-family: var(--font-display-italic);
   font-style: italic;
-  font-size: clamp(120px, 24vw, 360px);
+  font-size: clamp(48px, 10vw, 96px);
   line-height: 0.85;
   letter-spacing: -0.05em;
   color: #000;

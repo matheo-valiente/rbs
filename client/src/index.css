@@ -11,7 +11,7 @@ body {
   height: 100%;
   background: #ffffff;
   color: #000000;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inconsolata', ui-monospace, monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -82,8 +82,8 @@ video {
   --line-strong: rgba(0, 0, 0, 0.6);
   --red: #ff1111;
 
-  --font-display: 'Anton', 'Archivo Black', Impact, sans-serif;
-  --font-display-italic: 'Archivo Black', 'Anton', Impact, sans-serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', ui-monospace, monospace;
+  --font-display: 'Inconsolata', ui-monospace, monospace;
+  --font-display-italic: 'Inconsolata', ui-monospace, monospace;
+  --font-sans: 'Inconsolata', ui-monospace, monospace;
+  --font-mono: 'Inconsolata', ui-monospace, monospace;
 }

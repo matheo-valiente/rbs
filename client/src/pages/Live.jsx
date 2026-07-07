@@ -70,7 +70,7 @@ export default function Live() {
                   {ev.image ? (
                     <img src={ev.image} alt={ev.name} className={styles.cardImg} />
                   ) : (
-                    <VideoPlaceholder label="[ POSTER À VENIR ]" ratio="4/5" />
+                    <VideoPlaceholder label="" ratio="4/5" />
                   )}
                   <div className={styles.cardOverlay}>
                     <div className={styles.cardOverlayTop}>
