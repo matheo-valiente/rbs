@@ -1,0 +1,74 @@
+.page {
+  background: #fff;
+  color: #000;
+  padding-top: 94px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 16px 0 64px;
+}
+
+.card {
+  flex: 0 0 clamp(340px, 40vw, 640px);
+  cursor: grab;
+}
+
+.cardMedia {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  background: var(--soft);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.cardMedia > * {
+  pointer-events: none;
+}
+
+.cardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardCaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 28px 18px 16px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 100%);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.card:hover .cardCaption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 880px) {
+  .page {
+    padding-top: 70px;
+  }
+  .carousel {
+    padding: 12px 0 48px;
+  }
+  .card {
+    flex: 0 0 clamp(240px, 78vw, 420px);
+  }
+}

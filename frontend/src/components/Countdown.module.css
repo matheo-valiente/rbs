@@ -1,0 +1,21 @@
+.countdown {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.sep {
+  opacity: 0.3;
+  font-weight: 400;
+}
+
+.lg {
+  font-size: clamp(32px, 6vw, 56px);
+  gap: 14px;
+  letter-spacing: 0.01em;
+}

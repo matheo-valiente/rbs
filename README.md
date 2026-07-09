@@ -7,26 +7,26 @@ Frontend React (Vite) + backend Node/Express avec données JSON.
 
 ```
 rbs-website/
-├── client/        # React + Vite (port 5173)
-└── server/        # Express API (port 3001)
+├── frontend/      # React + Vite (port 5173)
+└── backend/       # Express API (port 3001)
 ```
 
 ## Lancement
 
-### 1. Démarrer le serveur (terminal 1)
+### 1. Démarrer le backend (terminal 1)
 
 ```bash
-cd server
+cd backend
 npm install
 node index.js
 ```
 
 → API disponible sur http://localhost:3001
 
-### 2. Démarrer le client (terminal 2)
+### 2. Démarrer le frontend (terminal 2)
 
 ```bash
-cd client
+cd frontend
 npm install
 npm run dev
 ```
@@ -34,8 +34,8 @@ npm run dev
 → Site disponible sur http://localhost:5173
 
 Vite est configuré avec un proxy `/api → http://localhost:3001`,
-donc le client peut appeler `/api/...` sans CORS en dev.
-CORS est aussi activé côté serveur si besoin.
+donc le frontend peut appeler `/api/...` sans CORS en dev.
+CORS est aussi activé côté backend si besoin.
 
 ## API Endpoints
 
@@ -54,11 +54,12 @@ CORS est aussi activé côté serveur si besoin.
 ## Pages
 
 - `/` — **Home** : hero vidéo plein écran + section présentation
+- `/live` — **Live** : affiches événements en défilement continu
 - `/store` — **Store** : grille de produits + modal taille / commande → paiement Stripe
 - `/store/success` — confirmation de commande après paiement
 - `/ticket-office` — **Ticket Office** : événements → paiement Stripe
 - `/tickets/success` — confirmation + QR code réel du billet après paiement
-- `/music` — **Music** : carrousel horizontal auto-scroll, modal vidéo
+- `/music` — **Music** : clip vidéo mis en avant + liens streaming
 - `/contact` — **Contact** : formulaire stylisé + dropdown sujet
 - `/mentions-legales`, `/cgv`, `/confidentialite` — pages légales
 
@@ -76,10 +77,10 @@ donnée bancaire ne transite par notre serveur).
 3. Renseigner l'IBAN de l'association/entreprise pour recevoir les
    virements (Stripe reverse l'argent des ventes sur ce compte)
 
-### 2. Configurer le serveur
+### 2. Configurer le backend
 
 ```bash
-cd server
+cd backend
 cp .env.example .env
 # éditer .env et renseigner STRIPE_SECRET_KEY (clé de test pour commencer)
 ```
@@ -92,7 +93,7 @@ tester :
 
 ```bash
 stripe listen --forward-to localhost:3001/api/webhook
-# copie le "whsec_..." affiché dans server/.env → STRIPE_WEBHOOK_SECRET
+# copie le "whsec_..." affiché dans backend/.env → STRIPE_WEBHOOK_SECRET
 ```
 
 En production (sur le VPS), dans le Dashboard Stripe :
@@ -110,22 +111,22 @@ d'autoriser les paiements réels).
 
 ## Ajouter du contenu réel
 
-Les vraies photos/vidéos/logo se déposent dans `client/public/media/`
-(voir `client/public/media/README.md`) — pas besoin de recompiler,
+Les vraies photos/vidéos/logo se déposent dans `frontend/public/media/`
+(voir `frontend/public/media/README.md`) — pas besoin de recompiler,
 il suffit de référencer le chemin dans les données ou les composants.
 
-Toutes les autres données sont dans `server/data/*.json` :
+Toutes les autres données sont dans `backend/data/*.json` :
 
 ```json
-// server/data/products.json — ajouter un champ image (URL ou /media/photos/img.jpg)
+// backend/data/products.json — ajouter un champ image (URL ou /media/photos/img.jpg)
 { "id": 1, "name": "RBS HOODIE", "price": "65€", "category": "TOPS", "image": "/media/photos/hoodie.jpg" }
 
-// server/data/tracks.json — ajouter une URL vidéo
+// backend/data/tracks.json — ajouter une URL vidéo
 { "id": 1, "title": "RBS — SESSION 01", "video": "/media/video/session-01.mp4" }
 ```
 
 Pour la **vidéo de fond hero**, remplacer le `<VideoPlaceholder>` du
-composant `client/src/pages/Home.jsx` par :
+composant `frontend/src/pages/Home.jsx` par :
 
 ```jsx
 <video src="/media/video/hero.mp4" autoPlay muted loop playsInline className="..." />
@@ -138,33 +139,45 @@ composant `client/src/pages/Home.jsx` par :
 - **Fonts** : Anton/Archivo Black (display), Inter (sans), JetBrains Mono (mono)
 - **Couleurs** : noir `#000000`, blanc `#ffffff`, rouge `#ff1111`
 
-## Déploiement (VPS OVH)
+## Déploiement
+
+Deux options : **Docker** (recommandé, isolé et reproductible) ou **VPS nu** (pm2 + nginx).
+
+### Option A — Docker
 
 ```bash
-cd client && npm run build      # output dans client/dist/
+cp backend/.env.example backend/.env   # renseigner les vraies clés Stripe
+docker compose up -d --build
 ```
 
-1. Servir `client/dist/` en statique derrière Express, en ajoutant dans
-   `server/index.js` :
-   ```js
-   app.use(express.static(path.join(__dirname, '../client/dist')));
-   app.get('*', (req, res) => res.sendFile(path.join(__dirname, '../client/dist/index.html')));
-   ```
-   (à placer après toutes les routes `/api/...`)
+→ Le frontend (nginx) écoute sur le port 80 et proxy `/api` vers le
+conteneur backend. Voir `docker-compose.yml`, `frontend/Dockerfile` et
+`backend/Dockerfile`.
+
+### Option B — VPS nu (pm2 + nginx)
+
+```bash
+cd frontend && npm run build      # output dans frontend/dist/
+```
+
+1. Le backend sert déjà `frontend/dist/` en statique automatiquement
+   dès que ce dossier existe (voir `backend/index.js`) — rien à modifier.
 
 2. Sur le VPS, installer Node.js, cloner le repo, `npm install` dans
-   `server/`, créer `server/.env` avec les vraies clés Stripe.
+   `backend/`, créer `backend/.env` avec les vraies clés Stripe.
 
 3. Lancer le process en continu avec **pm2** (survit aux reboots/crashs) :
    ```bash
    npm install -g pm2
-   pm2 start server/index.js --name rbs
+   cd backend
+   pm2 start ecosystem.config.js
    pm2 save && pm2 startup
    ```
 
-4. Reverse-proxy **nginx** vers le port 3001, avec HTTPS via
-   **certbot** (`certbot --nginx -d votre-domaine.fr`) — Stripe exige
-   une URL HTTPS publique pour le webhook.
+4. Reverse-proxy **nginx** vers le port 3001 — voir le template
+   `deploy/nginx.conf.example` — avec HTTPS via **certbot**
+   (`certbot --nginx -d votre-domaine.fr`) — Stripe exige une URL
+   HTTPS publique pour le webhook.
 
 5. Déclarer le webhook Stripe sur `https://votre-domaine.fr/api/webhook`
    (voir section Paiement ci-dessus).

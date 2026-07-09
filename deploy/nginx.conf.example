@@ -1,0 +1,22 @@
+# Reverse proxy vers le serveur Node (Express, port 3001).
+# 1. Remplacer votre-domaine.fr par le vrai nom de domaine.
+# 2. Copier vers /etc/nginx/sites-available/rbs puis symlink dans sites-enabled :
+#      sudo cp nginx.conf.example /etc/nginx/sites-available/rbs
+#      sudo ln -s /etc/nginx/sites-available/rbs /etc/nginx/sites-enabled/rbs
+#      sudo nginx -t && sudo systemctl reload nginx
+# 3. Activer HTTPS (réécrit ce fichier automatiquement) :
+#      sudo certbot --nginx -d votre-domaine.fr
+
+server {
+    listen 80;
+    server_name votre-domaine.fr;
+
+    location / {
+        proxy_pass http://127.0.0.1:3001;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
