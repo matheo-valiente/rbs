@@ -51,14 +51,23 @@
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  opacity: 0;
-  transform: translateY(6px);
+  /* Touch devices have no hover — show the caption by default there and
+     only gate it behind hover on devices with a real pointer. */
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.card:hover .cardCaption {
-  opacity: 1;
-  transform: translateY(0);
+@media (hover: hover) and (pointer: fine) {
+  .cardCaption {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  .card:hover .cardCaption {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 880px) {

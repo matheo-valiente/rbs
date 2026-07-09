@@ -39,13 +39,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.25s ease;
   z-index: 2;
 }
 
-.card:hover .play {
-  opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+  .play {
+    opacity: 0;
+  }
+
+  .card:hover .play {
+    opacity: 1;
+  }
 }
 
 .cardCaption {
@@ -148,6 +154,15 @@
   z-index: 5;
 }
 
+@media (max-width: 720px) {
+  .modalClose {
+    top: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.55);
+    border-radius: 50%;
+  }
+}
+
 .modalClose:hover {
   color: var(--red);
 }
@@ -189,5 +204,8 @@
   }
   .listen {
     padding: 40px 18px 56px;
+  }
+  .modalBackdrop {
+    padding: 18px;
   }
 }

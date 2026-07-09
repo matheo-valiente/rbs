@@ -107,12 +107,44 @@
   opacity: 0;
 }
 
-.card:hover .cardImgFront {
+.flipped .cardImgFront {
   opacity: 0;
 }
 
-.card:hover .cardImgBack {
+.flipped .cardImgBack {
   opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .cardImgFront {
+    opacity: 0;
+  }
+
+  .card:hover .cardImgBack {
+    opacity: 1;
+  }
+}
+
+.flipBtn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 13px;
+  line-height: 1;
+  transition: background 0.18s ease;
+}
+
+.flipBtn:hover {
+  background: #000;
 }
 
 .cardImage > span:not(.cardCategory) {
@@ -247,12 +279,14 @@
   opacity: 0.5;
 }
 
-.modalImage:hover .cardImgFront {
-  opacity: 0;
-}
+@media (hover: hover) and (pointer: fine) {
+  .modalImage:hover .cardImgFront {
+    opacity: 0;
+  }
 
-.modalImage:hover .cardImgBack {
-  opacity: 1;
+  .modalImage:hover .cardImgBack {
+    opacity: 1;
+  }
 }
 
 .modalImage img {

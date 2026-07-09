@@ -8,7 +8,10 @@ export default function Store() {
   const [products, setProducts] = useState([]);
   const [active, setActive] = useState('ALL');
   const [selected, setSelected] = useState(null);
+  const [flipped, setFlipped] = useState({});
   const [size, setSize] = useState(null);
+
+  const toggleFlip = (id) => setFlipped((f) => ({ ...f, [id]: !f[id] }));
   const [checkingOut, setCheckingOut] = useState(false);
   const [checkoutError, setCheckoutError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -89,7 +92,7 @@ export default function Store() {
               transition={{ delay: i * 0.04, duration: 0.35 }}
               onClick={() => setSelected(p)}
             >
-              <div className={styles.cardImage}>
+              <div className={`${styles.cardImage} ${flipped[p.id] ? styles.flipped : ''}`}>
                 {p.image ? (
                   <>
                     <img src={p.image} alt={p.name} className={styles.cardImgFront} />
@@ -101,6 +104,19 @@ export default function Store() {
                   <span>[ IMAGE À VENIR ]</span>
                 )}
                 <span className={styles.cardCategory}>{p.category}</span>
+                {p.imageBack && (
+                  <button
+                    type="button"
+                    className={styles.flipBtn}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleFlip(p.id);
+                    }}
+                    aria-label="Voir le dos du produit"
+                  >
+                    ⇄
+                  </button>
+                )}
               </div>
               <div className={styles.cardBody}>
                 <div className={styles.cardName}>{p.name}</div>
@@ -150,7 +166,7 @@ export default function Store() {
               </button>
 
               <div className={styles.modalGrid}>
-                <div className={styles.modalImage}>
+                <div className={`${styles.modalImage} ${flipped[selected.id] ? styles.flipped : ''}`}>
                   {selected.image ? (
                     <>
                       <img src={selected.image} alt={selected.name} className={styles.cardImgFront} />
@@ -164,6 +180,16 @@ export default function Store() {
                     </>
                   ) : (
                     <span>[ IMAGE À VENIR ]</span>
+                  )}
+                  {selected.imageBack && (
+                    <button
+                      type="button"
+                      className={styles.flipBtn}
+                      onClick={() => toggleFlip(selected.id)}
+                      aria-label="Voir le dos du produit"
+                    >
+                      ⇄
+                    </button>
                   )}
                 </div>
                 <div className={styles.modalDetails}>

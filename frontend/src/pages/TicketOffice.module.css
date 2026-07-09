@@ -201,4 +201,12 @@
   .list {
     padding: 0 18px;
   }
+  .reveal {
+    padding: 48px 18px;
+    gap: 20px;
+  }
+  .hourglass {
+    width: 48px;
+    height: 48px;
+  }
 }
