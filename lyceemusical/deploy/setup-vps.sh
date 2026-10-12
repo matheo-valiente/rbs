@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Installation initiale d'un VPS OVH neuf (Ubuntu 24.04), à lancer UNE fois :
 #   ssh ubuntu@IP_DU_VPS
-#   git clone -b lyceemusical https://github.com/matheo-valiente/rbs.git
+#   git clone https://github.com/matheo-valiente/rbs.git
 #   bash rbs/lyceemusical/deploy/setup-vps.sh
 set -euo pipefail
 

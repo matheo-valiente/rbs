@@ -1,7 +1,7 @@
 # Lycée Musical — Luvbfk
 
-> Ce dossier vit dans le repo RBS (`lyceemusical/`), indépendant du site RBS
-> à la racine : son propre build, son propre déploiement.
+> Repo : `github.com/matheo-valiente/rbs`, dossier `lyceemusical/`.
+> L'ancien site RBS reste récupérable : `git checkout rbs-ancien-site`.
 
 Site de sortie de l'EP **« Lycée Musical »** de Luvbfk + boutique de précommande
 (CD, t-shirt, pack), vendue et facturée par **RBS SAS**. Même DA que le site RBS.
@@ -133,7 +133,7 @@ les identifiants SMTP dans `backend/.env`.
 
 ```bash
 ssh ubuntu@IP_DU_VPS
-git clone -b lyceemusical https://github.com/matheo-valiente/rbs.git
+git clone https://github.com/matheo-valiente/rbs.git
 cd rbs/lyceemusical
 bash deploy/setup-vps.sh          # Docker, pare-feu, fail2ban, mises à jour auto
 exit                              # puis se reconnecter
