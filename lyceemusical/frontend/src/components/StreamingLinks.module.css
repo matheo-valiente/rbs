@@ -1,0 +1,36 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid #000;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.link:hover:not(.soon) {
+  background: #000;
+  color: #fff;
+}
+
+.arrow {
+  margin-left: auto;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+}
+
+.soon {
+  opacity: 0.4;
+  cursor: default;
+  border-style: dashed;
+}

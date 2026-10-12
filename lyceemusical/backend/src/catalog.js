@@ -1,0 +1,59 @@
+// Single source of truth for what can be bought and at what price.
+// The frontend only ever sends { productId, size, qty } — prices are never
+// trusted from the client.
+//
+// `contains` drives the per-person limits (a pack counts as 1 CD + 1 t-shirt).
+// Photos : il suffit de déposer les fichiers dans frontend/public/media/products/
+// avec ces noms (carré, 1200×1200 conseillé). `imageBack` = 2e photo affichée
+// au survol (dos du t-shirt…). Tant qu'un fichier manque, un dessin le remplace.
+
+const TSHIRT_SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
+
+const PRODUCTS = [
+  {
+    id: 'cd',
+    name: 'CD — LYCÉE MUSICAL',
+    shortName: 'CD',
+    price: 1000,
+    contains: { cd: 1, tshirt: 0 },
+    sizes: null,
+    includes: ['1 CD de l’EP « Lycée Musical »', 'Boîtier + livret [À COMPLÉTER]'],
+    description: 'L’EP en version physique. [DESCRIPTION À COMPLÉTER]',
+    image: '/media/products/cd.jpg',
+    imageBack: '/media/products/cd-2.jpg',
+    imageAlt: null,
+  },
+  {
+    id: 'pack',
+    name: 'PACK CD + T-SHIRT',
+    shortName: 'PACK',
+    price: 2500,
+    compareAtPrice: 3000,
+    badge: 'MEILLEURE OFFRE',
+    featured: true,
+    contains: { cd: 1, tshirt: 1 },
+    sizes: TSHIRT_SIZES,
+    includes: ['1 CD de l’EP « Lycée Musical »', '1 T-shirt officiel Lycée Musical'],
+    description: 'Le CD et le t-shirt officiel réunis. 5 € d’économie.',
+    image: '/media/products/pack.jpg',
+    imageBack: '/media/products/pack-2.jpg',
+    imageAlt: null,
+  },
+  {
+    id: 'tshirt',
+    name: 'T-SHIRT LYCÉE MUSICAL',
+    shortName: 'T-SHIRT',
+    price: 2000,
+    contains: { cd: 0, tshirt: 1 },
+    sizes: TSHIRT_SIZES,
+    includes: ['1 T-shirt officiel Lycée Musical', '[MATIÈRE / COUPE À COMPLÉTER]'],
+    description: 'Le t-shirt officiel de l’EP. [DESCRIPTION À COMPLÉTER]',
+    image: '/media/products/tshirt.jpg',
+    imageBack: '/media/products/tshirt-2.jpg',
+    imageAlt: null,
+  },
+];
+
+const getProduct = (id) => PRODUCTS.find((p) => p.id === id) || null;
+
+module.exports = { PRODUCTS, TSHIRT_SIZES, getProduct };

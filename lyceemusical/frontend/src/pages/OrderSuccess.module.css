@@ -1,0 +1,101 @@
+.page {
+  background: #fff;
+  color: #000;
+  padding-top: 114px;
+  min-height: 100vh;
+}
+
+.block {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 96px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 28px;
+}
+
+.pending {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  line-height: 1.8;
+  opacity: 0.6;
+}
+
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.check {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: var(--red);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(32px, 6vw, 56px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.sub {
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+}
+
+.recap {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  font-size: 13px;
+  text-align: left;
+}
+
+.recap td {
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+
+.recap td:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.total td {
+  border-top: 1px solid #000;
+  font-weight: 800;
+}
+
+.info {
+  font-size: 13px;
+  line-height: 1.7;
+  opacity: 0.7;
+}
+
+.back {
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #000;
+}
+
+.back:hover {
+  color: var(--red);
+  border-color: var(--red);
+}

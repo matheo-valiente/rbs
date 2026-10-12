@@ -1,0 +1,26 @@
+{
+  "name": "lyceemusical-backend",
+  "version": "1.0.0",
+  "description": "API boutique — précommandes EP Lycée Musical (Luvbfk)",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "start": "node --disable-warning=ExperimentalWarning src/server.js",
+    "dev": "node --disable-warning=ExperimentalWarning --watch src/server.js",
+    "test-notify": "node --disable-warning=ExperimentalWarning scripts/test-notify.js",
+    "backup": "node --disable-warning=ExperimentalWarning scripts/backup.js",
+    "check": "node --disable-warning=ExperimentalWarning scripts/check.js",
+    "stripe:setup": "node --disable-warning=ExperimentalWarning scripts/stripe-setup.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^8.5.2",
+    "helmet": "^8.2.0",
+    "nodemailer": "^6.9.16",
+    "stripe": "^22.3.0"
+  }
+}

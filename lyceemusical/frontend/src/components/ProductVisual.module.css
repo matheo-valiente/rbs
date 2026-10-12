@@ -1,0 +1,83 @@
+.wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--soft);
+  overflow: hidden;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.front,
+.back {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.35s ease;
+}
+
+.back {
+  opacity: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :global(.product-hover):hover .hasBack .front {
+    opacity: 0;
+  }
+  :global(.product-hover):hover .hasBack .back {
+    opacity: 1;
+  }
+}
+
+.drawn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.single {
+  width: 64%;
+  height: auto;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.packShirt {
+  position: absolute;
+  width: 58%;
+  left: 8%;
+  top: 12%;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.packDisc {
+  position: absolute;
+  width: 46%;
+  right: 8%;
+  bottom: 10%;
+  filter: drop-shadow(0 14px 24px rgba(0, 0, 0, 0.25));
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.thumb {
+  width: 76px;
+  flex-shrink: 0;
+}
+
+.thumb .single {
+  width: 74%;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :global(.product-hover):hover .single {
+    transform: scale(1.04) rotate(-2deg);
+  }
+  :global(.product-hover):hover .packShirt {
+    transform: translateX(-4px) rotate(-3deg);
+  }
+  :global(.product-hover):hover .packDisc {
+    transform: translate(6px, -4px) rotate(8deg);
+  }
+}
