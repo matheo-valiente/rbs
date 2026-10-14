@@ -66,6 +66,41 @@ function PreorderLine() {
   );
 }
 
+// Front cover, flips to the back (tracklist) on click / tap.
+function CoverFlip() {
+  const [back, setBack] = useState(false);
+  return (
+    <div className={styles.cover}>
+      <button
+        type="button"
+        className={`${styles.coverCard} ${back ? styles.coverFlipped : ''}`}
+        onClick={() => setBack((b) => !b)}
+        aria-label={back ? 'Voir le recto de la pochette' : 'Voir le verso de la pochette'}
+      >
+        <span className={`${styles.coverFace} ${styles.coverFront}`}>
+          <MediaImage
+            src={MEDIA.coverFront}
+            alt={`Pochette — ${EP_TITLE}`}
+            label="[ POCHETTE ]"
+            className={styles.fill}
+          />
+        </span>
+        <span className={`${styles.coverFace} ${styles.coverBack}`}>
+          <MediaImage src={MEDIA.coverBack} alt={`Verso — ${EP_TITLE}`} label="[ VERSO ]" className={styles.fill} />
+        </span>
+      </button>
+      <div className={styles.coverSwitch}>
+        <button type="button" className={!back ? styles.coverOn : ''} onClick={() => setBack(false)}>
+          RECTO
+        </button>
+        <button type="button" className={back ? styles.coverOn : ''} onClick={() => setBack(true)}>
+          VERSO
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const { products, phase } = useShop();
   const [videoSrc] = useState(heroVideoSrc);
@@ -127,24 +162,14 @@ export default function Home() {
       </div>
 
       <section className={styles.artist}>
-        <div className={styles.artistInner}>
-          <motion.div className={styles.polaroidWrap} {...reveal}>
-            <figure className={styles.polaroid}>
-              <div className={styles.polaroidPhoto}>
-                <MediaImage src={MEDIA.portrait} alt={`${ARTIST} et ses musiciens`} className={styles.fill} />
-              </div>
-              <figcaption className={styles.polaroidCaption}>
-                <span>{ARTIST}</span>
-                <span>{EP_TITLE}</span>
-              </figcaption>
-            </figure>
-          </motion.div>
-
-          <motion.div className={styles.artistBody} {...reveal}>
+        <motion.div className={styles.artistInner} {...reveal}>
+          <div className={styles.artistHead}>
             <div className={styles.sectionIndex}>
               <span>01</span> {ARTIST}
             </div>
             <h2 className={styles.artistTitle}>{HOME.bioTitle}</h2>
+          </div>
+          <div className={styles.artistBody}>
             {BIO.map((p, i) => (
               <p key={i} className={styles.bodyText}>
                 {p}
@@ -155,8 +180,8 @@ export default function Home() {
                 SUIVRE {INSTAGRAM_HANDLE} ↗
               </a>
             )}
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </section>
 
       <section className={styles.ep} id="ep">
@@ -173,14 +198,7 @@ export default function Home() {
 
         <div className={styles.epInner}>
           <motion.div className={styles.epCoverWrap} {...reveal}>
-            <div className={styles.epCover}>
-              <MediaImage
-                src={MEDIA.cover}
-                alt={`Pochette (verso) — ${EP_TITLE}`}
-                label="[ POCHETTE À VENIR ]"
-                className={styles.fill}
-              />
-            </div>
+            <CoverFlip />
           </motion.div>
 
           <motion.div className={styles.epBody} {...reveal}>

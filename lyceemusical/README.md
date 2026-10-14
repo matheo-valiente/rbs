@@ -14,7 +14,7 @@ Site de sortie de l'EP **« Lycée Musical »** de Luvbfk + boutique de précomm
 | --- | --- | --- |
 | Vidéo d'accueil | `frontend/public/media/video/hero.mp4` | remplacer le fichier (garder le nom) |
 | Photos produits | `frontend/public/media/products/` | `cd.jpg`, `tshirt.jpg`, `pack.jpg` (+ `cd-2.jpg`, `tshirt-2.jpg`, `pack-2.jpg` = 2ᵉ photo au survol). Carré 1200×1200 |
-| Portrait / pochette | `frontend/public/media/photos/` | `luvbfk.jpg` (4:5), `cover.jpg` (carré) |
+| Pochette recto / verso | `frontend/public/media/photos/` | `cover-front.jpg`, `cover-back.jpg` (carré) — ✓ en place |
 | Image de partage | `frontend/public/media/og.jpg` | 1200×630 (aperçu Insta/WhatsApp/iMessage) |
 | Textes, bio, liens | `frontend/src/config.js` | Spotify, Deezer, Apple Music, lien EP, Instagram, bio, accroche, tracklist, guide des tailles |
 | Descriptions produits | `backend/src/catalog.js` | `includes` / `description` (les prix sont aussi là) |

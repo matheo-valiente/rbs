@@ -19,8 +19,8 @@ export const MEDIA = {
   heroVideo: '/media/video/hero.mp4',
   heroVideoMobile: '/media/video/hero-mobile.mp4', // version allégée pour téléphone
   heroPoster: '/media/video/hero-poster.jpg',
-  portrait: '/media/photos/luvbfk.jpg',
-  cover: '/media/photos/cover.jpg' // verso de la pochette (tracklist + crédits)
+  coverFront: '/media/photos/cover-front.jpg', // recto de la pochette (carré)
+  coverBack: '/media/photos/cover-back.jpg' // verso (tracklist + crédits)
 };
 
 // Textes de l'accueil — courts et directs.

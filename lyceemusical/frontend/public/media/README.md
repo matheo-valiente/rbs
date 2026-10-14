@@ -6,8 +6,8 @@
   `ffmpeg -i source.mp4 -an -vf scale=1280:-2 -c:v libx264 -crf 25 -preset slow -pix_fmt yuv420p -movflags +faststart hero.mp4`
   `ffmpeg -i source.mp4 -an -vf scale=854:-2 -c:v libx264 -crf 27 -preset slow -pix_fmt yuv420p -movflags +faststart hero-mobile.mp4`
 - `video/hero-poster.jpg` — image affichée pendant le chargement de la vidéo.
-- `photos/luvbfk.jpg` — photo de la section « Luvbfk » (affichée en polaroid, format ~carré).
-- `photos/cover.jpg` — pochette de l'EP (actuellement le verso avec la tracklist), format carré.
-- `products/*.jpg` — photos produits (carré 1:1), puis renseigner `image` dans
+- `photos/cover-front.jpg` — recto de la pochette (carré), section EP de l'accueil.
+- `photos/cover-back.jpg` — verso de la pochette (carré), affiché quand on retourne la pochette.
+- `products/*.jpg` — photos produits (`cd.jpg` = recto, `cd-2.jpg` = verso, déjà en place) (carré 1:1), puis renseigner `image` dans
   `backend/src/catalog.js` (ex. `"/media/products/tshirt.jpg"`).
 - `og.jpg` — image de partage réseaux sociaux (1200×630).
