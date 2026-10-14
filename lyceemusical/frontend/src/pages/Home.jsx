@@ -163,13 +163,27 @@ export default function Home() {
 
       <section className={styles.artist}>
         <motion.div className={styles.artistInner} {...reveal}>
-          <div className={styles.artistHead}>
+          <figure className={styles.portrait}>
+            <div className={styles.portraitPhoto}>
+              <MediaImage src={MEDIA.portrait} alt={ARTIST} className={styles.fill} />
+            </div>
+            {MEDIA.portraitCaption && (
+              <figcaption>
+                {MEDIA.portraitLink ? (
+                  <a href={MEDIA.portraitLink} target="_blank" rel="noopener noreferrer">
+                    {MEDIA.portraitCaption} ↗
+                  </a>
+                ) : (
+                  MEDIA.portraitCaption
+                )}
+              </figcaption>
+            )}
+          </figure>
+          <div className={styles.artistBody}>
             <div className={styles.sectionIndex}>
               <span>01</span> {ARTIST}
             </div>
             <h2 className={styles.artistTitle}>{HOME.bioTitle}</h2>
-          </div>
-          <div className={styles.artistBody}>
             {BIO.map((p, i) => (
               <p key={i} className={styles.bodyText}>
                 {p}

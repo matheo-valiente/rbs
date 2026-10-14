@@ -19,6 +19,9 @@ export const MEDIA = {
   heroVideo: '/media/video/hero.mp4',
   heroVideoMobile: '/media/video/hero-mobile.mp4', // version allégée pour téléphone
   heroPoster: '/media/video/hero-poster.jpg',
+  portrait: '/media/photos/luvbfk.jpg', // image du clip « god bless »
+  portraitCaption: 'Extrait du clip « god bless »',
+  portraitLink: 'https://www.youtube.com/watch?v=OxVKOPwgOpc',
   coverFront: '/media/photos/cover-front.jpg', // recto de la pochette (carré)
   coverBack: '/media/photos/cover-back.jpg' // verso (tracklist + crédits)
 };

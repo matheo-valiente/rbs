@@ -381,24 +381,46 @@
   max-width: 1280px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
+  grid-template-columns: minmax(300px, 480px) 1fr;
+  gap: 96px;
+  align-items: center;
 }
 
-.artistHead {
+.portrait {
+  margin: 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 26px;
+  gap: 12px;
+}
+
+.portraitPhoto {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--soft);
+}
+
+.portraitPhoto img {
+  transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.portrait:hover .portraitPhoto img {
+  transform: scale(1.03);
+}
+
+.portrait figcaption {
+  font-size: 12.5px;
+  letter-spacing: 0.08em;
+}
+
+.portrait figcaption a:hover {
+  color: var(--red);
 }
 
 .artistBody {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 22px;
-  padding-top: 52px;
+  gap: 24px;
 }
 
 .artistTitle,
@@ -673,8 +695,9 @@
     grid-template-columns: 1fr;
     gap: 32px;
   }
-  .artistBody {
-    padding-top: 0;
+  .portrait {
+    max-width: 440px;
+    width: 100%;
   }
   .artistTitle,
   .bodyText {
