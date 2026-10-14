@@ -12,7 +12,7 @@
   padding: 28px 28px 18px;
   font-family: var(--font-mono);
   font-weight: 500;
-  font-size: 11px;
+  font-size: 12.5px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   border-bottom: 1px solid var(--line);
@@ -23,7 +23,7 @@
 }
 
 .headSep {
-  opacity: 0.4;
+  opacity: 0.72;
 }
 
 .title {
@@ -39,9 +39,9 @@
 
 .updated {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12.5px;
   letter-spacing: 0.1em;
-  opacity: 0.5;
+  opacity: 0.8;
   max-width: 1000px;
   margin: 12px auto 0;
   padding: 0 28px;
@@ -73,9 +73,9 @@
 
 .section p {
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.85;
-  opacity: 0.75;
+  opacity: 0.88;
   max-width: 68ch;
 }
 
@@ -91,7 +91,7 @@
 
 .placeholder {
   color: var(--red);
-  opacity: 0.85;
+  opacity: 1;
 }
 
 @media (max-width: 720px) {

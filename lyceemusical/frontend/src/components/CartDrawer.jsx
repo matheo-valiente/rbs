@@ -80,7 +80,8 @@ export default function CartDrawer() {
   };
 
   let blocker = null;
-  if (phase === 'upcoming' && shop) blocker = `Ouverture des précommandes le ${parisDate(shop.preorder.opensAt, { hour: '2-digit', minute: '2-digit' })}.`;
+  if (phase === 'upcoming' && shop)
+    blocker = `Ouverture des précommandes le ${parisDate(shop.preorder.opensAt, { hour: '2-digit', minute: '2-digit' })}.`;
   if (phase === 'closed') blocker = 'Les précommandes sont terminées.';
 
   return (
@@ -167,13 +168,6 @@ export default function CartDrawer() {
                   })}
                 </ul>
 
-                {shop && (
-                  <div className={styles.quota}>
-                    CD {cart.counts.cd}/{shop.limits.cd} · T-SHIRTS {cart.counts.tshirt}/{shop.limits.tshirt}
-                    <span> — MAX PAR PERSONNE, PACKS INCLUS</span>
-                  </div>
-                )}
-
                 <div className={styles.totals}>
                   <div>
                     <span>SOUS-TOTAL</span>
@@ -188,12 +182,8 @@ export default function CartDrawer() {
                     <span>{euros(total)}</span>
                   </div>
                   <p className={styles.estimate}>
-                    {shop?.business.vatRegime === 'franchise' ? 'TVA NON APPLICABLE, ART. 293 B DU CGI' : 'TVA INCLUSE'}
-                    {shop ? ` · VENDU PAR ${shop.business.legalName}` : ''}
+                    {shop?.business.vatRegime === 'franchise' ? 'TVA non applicable' : 'TVA incluse'} · Précommande
                   </p>
-                  {shop?.preorder.shippingEstimate && (
-                    <p className={styles.estimate}>PRÉCOMMANDE — {shop.preorder.shippingEstimate}</p>
-                  )}
                 </div>
 
                 <label className={styles.field}>
@@ -207,7 +197,6 @@ export default function CartDrawer() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                  <small>Pour la confirmation et le suivi de ta commande.</small>
                 </label>
 
                 <label className={styles.check}>
@@ -215,9 +204,9 @@ export default function CartDrawer() {
                   <span>
                     J’accepte les{' '}
                     <Link to="/cgv" target="_blank">
-                      conditions générales de vente
+                      CGV
                     </Link>{' '}
-                    et je comprends qu’il s’agit d’une précommande.
+                    (précommande, expédiée après la clôture).
                   </span>
                 </label>
 
@@ -228,8 +217,7 @@ export default function CartDrawer() {
                 </button>
 
                 <p className={styles.secure}>
-                  <LockIcon /> Paiement sécurisé par Stripe (3D Secure). Adresse de livraison et carte saisies sur la
-                  page de paiement — aucune donnée bancaire ne transite par ce site. Facture envoyée par email.
+                  <LockIcon /> Paiement sécurisé par Stripe
                 </p>
               </form>
             )}

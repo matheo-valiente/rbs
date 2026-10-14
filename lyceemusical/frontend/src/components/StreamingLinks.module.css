@@ -12,7 +12,7 @@
   padding: 16px 18px;
   border: 1px solid #000;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.18em;
   transition: background 0.18s ease, color 0.18s ease;
 }
@@ -25,7 +25,7 @@
 .arrow {
   margin-left: auto;
   font-weight: 500;
-  font-size: 10px;
+  font-size: 11.5px;
   letter-spacing: 0.2em;
 }
 

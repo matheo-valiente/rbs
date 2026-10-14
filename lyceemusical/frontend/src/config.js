@@ -23,16 +23,18 @@ export const MEDIA = {
   cover: '/media/photos/cover.jpg' // verso de la pochette (tracklist + crédits)
 };
 
-// Textes de l'accueil
+// Textes de l'accueil — courts et directs.
 export const HOME = {
-  bioTitle: '[ACCROCHE À COMPLÉTER — ex. « Du lycée au studio. »]',
-  epText: '6 titres portés par un vrai groupe : rhodes, sax, trompette, basse, batterie, guitare. Disponible sur toutes les plateformes [DATE DE SORTIE À COMPLÉTER] — et en CD, avec un titre bonus qu’on ne trouve nulle part ailleurs.',
+  bioTitle: 'Le rap du 18e, joué en groupe.',
+  epText:
+    '6 titres enregistrés avec un vrai groupe. Premier extrait : « Marchons » feat. Darlingchouchou. Sur le CD : un titre bonus, « Les mots doux », introuvable ailleurs.',
   offersTitle: 'Le CD, le t-shirt, ou les deux.'
 };
 
+// Sources : profils publics de Luvbfk (X, Deezer, Qobuz) — [À FAIRE VALIDER par Luvbfk]
 export const BIO = [
-  '[BIO À COMPLÉTER] — Luvbfk, artiste [ville]. Quelques lignes sur son parcours, son univers et ce qui l’a amené à Lycée Musical.',
-  '[PARAGRAPHE 2 À COMPLÉTER] — L’histoire de l’EP : où il a été enregistré, avec qui, ce qu’il raconte.'
+  'Luvbfk, rappeur de Paris 18. Après NUMBER ONE, WHAT??? et HATEBFK, il passe de la trap aux mélodies soul sans choisir son camp.',
+  'Avec Lycée Musical, il lâche les machines et s’entoure de musiciens : rhodes, sax, trompette, basse, batterie, guitare. Un EP fait en bande, comme au fond de la salle de musique.'
 ];
 
 // Tracklist (recopiée du verso de la pochette) — laisser vide pour masquer.

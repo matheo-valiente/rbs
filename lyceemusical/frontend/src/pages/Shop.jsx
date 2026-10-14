@@ -5,7 +5,7 @@ import { useShop } from '../context/ShopContext.jsx';
 import { useCart } from '../context/CartContext.jsx';
 import Countdown from '../components/Countdown.jsx';
 import ProductVisual from '../components/ProductVisual.jsx';
-import { ARTIST, EP_TITLE, SIZE_GUIDE, CONTACT_EMAIL } from '../config.js';
+import { EP_TITLE, SIZE_GUIDE, CONTACT_EMAIL } from '../config.js';
 import { euros, parisDate } from '../lib/format.js';
 import styles from './Shop.module.css';
 
@@ -16,7 +16,10 @@ function StatusBar() {
   if (phase === 'upcoming') {
     return (
       <div className={styles.status}>
-        <span>OUVERTURE LE {parisDate(shop.preorder.opensAt, { weekday: 'long', hour: '2-digit', minute: '2-digit' }).toUpperCase()}</span>
+        <span>
+          OUVERTURE LE{' '}
+          {parisDate(shop.preorder.opensAt, { weekday: 'long', hour: '2-digit', minute: '2-digit' }).toUpperCase()}
+        </span>
         <Countdown target={shop.preorder.opensAt} offset={offset} />
       </div>
     );
@@ -85,31 +88,24 @@ function ProductCard({ product, index }) {
 
       <div className={styles.cardBody}>
         <div className={styles.nameRow}>
-          <h2 className={styles.name}>{product.name}</h2>
+          <h2 className={styles.name}>{noBreakHyphens(product.name)}</h2>
           <div className={styles.price}>
             {product.compareAtPrice && <s>{euros(product.compareAtPrice)}</s>}
             <span>{euros(product.price)}</span>
           </div>
         </div>
 
-        {product.compareAtPrice && (
-          <div className={styles.saving}>TU ÉCONOMISES {euros(product.compareAtPrice - product.price)}</div>
-        )}
-
-        <ul className={styles.includes}>
-          {product.includes.map((line) => (
-            <li key={line}>{line}</li>
-          ))}
-        </ul>
+        <p className={styles.tagline}>{product.tagline}</p>
 
         {needsSize && (
           <div className={styles.sizeBlock}>
-            <div className={styles.label}>
-              <span>TAILLE</span>
-              <a href="#guide-tailles" className={styles.guideLink}>
-                GUIDE DES TAILLES
-              </a>
-            </div>
+            {hasSizeGuide && (
+              <div className={styles.label}>
+                <a href="#guide-tailles" className={styles.guideLink}>
+                  GUIDE DES TAILLES
+                </a>
+              </div>
+            )}
             <div className={styles.sizes} role="radiogroup" aria-label="Taille">
               {product.sizes.map((s) => (
                 <button
@@ -140,26 +136,35 @@ function ProductCard({ product, index }) {
   );
 }
 
+// Only show the size guide once real measurements are filled in config.js.
+const hasSizeGuide = SIZE_GUIDE.some((r) => r.chest !== '—');
+
+// Keeps hyphenated words (« T-SHIRT ») on one line on narrow phones.
+function noBreakHyphens(text) {
+  return text.split(' ').map((w, i) => (
+    <span key={i}>
+      {i > 0 && ' '}
+      {w.includes('-') ? <span style={{ whiteSpace: 'nowrap' }}>{w}</span> : w}
+    </span>
+  ));
+}
+
 const FAQ = (shop) => [
   {
     q: 'Quand vais-je recevoir ma commande ?',
-    a: `Il s’agit d’une précommande : les articles sont produits puis expédiés après la clôture. ${shop?.preorder.shippingEstimate || ''}`
+    a: `Après la fin des précommandes. ${shop?.preorder.shippingEstimate || ''}`
   },
   {
     q: 'Combien puis-je commander ?',
-    a: `Maximum ${shop?.limits.cd ?? 3} CD et ${shop?.limits.tshirt ?? 3} t-shirts par personne (les packs comptent pour 1 CD + 1 t-shirt), toutes commandes confondues avec la même adresse email.`
+    a: `${shop?.limits.cd ?? 3} CD et ${shop?.limits.tshirt ?? 3} t-shirts maximum par personne (un pack compte pour 1 CD + 1 t-shirt).`
   },
   {
-    q: 'Le paiement est-il sécurisé ?',
-    a: 'Oui. Le paiement est géré par Stripe (CB, Visa, Mastercard, Apple Pay, Google Pay). Tes informations bancaires sont saisies sur la page sécurisée de Stripe et ne transitent jamais par notre site.'
+    q: 'Où livrez-vous ?',
+    a: `France, Belgique, Suisse, Luxembourg et Monaco. ${shop ? (shop.shipping.feeCents ? euros(shop.shipping.feeCents) : 'Livraison offerte') : ''} par commande.`
   },
   {
-    q: 'Où livrez-vous ? Combien coûte la livraison ?',
-    a: `Livraison à domicile ${shop?.shipping.countries.includes('BE') ? 'en France, Belgique, Suisse, Luxembourg et Monaco' : 'en France'}. Frais de port : ${shop ? (shop.shipping.feeCents ? euros(shop.shipping.feeCents) : 'offerts') : '—'} par commande.`
-  },
-  {
-    q: 'Je me suis trompé de taille / je veux annuler.',
-    a: `Écris-nous à ${CONTACT_EMAIL} avec ton numéro de commande (LM-XXXX) avant la clôture des précommandes. Tu disposes aussi d’un droit de rétractation de 14 jours après réception (voir CGV).`
+    q: 'Une erreur dans ma commande ?',
+    a: `Écris-nous à ${CONTACT_EMAIL} avec ton numéro de commande (LM-XXXX).`
   }
 ];
 
@@ -181,12 +186,8 @@ export default function Shop() {
       <StatusBar />
 
       <header className={styles.header}>
-        <div className={styles.index}>PRÉCOMMANDE — {ARTIST}</div>
         <h1 className={styles.title}>{EP_TITLE}</h1>
-        <p className={styles.intro}>
-          L’EP en CD et le t-shirt officiel, en édition précommande
-          {shop ? ` jusqu’au ${parisDate(shop.preorder.closesAt)}` : ''} uniquement.
-        </p>
+        <p className={styles.intro}>Précommande{shop ? ` jusqu’au ${parisDate(shop.preorder.closesAt)}` : ''}.</p>
       </header>
 
       {error && !shop && <div className={styles.loading}>[ CONNEXION À LA BOUTIQUE… ]</div>}
@@ -198,49 +199,41 @@ export default function Shop() {
       </section>
 
       <section className={styles.reassurance}>
-        <div>
-          <strong>PAIEMENT SÉCURISÉ</strong>
-          <span>Stripe — CB, Apple Pay, Google Pay</span>
-        </div>
-        <div>
-          <strong>PRÉCOMMANDE</strong>
-          <span>{shop?.preorder.shippingEstimate || 'Expédition après la clôture'}</span>
-        </div>
-        <div>
-          <strong>LIVRAISON À DOMICILE</strong>
-          <span>{shop ? (shop.shipping.feeCents ? `${euros(shop.shipping.feeCents)} par commande` : 'Offerte') : '—'}</span>
-        </div>
-        <div>
-          <strong>ÉDITION LIMITÉE</strong>
-          <span>
-            {shop ? `${shop.limits.cd} CD et ${shop.limits.tshirt} t-shirts max / personne` : '—'}
-          </span>
-        </div>
+        <span>
+          <strong>Paiement sécurisé</strong> Stripe
+        </span>
+        <span>
+          <strong>Livraison</strong> {shop ? (shop.shipping.feeCents ? euros(shop.shipping.feeCents) : 'offerte') : '—'}
+        </span>
+        <span>
+          <strong>Max</strong> {shop ? `${shop.limits.cd} CD · ${shop.limits.tshirt} t-shirts` : '—'} / personne
+        </span>
       </section>
 
       <section className={styles.infoGrid}>
-        <div id="guide-tailles" className={styles.infoBlock}>
-          <div className={styles.index}>GUIDE DES TAILLES</div>
-          <table className={styles.sizeTable}>
-            <thead>
-              <tr>
-                <th>TAILLE</th>
-                <th>LARGEUR (CM)</th>
-                <th>LONGUEUR (CM)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {SIZE_GUIDE.map((r) => (
-                <tr key={r.size}>
-                  <td>{r.size}</td>
-                  <td>{r.chest}</td>
-                  <td>{r.length}</td>
+        {hasSizeGuide && (
+          <div id="guide-tailles" className={styles.infoBlock}>
+            <div className={styles.index}>GUIDE DES TAILLES</div>
+            <table className={styles.sizeTable}>
+              <thead>
+                <tr>
+                  <th>TAILLE</th>
+                  <th>LARGEUR (CM)</th>
+                  <th>LONGUEUR (CM)</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          <p className={styles.note}>[ COUPE / MATIÈRE À COMPLÉTER ]</p>
-        </div>
+              </thead>
+              <tbody>
+                {SIZE_GUIDE.map((r) => (
+                  <tr key={r.size}>
+                    <td>{r.size}</td>
+                    <td>{r.chest}</td>
+                    <td>{r.length}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
 
         <div className={styles.infoBlock}>
           <div className={styles.index}>QUESTIONS FRÉQUENTES</div>

@@ -12,11 +12,19 @@ body {
   background: #ffffff;
   color: #000000;
   font-family: 'Inconsolata', ui-monospace, monospace;
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
   font-feature-settings: 'ss01' on, 'cv01' on;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* `clip` (not `hidden`) on body only: keeps the window as the scroller, so iOS can
+   collapse its address bar, tap-to-top works and window.scrollTo() resets pages. */
+body {
+  overflow-x: clip;
 }
 
 #root {
@@ -75,10 +83,10 @@ video {
 :root {
   --bg: #ffffff;
   --fg: #000000;
-  --muted: #6b6b6b;
+  --muted: #3d3d3d;
   --soft: #f3f3f3;
   --softer: #fafafa;
-  --line: rgba(0, 0, 0, 0.12);
+  --line: rgba(0, 0, 0, 0.16);
   --line-strong: rgba(0, 0, 0, 0.6);
   --red: #ff1111;
 

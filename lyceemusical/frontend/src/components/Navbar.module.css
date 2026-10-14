@@ -1,8 +1,11 @@
 .navbar {
   position: fixed;
   top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
+  /* Centered without `transform`: a transformed ancestor would trap the fixed
+     full-screen menu overlay inside the 62px bar. */
+  left: 0;
+  right: 0;
+  margin-inline: auto;
   z-index: 100;
   width: min(1360px, calc(100% - 40px));
   height: 78px;
@@ -29,7 +32,7 @@
 }
 
 .logo:hover {
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .logo {
@@ -49,9 +52,9 @@
 .logoSub {
   font-family: var(--font-mono);
   font-weight: 500;
-  font-size: 9px;
+  font-size: 10.5px;
   letter-spacing: 0.32em;
-  opacity: 0.55;
+  opacity: 0.8;
 }
 
 .links {
@@ -65,7 +68,7 @@
 .link {
   font-family: var(--font-sans);
   font-weight: 500;
-  font-size: 11px;
+  font-size: 12.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #000;
@@ -123,7 +126,7 @@
 .bag {
   font-family: var(--font-sans);
   font-weight: 600;
-  font-size: 11px;
+  font-size: 12.5px;
   letter-spacing: 0.16em;
   color: #000;
   display: inline-flex;
@@ -137,7 +140,7 @@
 }
 
 .bag span {
-  opacity: 0.55;
+  opacity: 0.8;
 }
 
 .bag:hover {
@@ -146,7 +149,7 @@
 }
 
 .bag:hover span {
-  opacity: 0.8;
+  opacity: 1;
   color: #fff;
 }
 
@@ -278,6 +281,14 @@
     font-size: 8px;
   }
   .right {
-    gap: 10px;
+    gap: 6px;
+  }
+  .bag {
+    padding: 11px 12px;
+  }
+  .burger {
+    width: 44px;
+    height: 44px;
+    margin-right: -8px;
   }
 }

@@ -40,7 +40,7 @@
   padding: 20px 28px;
   font-family: var(--font-mono);
   font-weight: 500;
-  font-size: 11px;
+  font-size: 12.5px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #fff;
@@ -67,9 +67,9 @@
 .kicker {
   font-family: var(--font-mono);
   font-weight: 600;
-  font-size: 11px;
+  font-size: 12.5px;
   letter-spacing: 0.32em;
-  opacity: 0.85;
+  opacity: 1;
 }
 
 .heroTitle {
@@ -87,7 +87,7 @@
   align-items: center;
   gap: 10px 14px;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.2em;
 }
 
@@ -102,6 +102,12 @@
   background: var(--red);
   box-shadow: 0 0 0 0 rgba(255, 17, 17, 0.7);
   animation: pulse 1.8s infinite;
+  flex-shrink: 0;
+}
+
+.dot + .heroStatusLabel {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 @keyframes pulse {
@@ -125,7 +131,7 @@
 .ctaDark {
   font-family: var(--font-sans);
   font-weight: 800;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.2em;
   padding: 17px 26px;
   transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
@@ -169,7 +175,7 @@
   padding: 14px 0;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.24em;
 }
 
@@ -243,7 +249,7 @@
   background: var(--red);
   color: #fff;
   font-weight: 700;
-  font-size: 9px;
+  font-size: 10.5px;
   letter-spacing: 0.24em;
   padding: 5px 9px;
 }
@@ -257,7 +263,7 @@
 
 .offerName {
   font-weight: 700;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.08em;
 }
 
@@ -267,8 +273,8 @@
 }
 
 .offerPrice s {
-  opacity: 0.4;
-  font-size: 12px;
+  opacity: 0.72;
+  font-size: 13px;
   margin-right: 4px;
 }
 
@@ -286,7 +292,7 @@
   }
   .videoHeroFoot {
     padding: 16px 18px;
-    font-size: 9px;
+    font-size: 10.5px;
   }
   .heroContent {
     bottom: 56px;
@@ -294,12 +300,12 @@
     gap: 14px;
   }
   .heroStatus {
-    font-size: 10px;
+    font-size: 11.5px;
   }
   .ctaPrimary,
   .ctaSecondary {
     padding: 15px 20px;
-    font-size: 12px;
+    font-size: 13px;
   }
   .offers {
     padding: 56px 18px 72px;
@@ -328,7 +334,7 @@
   gap: 12px;
   font-family: var(--font-mono);
   font-weight: 600;
-  font-size: 11px;
+  font-size: 12.5px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
 }
@@ -345,14 +351,14 @@
   font-size: 14px;
   line-height: 1.85;
   letter-spacing: 0.02em;
-  opacity: 0.8;
+  opacity: 1;
   max-width: 62ch;
   margin: 0;
 }
 
 .textLink {
   font-weight: 600;
-  font-size: 11px;
+  font-size: 12.5px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   border-bottom: 1px solid currentColor;
@@ -408,7 +414,7 @@
   padding: 18px 4px 22px;
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.24em;
 }
 
@@ -459,10 +465,10 @@
   display: flex;
   gap: 28px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12.5px;
   font-weight: 600;
   letter-spacing: 0.3em;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .epInner {
@@ -536,7 +542,7 @@
 
 .trackNo {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--red);
   letter-spacing: 0.1em;
@@ -558,22 +564,22 @@
 .trackTitle em {
   font-style: normal;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.12em;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 .trackCredits {
-  font-size: 11px;
+  font-size: 12.5px;
   letter-spacing: 0.08em;
-  opacity: 0.45;
+  opacity: 0.72;
 }
 
 .cdOnly {
   background: var(--red);
   color: #fff;
   font-weight: 800;
-  font-size: 9px;
+  font-size: 10.5px;
   letter-spacing: 0.24em;
   padding: 6px 9px;
   white-space: nowrap;
@@ -595,9 +601,9 @@
   cursor: pointer;
   list-style: none;
   font-weight: 600;
-  font-size: 11px;
+  font-size: 12.5px;
   letter-spacing: 0.3em;
-  opacity: 0.7;
+  opacity: 0.88;
   display: flex;
   justify-content: space-between;
 }
@@ -624,16 +630,16 @@
 }
 
 .credits dt {
-  font-size: 9px;
+  font-size: 10.5px;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  opacity: 0.45;
+  opacity: 0.72;
   margin-bottom: 3px;
 }
 
 .credits dd {
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.04em;
 }
 
@@ -666,7 +672,7 @@
   }
   .epMeta {
     gap: 16px;
-    font-size: 10px;
+    font-size: 11.5px;
   }
   .epCoverWrap {
     position: static;
