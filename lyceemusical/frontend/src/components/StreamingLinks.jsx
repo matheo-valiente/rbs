@@ -10,10 +10,10 @@ const PLATFORMS = [
   { key: 'instagram', label: 'INSTAGRAM', Icon: InstaIcon }
 ];
 
-export default function StreamingLinks({ only }) {
+export default function StreamingLinks({ only, dark = false }) {
   const items = only ? PLATFORMS.filter((p) => only.includes(p.key)) : PLATFORMS;
   return (
-    <div className={styles.grid}>
+    <div className={`${styles.grid} ${dark ? styles.dark : ''}`}>
       {items.map(({ key, label, Icon }) =>
         LINKS[key] ? (
           <a key={key} href={LINKS[key]} target="_blank" rel="noopener noreferrer" className={styles.link}>

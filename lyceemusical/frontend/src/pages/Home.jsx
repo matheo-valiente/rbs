@@ -1,14 +1,42 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { useShop } from '../context/ShopContext.jsx';
 import Countdown from '../components/Countdown.jsx';
 import MediaImage from '../components/MediaImage.jsx';
 import ProductVisual from '../components/ProductVisual.jsx';
 import StreamingLinks from '../components/StreamingLinks.jsx';
-import { ARTIST, EP_TITLE, LINKS, INSTAGRAM_HANDLE, MEDIA, BIO, TRACKLIST, HOME } from '../config.js';
+import {
+  ARTIST,
+  EP_TITLE,
+  LINKS,
+  INSTAGRAM_HANDLE,
+  MEDIA,
+  BIO,
+  TRACKLIST,
+  CREDITS,
+  EP_DURATION,
+  HOME
+} from '../config.js';
 import { euros, parisDate } from '../lib/format.js';
 import styles from './Home.module.css';
 
-const MARQUEE = ['PRÉCOMMANDE', EP_TITLE, 'CD', 'T-SHIRT', 'PACK CD + T-SHIRT', ARTIST];
+const MARQUEE = ['PRÉCOMMANDE', EP_TITLE, 'CD + TITRE BONUS', 'T-SHIRT', 'PACK CD + T-SHIRT', ARTIST];
+
+const reveal = {
+  initial: { opacity: 0, y: 32 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: '-80px' },
+  transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
+};
+
+// Lighter file on phones; chosen once at mount (no layout shift, no double download).
+function heroVideoSrc() {
+  if (MEDIA.heroVideoMobile && typeof window !== 'undefined' && window.matchMedia('(max-width: 760px)').matches) {
+    return MEDIA.heroVideoMobile;
+  }
+  return MEDIA.heroVideo;
+}
 
 function PreorderLine() {
   const { shop, phase, offset } = useShop();
@@ -40,13 +68,14 @@ function PreorderLine() {
 
 export default function Home() {
   const { products, phase } = useShop();
+  const [videoSrc] = useState(heroVideoSrc);
 
   return (
     <div className={styles.page}>
       <section className={styles.videoHero}>
         <video
           className={styles.videoHeroMedia}
-          src={MEDIA.heroVideo}
+          src={videoSrc}
           poster={MEDIA.heroPoster}
           autoPlay
           muted
@@ -73,7 +102,9 @@ export default function Home() {
         </div>
 
         <div className={styles.videoHeroFoot}>
-          <span>{ARTIST} — {EP_TITLE}</span>
+          <span>
+            {ARTIST} — {EP_TITLE}
+          </span>
           <span>LYCEEMUSICAL.COM</span>
         </div>
       </section>
@@ -95,57 +126,122 @@ export default function Home() {
         </div>
       </div>
 
-      <section className={styles.presentation}>
-        <div className={styles.presentationInner}>
-          <div className={styles.presentationMedia}>
-            <MediaImage src={MEDIA.portrait} alt={ARTIST} className={styles.fill} />
-          </div>
-          <div className={styles.presentationBody}>
-            <div className={styles.presentationIndex}>01 / {ARTIST}</div>
-            <h2 className={styles.presentationTitle}>{HOME.bioTitle}</h2>
+      <section className={styles.artist}>
+        <div className={styles.artistInner}>
+          <motion.div className={styles.polaroidWrap} {...reveal}>
+            <figure className={styles.polaroid}>
+              <div className={styles.polaroidPhoto}>
+                <MediaImage src={MEDIA.portrait} alt={`${ARTIST} et ses musiciens`} className={styles.fill} />
+              </div>
+              <figcaption className={styles.polaroidCaption}>
+                <span>{ARTIST}</span>
+                <span>{EP_TITLE}</span>
+              </figcaption>
+            </figure>
+          </motion.div>
+
+          <motion.div className={styles.artistBody} {...reveal}>
+            <div className={styles.sectionIndex}>
+              <span>01</span> {ARTIST}
+            </div>
+            <h2 className={styles.artistTitle}>{HOME.bioTitle}</h2>
             {BIO.map((p, i) => (
-              <p key={i} className={styles.presentationText}>
+              <p key={i} className={styles.bodyText}>
                 {p}
               </p>
             ))}
             {LINKS.instagram && (
-              <a href={LINKS.instagram} target="_blank" rel="noopener noreferrer" className={styles.presentationLink}>
+              <a href={LINKS.instagram} target="_blank" rel="noopener noreferrer" className={styles.textLink}>
                 SUIVRE {INSTAGRAM_HANDLE} ↗
               </a>
             )}
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      <section className={styles.presentation2}>
-        <div className={styles.presentation2Inner}>
-          <div className={styles.presentationBody}>
-            <div className={styles.presentationIndex}>02 / L’EP</div>
-            <h2 className={styles.presentationTitle}>{EP_TITLE}</h2>
-            <p className={styles.presentationText}>{HOME.epText}</p>
+      <section className={styles.ep} id="ep">
+        <div className={styles.epHead}>
+          <div className={styles.sectionIndex}>
+            <span>02</span> L’EP
+          </div>
+          <div className={styles.epMeta}>
+            {TRACKLIST.length > 0 && <span>{TRACKLIST.length} TITRES</span>}
+            {EP_DURATION && <span>{EP_DURATION}</span>}
+            <span>{ARTIST}</span>
+          </div>
+        </div>
+
+        <div className={styles.epInner}>
+          <motion.div className={styles.epCoverWrap} {...reveal}>
+            <div className={styles.epCover}>
+              <MediaImage
+                src={MEDIA.cover}
+                alt={`Pochette (verso) — ${EP_TITLE}`}
+                label="[ POCHETTE À VENIR ]"
+                className={styles.fill}
+              />
+            </div>
+          </motion.div>
+
+          <motion.div className={styles.epBody} {...reveal}>
+            <h2 className={styles.epTitle}>{EP_TITLE}</h2>
+            <p className={styles.bodyText}>{HOME.epText}</p>
+
             {TRACKLIST.length > 0 && (
               <ol className={styles.tracklist}>
-                {TRACKLIST.map((t) => (
-                  <li key={t}>{t}</li>
+                {TRACKLIST.map((t, i) => (
+                  <li key={t.title} className={styles.track}>
+                    <span className={styles.trackNo}>{String(i + 1).padStart(2, '0')}</span>
+                    <span className={styles.trackMain}>
+                      <span className={styles.trackTitle}>
+                        {t.title}
+                        {t.feat && <em> feat. {t.feat}</em>}
+                      </span>
+                      {t.credits && <span className={styles.trackCredits}>{t.credits}</span>}
+                    </span>
+                    {t.cdOnly && (
+                      <Link to="/boutique" className={styles.cdOnly}>
+                        EXCLU CD
+                      </Link>
+                    )}
+                  </li>
                 ))}
               </ol>
             )}
-            <StreamingLinks only={['spotify', 'deezer', 'appleMusic', 'ep']} />
-          </div>
-          <div className={styles.presentationMedia}>
-            <MediaImage src={MEDIA.cover} alt={`Pochette — ${EP_TITLE}`} label="[ POCHETTE À VENIR ]" className={styles.fill} />
-          </div>
+
+            <StreamingLinks only={['spotify', 'deezer', 'appleMusic', 'ep']} dark />
+
+            {CREDITS.length > 0 && (
+              <details className={styles.credits}>
+                <summary>CRÉDITS</summary>
+                <dl>
+                  {CREDITS.map(([role, name]) => (
+                    <div key={role}>
+                      <dt>{role}</dt>
+                      <dd>{name}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </details>
+            )}
+          </motion.div>
         </div>
       </section>
 
       <section className={styles.offers}>
         <div className={styles.offersHead}>
-          <div className={styles.presentationIndex}>03 / PRÉCOMMANDE</div>
-          <h2 className={styles.presentationTitle}>{HOME.offersTitle}</h2>
+          <div className={styles.sectionIndex}>
+            <span>03</span> PRÉCOMMANDE
+          </div>
+          <h2 className={styles.offersTitle}>{HOME.offersTitle}</h2>
         </div>
         <div className={styles.offersGrid}>
           {products.map((p) => (
-            <Link key={p.id} to="/boutique" className={`${styles.offer} ${p.featured ? styles.offerFeatured : ''} product-hover`}>
+            <Link
+              key={p.id}
+              to="/boutique"
+              className={`${styles.offer} ${p.featured ? styles.offerFeatured : ''} product-hover`}
+            >
               {p.badge && <span className={styles.offerBadge}>{p.badge}</span>}
               <ProductVisual product={p} />
               <div className={styles.offerRow}>
