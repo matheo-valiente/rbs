@@ -11,7 +11,7 @@ module.exports = {
   address: '46 B avenue Rabelais, 94120 Fontenay-sous-Bois',
   rcs: 'RCS Créteil 991 550 468',
   siret: '991 550 468 00011',
-  vatNumber: 'FR43991550468', // calculé depuis le SIREN
+  vatNumber: 'FR43991550468',
   publisher: 'Imanol Marticorena, président', // directeur de la publication
 
   // 'normal' = prix TTC, TVA 20 % incluse · 'franchise' = « TVA non applicable, art. 293 B du CGI »
