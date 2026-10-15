@@ -1,21 +1,20 @@
-// ⚑ INFORMATIONS LÉGALES DU VENDEUR — à remplir UNE fois.
+// ⚑ INFORMATIONS LÉGALES DU VENDEUR — le compte Stripe qui encaisse est celui de LUVBFK.
 // Utilisées partout : pages Mentions légales / CGV / Confidentialité,
 // pied de facture Stripe, emails clients.
-// (Les infos exactes sont sur le Kbis de RBS SAS / l'avis de situation SIRENE.)
 
 // Tout champ laissé vide ('') est simplement masqué (site, emails, factures).
 module.exports = {
-  legalName: 'RBS SAS',
-  legalForm: 'SAS',
-  capital: '400 €',
-  address: '46 B avenue Rabelais, 94120 Fontenay-sous-Bois',
-  rcs: 'RCS Créteil 991 550 468',
-  siret: '991 550 468 00011',
-  vatNumber: 'FR43991550468',
-  publisher: 'Imanol Marticorena, président', // directeur de la publication
+  legalName: 'LUVBFK',
+  legalForm: '',
+  capital: '',
+  address: '',
+  rcs: '',
+  siret: '',
+  vatNumber: '',
+  publisher: '',
 
   // 'normal' = prix TTC, TVA 20 % incluse · 'franchise' = « TVA non applicable, art. 293 B du CGI »
-  vatRegime: 'normal',
+  vatRegime: 'franchise',
 
   contactEmail: 'rbs18event@gmail.com',
 

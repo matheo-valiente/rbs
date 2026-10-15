@@ -111,8 +111,8 @@ const mediaExists = (p) => publicDir && fs.existsSync(path.join(publicDir, p));
   console.log('    → test réel : npm run test-notify');
 
   section('Infos légales (backend/src/business.js)');
-  const empty = ['address', 'rcs', 'siret', 'vatNumber', 'publisher'].filter((k) => !business[k]);
-  empty.length ? warn(`Non renseignées (masquées sur le site) : ${empty.join(', ')}`) : ok('Complètes');
+  business.legalName ? ok(`Vendeur : ${business.legalName}`) : fail('Nom du vendeur manquant (legalName)');
+  ok(business.vatRegime === 'franchise' ? 'TVA non applicable (art. 293 B)' : `TVA ${config.vatRate} % incluse`);
 
   section('Contenus');
   if (!publicDir) warn('Dossier frontend introuvable — contenus non vérifiés');

@@ -8,7 +8,7 @@ const { notifyNewOrder, notifyAlert } = require('./notify');
 
 const SITE = 'lyceemusical';
 
-// Our sessions carry metadata.site — anything else on the (shared RBS)
+// Our sessions carry metadata.site — anything else on the (possibly shared)
 // Stripe account belongs to another site and is ignored.
 const isOurs = (obj) => obj?.metadata?.site === SITE;
 

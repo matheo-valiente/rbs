@@ -108,7 +108,7 @@ router.post('/checkout', checkoutLimiter, async (req, res, next) => {
         shipping_address_collection: { allowed_countries: config.shipping.countries },
         phone_number_collection: { enabled: true },
         billing_address_collection: 'auto',
-        // The RBS Stripe account is shared: brand this page as Lycée Musical.
+        // Brand the Stripe page as Lycée Musical.
         branding_settings: {
           display_name: 'Lycée Musical — Luvbfk',
           font_family: 'inconsolata',

@@ -20,7 +20,7 @@ export default function Confidentialite() {
         <div className={styles.section}>
           <div className={styles.sectionTitle}>01 — Données collectées</div>
           <p>
-            Responsable du traitement : {b?.legalName || 'RBS SAS'}.{' '}
+            Responsable du traitement : {b?.legalName || 'LUVBFK'}.{' '}
             Lors d’une commande : nom, adresse email, adresse de livraison, numéro de téléphone et contenu de la
             commande. Les données de carte bancaire sont saisies directement chez Stripe et ne nous sont jamais
             communiquées.
@@ -39,7 +39,7 @@ export default function Confidentialite() {
         <div className={styles.section}>
           <div className={styles.sectionTitle}>03 — Destinataires et durée</div>
           <p>
-            Destinataires : l’équipe Lycée Musical ({b?.legalName || 'RBS SAS'}), Stripe (paiement), le transporteur (livraison) et notre
+            Destinataires : l’équipe Lycée Musical ({b?.legalName || 'LUVBFK'}), Stripe (paiement), le service de livraison et notre
             prestataire d’envoi d’emails. Les données de commande sont conservées 3 ans après la commande, puis
             archivées pendant la durée légale comptable (10 ans) pour les seules pièces justificatives.
           </p>

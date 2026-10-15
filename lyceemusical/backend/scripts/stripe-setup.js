@@ -1,5 +1,5 @@
 // Configure Stripe automatiquement (à relancer sans risque) :
-//  - vérifie le compte (RBS SAS, paiements activés ?)
+//  - vérifie le compte (paiements activés ?)
 //  - crée le taux de TVA « inclus » si VAT_RATE > 0
 //  - crée / met à jour le webhook https://<domaine>/api/webhook
 // Affiche les lignes à copier dans backend/.env.

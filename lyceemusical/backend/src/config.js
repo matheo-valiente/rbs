@@ -34,7 +34,7 @@ const config = {
     taxRateId: env.STRIPE_TAX_RATE_ID || '',
     // One numbered PDF invoice per order, emailed by Stripe and listed in the dashboard.
     invoices: env.STRIPE_INVOICES !== 'false',
-    // Bank statement shows "RBS* LYCEE MUSICAL" — fewer "unknown charge" disputes.
+    // Bank statement shows "<compte>* LYCEE MUSICAL" — fewer "unknown charge" disputes.
     statementSuffix: (env.STATEMENT_DESCRIPTOR_SUFFIX || 'LYCEE MUSICAL').slice(0, 22),
     logoUrl: env.CHECKOUT_LOGO_URL || '',
   },
