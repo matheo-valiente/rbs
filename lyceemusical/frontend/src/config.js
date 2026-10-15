@@ -6,10 +6,10 @@ export const EP_TITLE = 'LYCÉE MUSICAL';
 
 export const LINKS = {
   instagram: 'https://instagram.com/luvbfk',
-  ep: '', // smartlink / lien de l'EP (ex. Linkfire, Feature.fm…)
-  spotify: '',
-  deezer: '',
-  appleMusic: ''
+  ep: '', // smartlink / lien de l'EP (ex. Linkfire, Feature.fm…) — vide = « BIENTÔT »
+  spotify: 'https://open.spotify.com/artist/7CjPQNkFoIlmPCPawTQtcn',
+  deezer: 'https://www.deezer.com/fr/artist/169045347',
+  appleMusic: 'https://music.apple.com/fr/artist/luvbfk/1614527802'
 };
 
 export const INSTAGRAM_HANDLE = '@LUVBFK';
@@ -19,25 +19,24 @@ export const MEDIA = {
   heroVideo: '/media/video/hero.mp4',
   heroVideoMobile: '/media/video/hero-mobile.mp4', // version allégée pour téléphone
   heroPoster: '/media/video/hero-poster.jpg',
-  portrait: '/media/photos/luvbfk.jpg', // image du clip « god bless »
-  portraitCaption: 'Extrait du clip « god bless »',
-  portraitLink: 'https://www.youtube.com/watch?v=OxVKOPwgOpc',
+  portrait: '/media/photos/luvbfk.jpg', // image du clip « Marchons »
+  portraitCaption: 'Extrait du clip « Marchons » feat. Darlingchouchou',
+  portraitLink: 'https://www.youtube.com/watch?v=Qa_qU1QawZM',
   coverFront: '/media/photos/cover-front.jpg', // recto de la pochette (carré)
   coverBack: '/media/photos/cover-back.jpg' // verso (tracklist + crédits)
 };
 
 // Textes de l'accueil — courts et directs.
 export const HOME = {
-  bioTitle: 'Le rap du 18e, joué en groupe.',
+  bioTitle: 'Paris 18, salle de répète.',
   epText:
     '6 titres enregistrés avec un vrai groupe. Premier extrait : « Marchons » feat. Darlingchouchou. Sur le CD : un titre bonus, « Les mots doux », introuvable ailleurs.',
   offersTitle: 'Le CD, le t-shirt, ou les deux.'
 };
 
-// Sources : profils publics de Luvbfk (X, Deezer, Qobuz) — [À FAIRE VALIDER par Luvbfk]
 export const BIO = [
-  'Luvbfk, rappeur de Paris 18. Après NUMBER ONE, WHAT??? et HATEBFK, il passe de la trap aux mélodies soul sans choisir son camp.',
-  'Avec Lycée Musical, il lâche les machines et s’entoure de musiciens : rhodes, sax, trompette, basse, batterie, guitare. Un EP fait en bande, comme au fond de la salle de musique.'
+  'Luvbfk. Paris 18. NUMBER ONE, WHAT???, HATEBFK : trois projets, une voix qui glisse de la trap à la soul sans jamais choisir.',
+  'Lycée Musical, c’est la salle de répète. Un rhodes, un sax, une trompette, une basse, une batterie, une guitare. Six titres joués à plusieurs, sans filet.'
 ];
 
 // Tracklist (recopiée du verso de la pochette) — laisser vide pour masquer.
