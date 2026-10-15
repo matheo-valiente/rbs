@@ -11,20 +11,15 @@ const PLATFORMS = [
 ];
 
 export default function StreamingLinks({ only, dark = false }) {
-  const items = only ? PLATFORMS.filter((p) => only.includes(p.key)) : PLATFORMS;
+  // Un lien vide n'est pas affiché (rien « à venir » sur le site).
+  const items = (only ? PLATFORMS.filter((p) => only.includes(p.key)) : PLATFORMS).filter((p) => LINKS[p.key]);
   return (
     <div className={`${styles.grid} ${dark ? styles.dark : ''}`}>
-      {items.map(({ key, label, Icon }) =>
-        LINKS[key] ? (
-          <a key={key} href={LINKS[key]} target="_blank" rel="noopener noreferrer" className={styles.link}>
-            <Icon /> <span>{label}</span> <span className={styles.arrow}>↗</span>
-          </a>
-        ) : (
-          <span key={key} className={`${styles.link} ${styles.soon}`} aria-disabled="true">
-            <Icon /> <span>{label}</span> <span className={styles.arrow}>BIENTÔT</span>
-          </span>
-        )
-      )}
+      {items.map(({ key, label, Icon }) => (
+        <a key={key} href={LINKS[key]} target="_blank" rel="noopener noreferrer" className={styles.link}>
+          <Icon /> <span>{label}</span> <span className={styles.arrow}>↗</span>
+        </a>
+      ))}
     </div>
   );
 }

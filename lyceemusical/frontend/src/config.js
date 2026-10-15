@@ -1,12 +1,12 @@
 // Contenu éditorial et liens — tout ce qui change souvent est ici.
-// Un lien vide ('') s'affiche comme « BIENTÔT » (pratique avant la sortie).
+// Un lien vide ('') est simplement masqué sur le site.
 
 export const ARTIST = 'LUVBFK';
 export const EP_TITLE = 'LYCÉE MUSICAL';
 
 export const LINKS = {
   instagram: 'https://instagram.com/luvbfk',
-  ep: '', // smartlink / lien de l'EP (ex. Linkfire, Feature.fm…) — vide = « BIENTÔT »
+  ep: '', // smartlink / lien de l'EP (ex. Linkfire, Feature.fm…) — vide = masqué
   spotify: 'https://open.spotify.com/artist/7CjPQNkFoIlmPCPawTQtcn',
   deezer: 'https://www.deezer.com/fr/artist/169045347',
   appleMusic: 'https://music.apple.com/fr/artist/luvbfk/1614527802'

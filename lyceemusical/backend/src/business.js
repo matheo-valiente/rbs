@@ -22,6 +22,5 @@ module.exports = {
   // Médiateur de la consommation (ex. CM2C, Medicys) — masqué tant que vide.
   mediator: { name: '', url: '' },
 
-  carrier: '', // ex. 'Colissimo'
   returnAddress: '', // adresse de retour des colis
 };

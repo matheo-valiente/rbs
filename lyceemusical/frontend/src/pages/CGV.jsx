@@ -66,7 +66,7 @@ export default function CGV() {
             {shop ? ` (pays : ${shop.shipping.countries.join(', ')})` : ''}. Frais de livraison :{' '}
             {shop ? (shop.shipping.feeCents ? `${euros(shop.shipping.feeCents)} par commande` : 'offerts') : '—'}.{' '}
             {shop?.preorder.shippingEstimate || 'Expédition après la clôture des précommandes'}.
-            {b.carrier && ` Transporteur : ${b.carrier}.`} En cas de retard, le client en est informé par email. À
+            En cas de retard, le client en est informé par email. À
             défaut de livraison dans un délai de 30 jours après la date annoncée, le client peut résoudre la vente et
             obtenir le remboursement intégral (art. L216-6 du Code de la consommation).
           </p>
@@ -90,7 +90,7 @@ export default function CGV() {
           <div className={styles.sectionTitle}>06 — Annulation avant expédition</div>
           <p>
             Toute demande d’annulation ou de changement de taille avant la clôture des précommandes peut être adressée à{' '}
-            {mail} en indiquant le numéro de commande (LM-XXXX). Elle donne lieu à un remboursement intégral.
+            {mail} en indiquant le numéro de commande (indiqué dans l’email de confirmation). Elle donne lieu à un remboursement intégral.
           </p>
         </div>
 

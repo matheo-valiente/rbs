@@ -234,7 +234,6 @@ async function notifyShipped(order) {
       ...order.items.map(itemLine),
       '',
       tracking ? `Suivi : ${tracking}` : '',
-      business.carrier && !business.carrier.startsWith('[') ? `Transporteur : ${business.carrier}` : '',
       '',
       `Vendu par ${legalFooter()}`,
     ].join('\n'),

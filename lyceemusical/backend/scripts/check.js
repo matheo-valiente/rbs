@@ -111,7 +111,7 @@ const mediaExists = (p) => publicDir && fs.existsSync(path.join(publicDir, p));
   console.log('    → test réel : npm run test-notify');
 
   section('Infos légales (backend/src/business.js)');
-  const empty = ['address', 'rcs', 'siret', 'vatNumber', 'publisher', 'carrier'].filter((k) => !business[k]);
+  const empty = ['address', 'rcs', 'siret', 'vatNumber', 'publisher'].filter((k) => !business[k]);
   empty.length ? warn(`Non renseignées (masquées sur le site) : ${empty.join(', ')}`) : ok('Complètes');
 
   section('Contenus');
