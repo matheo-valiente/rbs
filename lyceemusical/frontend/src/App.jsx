@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import CartDrawer from './components/CartDrawer.jsx';
-import { useShop } from './context/ShopContext.jsx';
 import Home from './pages/Home.jsx';
 import Shop from './pages/Shop.jsx';
 import OrderSuccess from './pages/OrderSuccess.jsx';
@@ -31,32 +30,6 @@ const Page = ({ children }) => (
   </motion.main>
 );
 
-// Impossible to miss: a site still on sk_test_ keys takes no real money.
-function TestModeBanner() {
-  const { shop } = useShop();
-  if (!shop?.testMode) return null;
-  return (
-    <div
-      style={{
-        position: 'fixed',
-        left: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: 400,
-        background: '#ffd500',
-        color: '#000',
-        textAlign: 'center',
-        fontSize: 11,
-        fontWeight: 700,
-        letterSpacing: '0.2em',
-        padding: '8px 12px'
-      }}
-    >
-      MODE TEST — AUCUN PAIEMENT RÉEL · CARTE 4242 4242 4242 4242
-    </div>
-  );
-}
-
 export default function App() {
   const location = useLocation();
 
@@ -81,7 +54,6 @@ export default function App() {
       </AnimatePresence>
       <Footer />
       <CartDrawer />
-      <TestModeBanner />
     </>
   );
 }
