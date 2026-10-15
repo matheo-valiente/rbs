@@ -3,32 +3,25 @@
 // pied de facture Stripe, emails clients.
 // (Les infos exactes sont sur le Kbis de RBS SAS / l'avis de situation SIRENE.)
 
+// Tout champ laissé vide ('') est simplement masqué (site, emails, factures).
 module.exports = {
   legalName: 'RBS SAS',
-  legalForm: 'Société par actions simplifiée (SAS)',
-  capital: '[CAPITAL] €', // ex. '1 000 €'
-  address: '[ADRESSE DU SIÈGE], [CP] [VILLE], France',
-  rcs: 'RCS [VILLE] [N°]', // ex. 'RCS Paris 912 345 678'
-  siret: '[SIRET]', // 14 chiffres
-  vatNumber: '[FR XX XXXXXXXXX]', // laisser '' si franchise en base de TVA
-  publisher: '[NOM DU PRÉSIDENT / DIRECTEUR DE LA PUBLICATION]',
+  legalForm: 'SAS',
+  capital: '', // ex. '1 000 €'
+  address: '', // ex. '12 rue X, 75018 Paris'
+  rcs: '', // ex. 'RCS Paris 912 345 678'
+  siret: '',
+  vatNumber: '', // ex. 'FR12345678901'
+  publisher: '', // directeur de la publication
 
-  // Régime de TVA :
-  //  - 'normal'    : prix TTC, TVA 20 % incluse et détaillée sur les factures
-  //                  (mettre aussi VAT_RATE=20 et lancer `npm run stripe:setup`)
-  //  - 'franchise' : micro/franchise en base → « TVA non applicable, art. 293 B du CGI »
+  // 'normal' = prix TTC, TVA 20 % incluse · 'franchise' = « TVA non applicable, art. 293 B du CGI »
   vatRegime: 'normal',
 
-  contactEmail: 'contact@lyceemusical.com',
+  contactEmail: 'rbs18event@gmail.com',
 
-  // Médiateur de la consommation (obligatoire pour vendre à des particuliers).
-  // Adhésion en ligne à quelques dizaines d'€/an, ex. CM2C, Medicys, CNPM.
-  mediator: {
-    name: '[NOM DU MÉDIATEUR]',
-    url: '[https://site-du-mediateur.fr]',
-  },
+  // Médiateur de la consommation (ex. CM2C, Medicys) — masqué tant que vide.
+  mediator: { name: '', url: '' },
 
-  // Expédition
-  carrier: '[Colissimo / Mondial Relay / La Poste Lettre suivie]',
-  returnAddress: '[ADRESSE DE RETOUR SI DIFFÉRENTE DU SIÈGE]',
+  carrier: '', // ex. 'Colissimo'
+  returnAddress: '', // adresse de retour des colis
 };

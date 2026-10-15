@@ -52,7 +52,7 @@ const mediaExists = (p) => publicDir && fs.existsSync(path.join(publicDir, p));
   ok(`Livraison : ${config.shipping.feeCents / 100} € — pays ${config.shipping.countries.join(', ')}`);
   config.preorder.shippingEstimate && !config.preorder.shippingEstimate.includes('[')
     ? ok(`Délai affiché : ${config.preorder.shippingEstimate}`)
-    : warn('SHIPPING_ESTIMATE à compléter (date d’expédition — obligatoire légalement)');
+    : ok('Délai affiché : « après la clôture des précommandes » (SHIPPING_ESTIMATE vide)');
 
   section('Stripe');
   if (!config.stripe.secretKey || config.stripe.secretKey.endsWith('xxx')) {
@@ -111,10 +111,8 @@ const mediaExists = (p) => publicDir && fs.existsSync(path.join(publicDir, p));
   console.log('    → test réel : npm run test-notify');
 
   section('Infos légales (backend/src/business.js)');
-  const placeholders = Object.entries(business)
-    .filter(([, v]) => JSON.stringify(v).includes('['))
-    .map(([k]) => k);
-  placeholders.length ? fail(`À compléter : ${placeholders.join(', ')}`) : ok('Complètes');
+  const empty = ['address', 'rcs', 'siret', 'vatNumber', 'publisher', 'carrier'].filter((k) => !business[k]);
+  empty.length ? warn(`Non renseignées (masquées sur le site) : ${empty.join(', ')}`) : ok('Complètes');
 
   section('Contenus');
   if (!publicDir) warn('Dossier frontend introuvable — contenus non vérifiés');

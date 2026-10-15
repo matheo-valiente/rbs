@@ -5,15 +5,15 @@ export const ARTIST = 'LUVBFK';
 export const EP_TITLE = 'LYCÉE MUSICAL';
 
 export const LINKS = {
-  instagram: 'https://instagram.com/luvbfk', // [À VÉRIFIER]
+  instagram: 'https://instagram.com/luvbfk',
   ep: '', // smartlink / lien de l'EP (ex. Linkfire, Feature.fm…)
   spotify: '',
   deezer: '',
   appleMusic: ''
 };
 
-export const INSTAGRAM_HANDLE = '@LUVBFK'; // [À VÉRIFIER]
-export const CONTACT_EMAIL = 'contact@lyceemusical.com';
+export const INSTAGRAM_HANDLE = '@LUVBFK';
+export const CONTACT_EMAIL = 'rbs18event@gmail.com';
 
 export const MEDIA = {
   heroVideo: '/media/video/hero.mp4',
@@ -53,7 +53,7 @@ export const TRACKLIST = [
   { title: 'P*TAIN DE FUCKING $', credits: 'Prod & arr. Luvbfk & Williamarker2021' }
 ];
 
-// Crédits (verso de la pochette) — [orthographe des noms À VÉRIFIER]
+// Crédits (verso de la pochette)
 export const CREDITS = [
   ['Voix', 'Luvbfk'],
   ['Rhodes', 'Demian Nicolas-Demart'],
@@ -72,7 +72,7 @@ export const CREDITS = [
 ];
 
 export const SIZE_GUIDE = [
-  // [À COMPLÉTER avec les vraies mesures du fournisseur]
+  // Mettre les vraies mesures (cm) : le guide s'affiche alors automatiquement dans la boutique.
   { size: 'S', chest: '—', length: '—' },
   { size: 'M', chest: '—', length: '—' },
   { size: 'L', chest: '—', length: '—' },

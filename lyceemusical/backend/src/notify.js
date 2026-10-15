@@ -126,7 +126,7 @@ const customerHtml = (order) => `
   </div>`;
 
 const legalFooter = () =>
-  `${business.legalName} — ${business.address}${business.siret ? ` — SIRET ${business.siret}` : ''}`;
+  [business.legalName, business.address, business.siret && `SIRET ${business.siret}`].filter(Boolean).join(' — ');
 
 const legalFooterHtml = () =>
   `<p style="margin:24px 0 0;padding-top:12px;border-top:1px solid #e5e5e5;font-size:10px;opacity:.5">

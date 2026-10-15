@@ -88,8 +88,8 @@ router.post('/checkout', checkoutLimiter, async (req, res, next) => {
 
     const metadata = { site: SITE, order_number: order.number };
     const footer = [
-      `${business.legalName} — ${business.legalForm} au capital de ${business.capital}`,
-      `${business.address} — ${business.rcs} — SIRET ${business.siret}`,
+      [business.legalName, business.capital && `capital ${business.capital}`].filter(Boolean).join(' — '),
+      [business.address, business.rcs, business.siret && `SIRET ${business.siret}`].filter(Boolean).join(' — '),
       business.vatRegime === 'franchise'
         ? 'TVA non applicable, art. 293 B du CGI.'
         : business.vatNumber && `TVA intracommunautaire : ${business.vatNumber}`,
