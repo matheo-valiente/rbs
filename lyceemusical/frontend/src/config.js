@@ -29,14 +29,20 @@ export const MEDIA = {
 // Textes de l'accueil — courts et directs.
 export const HOME = {
   bioTitle: '18e arrondissement.',
-  epText:
-    '6 titres enregistrés avec un vrai groupe. Premier extrait : « Marchons » feat. Darlingchouchou. Sur le CD : un titre bonus, « Les mots doux », introuvable ailleurs.',
+  epTagline: '6 titres enregistrés par un groupe de 7 musiciens.',
   offersTitle: 'Le CD, le t-shirt, ou les deux.'
 };
 
 export const BIO = [
-  'Luvbfk rappe depuis Paris 18. NUMBER ONE, WHAT???, HATEBFK : trois projets, une voix qui passe de la trap à la soul.',
-  'Lycée Musical, c’est son nouvel EP. Des musiciens autour de lui (rhodes, sax, trompette, basse, batterie, guitare) et six titres, dont un qu’on n’entend que sur le CD.'
+  'Chanteur et rappeur parisien, LUVBFK développe un univers à la croisée du rap et des sonorités alternatives. Actif depuis plusieurs années, il a sorti plusieurs projets dont HATEBFK et WHAT???.',
+  'Son univers l’a progressivement amené sur différentes scènes parisiennes, avec notamment un concert à La Boule Noire en décembre 2025, ainsi que des passages dans les studios de Planète Rap. En 2026, il poursuit son développement scénique avec une première partie annoncée pour Yvnnis au Bataclan le 5 novembre, ou encore une programmation au Grunt Festival le 31 octobre.'
+];
+
+// Texte de la section EP (un élément = un paragraphe)
+export const EP_TEXT = [
+  'À la croisée du jazz contemporain et des nouvelles sonorités de la scène urbaine française, ce projet réunit LUVBFK, chanteur et rappeur, Williamarker2021, producteur et arrangeur, et un sextet de jeunes musiciens issus de la scène jazz parisienne.',
+  'L’ambition est de créer un univers musical qui fusionne les propositions des artistes dès l’écriture et la conception des morceaux.',
+  'Composé de six titres originaux, la musique est portée par un sextet acoustique composé d’une trompette, d’un saxophone alto, d’un Rhodes, d’une guitare, d’une basse et d’une batterie. Aucun sample, aucune programmation ni instrument virtuel : les morceaux sont construits autour du jeu des musiciens et de leurs interactions avec le chanteur.'
 ];
 
 // Tracklist (recopiée du verso de la pochette) — laisser vide pour masquer.
