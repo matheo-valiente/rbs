@@ -19,7 +19,7 @@ export const MEDIA = {
   heroVideo: '/media/video/hero.mp4',
   heroVideoMobile: '/media/video/hero-mobile.mp4', // version allégée pour téléphone
   heroPoster: '/media/video/hero-poster.jpg',
-  portrait: '/media/photos/luvbfk.jpg', // image du clip « Marchons »
+  portrait: '/media/photos/luvbfk-marchons.jpg', // image du clip « Marchons » (changer le nom du fichier à chaque nouvelle photo, sinon les navigateurs gardent l'ancienne 1 h)
   portraitCaption: 'Extrait du clip « Marchons » feat. Darlingchouchou',
   portraitLink: 'https://www.youtube.com/watch?v=Qa_qU1QawZM',
   coverFront: '/media/photos/cover-front.jpg', // recto de la pochette (carré)
@@ -28,15 +28,15 @@ export const MEDIA = {
 
 // Textes de l'accueil — courts et directs.
 export const HOME = {
-  bioTitle: 'Paris 18, salle de répète.',
+  bioTitle: '18e arrondissement. Fond de la classe.',
   epText:
     '6 titres enregistrés avec un vrai groupe. Premier extrait : « Marchons » feat. Darlingchouchou. Sur le CD : un titre bonus, « Les mots doux », introuvable ailleurs.',
   offersTitle: 'Le CD, le t-shirt, ou les deux.'
 };
 
 export const BIO = [
-  'Luvbfk. Paris 18. NUMBER ONE, WHAT???, HATEBFK : trois projets, une voix qui glisse de la trap à la soul sans jamais choisir.',
-  'Lycée Musical, c’est la salle de répète. Un rhodes, un sax, une trompette, une basse, une batterie, une guitare. Six titres joués à plusieurs, sans filet.'
+  'Luvbfk rappe depuis Paris 18. NUMBER ONE, WHAT???, HATEBFK : trois projets, une voix qui passe de la trap à la soul d’une mesure à l’autre.',
+  'Lycée Musical, c’est son disque de classe. Des musiciens autour de lui (rhodes, sax, trompette, basse, batterie, guitare) et six titres, dont un qu’on n’entend que sur le CD.'
 ];
 
 // Tracklist (recopiée du verso de la pochette) — laisser vide pour masquer.
