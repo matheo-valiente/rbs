@@ -90,7 +90,12 @@ function ProductCard({ product, index }) {
         <div className={styles.nameRow}>
           <h2 className={styles.name}>{noBreakHyphens(product.name)}</h2>
           <div className={styles.price}>
-            {product.compareAtPrice && <s>{euros(product.compareAtPrice)}</s>}
+            {product.compareAtPrice && (
+              <span className={styles.was}>
+                <s>{euros(product.compareAtPrice)}</s>
+                {product.teaser?.priceNote && <small>{product.teaser.priceNote}</small>}
+              </span>
+            )}
             <span>{euros(product.price)}</span>
           </div>
         </div>

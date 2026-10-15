@@ -311,7 +311,13 @@ export default function Home() {
               <div className={styles.offerRow}>
                 <span className={styles.offerName}>{p.name}</span>
                 <span className={styles.offerPrice}>
-                  {p.compareAtPrice && <s>{euros(p.compareAtPrice)}</s>} {euros(p.price)}
+                  {p.compareAtPrice && (
+                    <span className={styles.offerWas}>
+                      <s>{euros(p.compareAtPrice)}</s>
+                      {p.teaser?.priceNote && <small>{p.teaser.priceNote}</small>}
+                    </span>
+                  )}{' '}
+                  {euros(p.price)}
                 </span>
               </div>
             </Link>

@@ -14,6 +14,7 @@ const TSHIRT_TEASER = {
   title: 'T-SHIRT SURPRISE',
   reveal: 'DÉVOILÉ CE DIMANCHE',
   revealAt: '2026-10-18T00:00:00+02:00',
+  priceNote: 'avant dimanche', // affiché sous le prix barré
 };
 
 const TSHIRT_SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
@@ -61,7 +62,7 @@ const PRODUCTS = [
     sizes: TSHIRT_SIZES,
     includes: ['1 T-shirt officiel Lycée Musical (dévoilé ce dimanche)'],
     description: 'Le t-shirt officiel de l’EP, dévoilé ce dimanche. Prix réduit pour ceux qui précommandent avant.',
-    tagline: 'Dévoilé ce dimanche · prix préco',
+    tagline: 'Dévoilé ce dimanche',
     teaser: TSHIRT_TEASER,
     image: '/media/products/tshirt.jpg',
     imageBack: '/media/products/tshirt-2.jpg',

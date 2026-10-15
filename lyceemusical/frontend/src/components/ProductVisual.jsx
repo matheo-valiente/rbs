@@ -57,8 +57,6 @@ const Teaser = ({ product, size }) => {
   const { title, reveal, revealAt } = product.teaser;
   const { offset } = useShop() || {};
   const showClock = size !== 'thumb' && revealAt && new Date(revealAt).getTime() > Date.now() + (offset || 0);
-  const saving = product.compareAtPrice ? Math.round((product.compareAtPrice - product.price) / 100) : 0;
-  const tape = Array.from({ length: 6 }, () => `${reveal} ✦ `).join('');
   return (
     <div className={`${styles.wrap} ${styles[size]} ${styles.teaser}`} role="img" aria-label={`${title} — ${reveal}`}>
       {size !== 'thumb' && <span className={styles.teaserTitle}>{title}</span>}
@@ -75,20 +73,6 @@ const Teaser = ({ product, size }) => {
           <span className={styles.clockLabel}>RÉVÉLATION DANS</span>
           <Countdown target={revealAt} offset={offset || 0} />
         </div>
-      )}
-      {size !== 'thumb' && (
-        <>
-          <div className={styles.tape}>
-            <span>{tape}</span>
-            <span aria-hidden="true">{tape}</span>
-          </div>
-          {saving > 0 && (
-            <span className={styles.sticker}>
-              <strong>−{saving} €</strong>
-              PRÉCO
-            </span>
-          )}
-        </>
       )}
     </div>
   );
