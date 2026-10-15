@@ -28,15 +28,15 @@ export const MEDIA = {
 
 // Textes de l'accueil — courts et directs.
 export const HOME = {
-  bioTitle: '18e arrondissement. Fond de la classe.',
+  bioTitle: '18e arrondissement.',
   epText:
     '6 titres enregistrés avec un vrai groupe. Premier extrait : « Marchons » feat. Darlingchouchou. Sur le CD : un titre bonus, « Les mots doux », introuvable ailleurs.',
   offersTitle: 'Le CD, le t-shirt, ou les deux.'
 };
 
 export const BIO = [
-  'Luvbfk rappe depuis Paris 18. NUMBER ONE, WHAT???, HATEBFK : trois projets, une voix qui passe de la trap à la soul d’une mesure à l’autre.',
-  'Lycée Musical, c’est son disque de classe. Des musiciens autour de lui (rhodes, sax, trompette, basse, batterie, guitare) et six titres, dont un qu’on n’entend que sur le CD.'
+  'Luvbfk rappe depuis Paris 18. NUMBER ONE, WHAT???, HATEBFK : trois projets, une voix qui passe de la trap à la soul.',
+  'Lycée Musical, c’est son nouvel EP. Des musiciens autour de lui (rhodes, sax, trompette, basse, batterie, guitare) et six titres, dont un qu’on n’entend que sur le CD.'
 ];
 
 // Tracklist (recopiée du verso de la pochette) — laisser vide pour masquer.
