@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useShop } from '../context/ShopContext';
 import Countdown from './Countdown';
+import { MEDIA } from '../config';
 import styles from './ProductVisual.module.css';
 
 // Drawn stand-ins until the real product photos arrive: set `image` in
@@ -63,7 +64,7 @@ const Teaser = ({ product, size }) => {
       {product.contains.cd > 0 ? (
         <>
           <MysteryShirt className={styles.packShirt} />
-          <Disc className={styles.packDisc} />
+          <img src={MEDIA.coverFront} alt="" className={styles.packCover} loading="lazy" />
         </>
       ) : (
         <MysteryShirt className={styles.single} />
