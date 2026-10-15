@@ -19,9 +19,9 @@ export const MEDIA = {
   heroVideo: '/media/video/hero.mp4',
   heroVideoMobile: '/media/video/hero-mobile.mp4', // version allégée pour téléphone
   heroPoster: '/media/video/hero-poster.jpg',
-  portrait: '/media/photos/luvbfk-marchons.jpg', // image du clip « Marchons » (changer le nom du fichier à chaque nouvelle photo, sinon les navigateurs gardent l'ancienne 1 h)
-  portraitCaption: 'Extrait du clip « Marchons » feat. Darlingchouchou',
-  portraitLink: 'https://www.youtube.com/watch?v=Qa_qU1QawZM',
+  portrait: '/media/photos/luvbfk-groupe.jpg', // Luvbfk et le groupe (changer le nom du fichier à chaque nouvelle photo)
+  portraitCaption: '',
+  portraitLink: '',
   coverFront: '/media/photos/cover-front.jpg', // recto de la pochette (carré)
   coverBack: '/media/photos/cover-back.jpg' // verso (tracklist + crédits)
 };

@@ -126,7 +126,7 @@ const mediaExists = (p) => publicDir && fs.existsSync(path.join(publicDir, p));
         : ok(`Vidéo d’accueil : ${mb.toFixed(1)} Mo`);
     }
     for (const [file, label] of [
-      ['media/photos/luvbfk-marchons.jpg', 'Portrait Luvbfk'],
+      ['media/photos/luvbfk-groupe.jpg', 'Portrait Luvbfk'],
       ['media/photos/cover-front.jpg', 'Pochette (recto)'],
       ['media/photos/cover-back.jpg', 'Pochette (verso)'],
       ['media/og.jpg', 'Image de partage réseaux (og.jpg)'],

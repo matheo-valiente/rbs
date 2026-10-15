@@ -394,7 +394,7 @@
 }
 
 .portraitPhoto {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1362 / 1414;
   overflow: hidden;
   background: var(--soft);
 }
