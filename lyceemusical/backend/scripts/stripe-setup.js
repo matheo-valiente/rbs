@@ -62,7 +62,7 @@ const EVENTS = [
     }
     envLines.push(`STRIPE_TAX_RATE_ID=${rate.id}`);
   } else {
-    console.log(`\nTVA : ${business.vatRegime === 'franchise' ? 'franchise en base (art. 293 B)' : 'VAT_RATE=0 → pas de ligne TVA'}`);
+    console.log(`\nTVA : ${business.vatRegime === 'franchise' ? 'non applicable' : 'VAT_RATE=0 → pas de ligne TVA'}`);
   }
 
   // --- Webhook

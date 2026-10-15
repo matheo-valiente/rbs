@@ -77,7 +77,7 @@ const mediaExists = (p) => publicDir && fs.existsSync(path.join(publicDir, p));
           ? ok(`TVA ${rate.percentage} % incluse (${rate.id})`)
           : fail('STRIPE_TAX_RATE_ID invalide, inactif ou non « inclus »');
       }
-    } else ok('Franchise de TVA (mention art. 293 B sur les factures)');
+    } else ok('Pas de TVA (« TVA non applicable » sur les factures)');
     ok(`Factures Stripe : ${config.stripe.invoices ? 'activées' : 'désactivées'}`);
 
     if (!config.stripe.webhookSecret || config.stripe.webhookSecret.endsWith('xxx')) {
@@ -112,7 +112,7 @@ const mediaExists = (p) => publicDir && fs.existsSync(path.join(publicDir, p));
 
   section('Infos légales (backend/src/business.js)');
   business.legalName ? ok(`Vendeur : ${business.legalName}`) : fail('Nom du vendeur manquant (legalName)');
-  ok(business.vatRegime === 'franchise' ? 'TVA non applicable (art. 293 B)' : `TVA ${config.vatRate} % incluse`);
+  ok(business.vatRegime === 'franchise' ? 'TVA non applicable' : `TVA ${config.vatRate} % incluse`);
 
   section('Contenus');
   if (!publicDir) warn('Dossier frontend introuvable — contenus non vérifiés');

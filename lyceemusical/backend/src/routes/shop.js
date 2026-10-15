@@ -91,7 +91,7 @@ router.post('/checkout', checkoutLimiter, async (req, res, next) => {
       [business.legalName, business.capital && `capital ${business.capital}`].filter(Boolean).join(' — '),
       [business.address, business.rcs, business.siret && `SIRET ${business.siret}`].filter(Boolean).join(' — '),
       business.vatRegime === 'franchise'
-        ? 'TVA non applicable, art. 293 B du CGI.'
+        ? 'TVA non applicable.'
         : business.vatNumber && `TVA intracommunautaire : ${business.vatNumber}`,
       'Précommande — vente à distance, droit de rétractation de 14 jours à réception (voir CGV).',
     ]

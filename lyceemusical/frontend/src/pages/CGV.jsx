@@ -51,7 +51,7 @@ export default function CGV() {
           <p>
             Les prix sont indiqués en euros,{' '}
             {b.vatRegime === 'franchise'
-              ? 'TVA non applicable (art. 293 B du CGI)'
+              ? 'TVA non applicable'
               : 'toutes taxes comprises (TVA incluse)'}
             . Une facture est émise pour chaque commande et envoyée par email. Les frais de livraison sont indiqués
             avant la validation du paiement. Le paiement est exigible immédiatement à la commande et sécurisé par Stripe

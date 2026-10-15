@@ -13,7 +13,7 @@ module.exports = {
   vatNumber: '',
   publisher: '',
 
-  // 'normal' = prix TTC, TVA 20 % incluse · 'franchise' = « TVA non applicable, art. 293 B du CGI »
+  // 'normal' = prix TTC, TVA 20 % incluse · 'franchise' = « TVA non applicable »
   vatRegime: 'franchise',
 
   contactEmail: 'rbs18event@gmail.com',
