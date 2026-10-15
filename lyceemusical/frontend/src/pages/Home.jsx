@@ -42,6 +42,14 @@ function heroVideoSrc() {
 function PreorderLine() {
   const { shop, phase, offset } = useShop();
   if (!shop) return null;
+  if (phase === 'paused') {
+    return (
+      <div className={styles.heroStatus}>
+        <span className={styles.dot} />
+        <span className={styles.heroStatusLabel}>{shop.preorder.pausedMessage.toUpperCase()}</span>
+      </div>
+    );
+  }
   if (phase === 'upcoming') {
     return (
       <div className={styles.heroStatus}>

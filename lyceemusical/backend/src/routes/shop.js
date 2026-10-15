@@ -30,6 +30,8 @@ router.get('/shop', (req, res) => {
       opensAt: config.preorder.opensAt.toISOString(),
       closesAt: config.preorder.closesAt.toISOString(),
       shippingEstimate: config.preorder.shippingEstimate,
+      paused: config.preorder.paused,
+      pausedMessage: config.preorder.pausedMessage,
     },
     limits: config.limits,
     shipping: config.shipping,
@@ -43,6 +45,7 @@ router.post('/checkout', checkoutLimiter, async (req, res, next) => {
   let order;
   try {
     const phase = preorderPhase();
+    if (phase === 'paused') throw new HttpError(403, `${config.preorder.pausedMessage}.`, 'paused');
     if (phase === 'upcoming') throw new HttpError(403, 'Les précommandes ne sont pas encore ouvertes.', 'not_open');
     if (phase === 'closed') throw new HttpError(403, 'Les précommandes sont terminées.', 'closed');
 

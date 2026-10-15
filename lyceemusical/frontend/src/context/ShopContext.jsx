@@ -6,6 +6,7 @@ const ShopContext = createContext(null);
 
 const phaseAt = (shop, t) => {
   if (!shop) return 'loading';
+  if (shop.preorder.paused) return 'paused';
   if (t < new Date(shop.preorder.opensAt).getTime()) return 'upcoming';
   if (t > new Date(shop.preorder.closesAt).getTime()) return 'closed';
   return 'open';
@@ -48,7 +49,7 @@ export function ShopProvider({ children }) {
 
   // Re-render exactly when the window opens/closes so buttons flip live.
   useEffect(() => {
-    if (!shop || phase === 'closed') return;
+    if (!shop || phase === 'closed' || phase === 'paused') return;
     const boundary = new Date(phase === 'upcoming' ? shop.preorder.opensAt : shop.preorder.closesAt).getTime();
     const wait = boundary - (Date.now() + offset) + 500;
     // setTimeout overflows past ~24.8 days; re-check daily in that case.

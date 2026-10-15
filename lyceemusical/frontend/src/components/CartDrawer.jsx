@@ -83,6 +83,7 @@ export default function CartDrawer() {
   if (phase === 'upcoming' && shop)
     blocker = `Ouverture des précommandes le ${parisDate(shop.preorder.opensAt, { hour: '2-digit', minute: '2-digit' })}.`;
   if (phase === 'closed') blocker = 'Les précommandes sont terminées.';
+  if (phase === 'paused' && shop) blocker = `${shop.preorder.pausedMessage}.`;
 
   return (
     <AnimatePresence>

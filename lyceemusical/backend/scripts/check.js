@@ -44,6 +44,7 @@ const mediaExists = (p) => publicDir && fs.existsSync(path.join(publicDir, p));
     : ok('Mot de passe admin défini');
 
   section('Précommande');
+  if (config.preorder.paused) warn(`ACHATS EN PAUSE (ORDERS_PAUSED=true) — « ${config.preorder.pausedMessage} »`);
   ok(`Ouverture : ${paris(config.preorder.opensAt)}`);
   ok(`Fermeture : ${paris(config.preorder.closesAt)}`);
   const days = (config.preorder.closesAt - config.preorder.opensAt) / 86400000;

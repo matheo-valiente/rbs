@@ -84,6 +84,7 @@ const assertWithinLimits = (counts, alreadyOrdered = { cd: 0, tshirt: 0 }) => {
 };
 
 const preorderPhase = (at = new Date()) => {
+  if (config.preorder.paused) return 'paused';
   if (at < config.preorder.opensAt) return 'upcoming';
   if (at > config.preorder.closesAt) return 'closed';
   return 'open';

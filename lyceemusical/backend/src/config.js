@@ -43,6 +43,9 @@ const config = {
     opensAt: date(env.PREORDER_OPENS_AT, '2026-10-15T00:00:00+02:00'),
     closesAt: date(env.PREORDER_CLOSES_AT, '2026-10-28T23:59:59+01:00'),
     shippingEstimate: env.SHIPPING_ESTIMATE || '',
+    // Achats en pause (site visible, panier et paiement bloqués) : ORDERS_PAUSED=true
+    paused: env.ORDERS_PAUSED === 'true',
+    pausedMessage: env.ORDERS_PAUSED_MESSAGE || 'Achats possibles dès demain',
   },
 
   limits: {

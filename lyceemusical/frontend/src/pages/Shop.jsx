@@ -13,6 +13,16 @@ function StatusBar() {
   const { shop, phase, offset } = useShop();
   if (!shop) return <div className={styles.status}>[ CHARGEMENT ]</div>;
 
+  if (phase === 'paused') {
+    return (
+      <div className={`${styles.status} ${styles.statusOpen}`}>
+        <span>
+          <i className={styles.dot} /> {shop.preorder.pausedMessage.toUpperCase()}
+        </span>
+      </div>
+    );
+  }
+
   if (phase === 'upcoming') {
     return (
       <div className={styles.status}>
@@ -42,7 +52,7 @@ function StatusBar() {
 }
 
 function ProductCard({ product, index }) {
-  const { phase } = useShop();
+  const { phase, shop } = useShop();
   const cart = useCart();
   const [size, setSize] = useState(null);
   const [error, setError] = useState(null);
@@ -69,7 +79,8 @@ function ProductCard({ product, index }) {
   };
 
   let label = 'AJOUTER AU PANIER';
-  if (phase === 'upcoming') label = 'BIENTÔT DISPONIBLE';
+  if (phase === 'paused') label = shop.preorder.pausedMessage.toUpperCase();
+  else if (phase === 'upcoming') label = 'BIENTÔT DISPONIBLE';
   else if (phase === 'closed') label = 'PRÉCOMMANDES TERMINÉES';
   else if (limitReached) label = 'LIMITE ATTEINTE';
   else if (added) label = 'AJOUTÉ ✓';
