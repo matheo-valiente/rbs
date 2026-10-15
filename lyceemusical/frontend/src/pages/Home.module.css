@@ -285,7 +285,7 @@
 .offerWas small {
   position: absolute;
   top: 100%;
-  right: 0;
+  left: 0;
   white-space: nowrap;
   font-size: 10.5px;
   font-weight: 600;
