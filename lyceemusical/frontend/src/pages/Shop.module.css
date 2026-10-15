@@ -305,7 +305,6 @@
   justify-content: center;
   gap: 10px 40px;
   border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
   font-size: 14px;
 }
 

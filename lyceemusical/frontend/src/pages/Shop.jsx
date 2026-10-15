@@ -5,7 +5,7 @@ import { useShop } from '../context/ShopContext.jsx';
 import { useCart } from '../context/CartContext.jsx';
 import Countdown from '../components/Countdown.jsx';
 import ProductVisual from '../components/ProductVisual.jsx';
-import { EP_TITLE, SIZE_GUIDE, CONTACT_EMAIL } from '../config.js';
+import { EP_TITLE, SIZE_GUIDE } from '../config.js';
 import { euros, parisDate } from '../lib/format.js';
 import styles from './Shop.module.css';
 
@@ -149,25 +149,6 @@ function noBreakHyphens(text) {
   ));
 }
 
-const FAQ = (shop) => [
-  {
-    q: 'Quand vais-je recevoir ma commande ?',
-    a: `Après la fin des précommandes. ${shop?.preorder.shippingEstimate || ''}`
-  },
-  {
-    q: 'Combien puis-je commander ?',
-    a: `${shop?.limits.cd ?? 3} CD et ${shop?.limits.tshirt ?? 3} t-shirts maximum par personne (un pack compte pour 1 CD + 1 t-shirt).`
-  },
-  {
-    q: 'Où livrez-vous ?',
-    a: `France, Belgique, Suisse, Luxembourg et Monaco. ${shop ? (shop.shipping.feeCents ? euros(shop.shipping.feeCents) : 'Livraison offerte') : ''} par commande.`
-  },
-  {
-    q: 'Une erreur dans ma commande ?',
-    a: `Écris-nous à ${CONTACT_EMAIL} avec ton numéro de commande (LM-XXXX).`
-  }
-];
-
 export default function Shop() {
   const { shop, products, error } = useShop();
   const cart = useCart();
@@ -210,8 +191,8 @@ export default function Shop() {
         </span>
       </section>
 
-      <section className={styles.infoGrid}>
-        {hasSizeGuide && (
+      {hasSizeGuide && (
+        <section className={styles.infoGrid}>
           <div id="guide-tailles" className={styles.infoBlock}>
             <div className={styles.index}>GUIDE DES TAILLES</div>
             <table className={styles.sizeTable}>
@@ -233,20 +214,8 @@ export default function Shop() {
               </tbody>
             </table>
           </div>
-        )}
-
-        <div className={styles.infoBlock}>
-          <div className={styles.index}>QUESTIONS FRÉQUENTES</div>
-          <div className={styles.faq}>
-            {FAQ(shop).map((item) => (
-              <details key={item.q}>
-                <summary>{item.q}</summary>
-                <p>{item.a}</p>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   );
 }
