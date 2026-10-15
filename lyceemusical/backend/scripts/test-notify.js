@@ -9,7 +9,7 @@ const order = {
   number: 'LM-TEST',
   email: config.notify.emails[0] || 'test@exemple.com',
   items: [
-    { productId: 'pack', name: 'PACK CD + T-SHIRT', size: 'M', qty: 1, unitPrice: 2500 },
+    { productId: 'pack', name: 'PACK CD + T-SHIRT', size: 'M', qty: 1, unitPrice: 2000 },
     { productId: 'cd', name: 'CD — LYCÉE MUSICAL', size: null, qty: 2, unitPrice: 1000 },
   ],
   subtotal: 4500,

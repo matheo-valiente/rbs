@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useShop } from '../context/ShopContext';
+import Countdown from './Countdown';
 import styles from './ProductVisual.module.css';
 
 // Drawn stand-ins until the real product photos arrive: set `image` in
@@ -33,7 +35,71 @@ const Shirt = ({ className }) => (
   </svg>
 );
 
+// T-shirt pas encore dévoilé : silhouette + « ? », sans motif.
+const MysteryShirt = ({ className }) => (
+  <svg viewBox="0 0 200 200" className={className} aria-hidden="true">
+    <path
+      d="M70 28 L46 36 L14 64 L34 92 L52 80 L52 178 L148 178 L148 80 L166 92 L186 64 L154 36 L130 28 Q100 48 70 28 Z"
+      fill="#111"
+      stroke="#fff"
+      strokeWidth="2"
+      strokeDasharray="6 5"
+      strokeLinejoin="round"
+    />
+    <path d="M70 28 Q100 48 130 28" fill="none" stroke="#fff" strokeWidth="2" strokeDasharray="6 5" />
+    <text x="100" y="138" textAnchor="middle" fontFamily="Inconsolata, monospace" fontSize="74" fontWeight="800" fill="#ff1111">
+      ?
+    </text>
+  </svg>
+);
+
+const Teaser = ({ product, size }) => {
+  const { title, reveal, revealAt } = product.teaser;
+  const { offset } = useShop() || {};
+  const showClock = size !== 'thumb' && revealAt && new Date(revealAt).getTime() > Date.now() + (offset || 0);
+  const saving = product.compareAtPrice ? Math.round((product.compareAtPrice - product.price) / 100) : 0;
+  const tape = Array.from({ length: 6 }, () => `${reveal} ✦ `).join('');
+  return (
+    <div className={`${styles.wrap} ${styles[size]} ${styles.teaser}`} role="img" aria-label={`${title} — ${reveal}`}>
+      {size !== 'thumb' && <span className={styles.teaserTitle}>{title}</span>}
+      {product.contains.cd > 0 ? (
+        <>
+          <MysteryShirt className={styles.packShirt} />
+          <Disc className={styles.packDisc} />
+        </>
+      ) : (
+        <MysteryShirt className={styles.single} />
+      )}
+      {showClock && (
+        <div className={styles.clock}>
+          <span className={styles.clockLabel}>RÉVÉLATION DANS</span>
+          <Countdown target={revealAt} offset={offset || 0} />
+        </div>
+      )}
+      {size !== 'thumb' && (
+        <>
+          <div className={styles.tape}>
+            <span>{tape}</span>
+            <span aria-hidden="true">{tape}</span>
+          </div>
+          {saving > 0 && (
+            <span className={styles.sticker}>
+              <strong>−{saving} €</strong>
+              PRÉCO
+            </span>
+          )}
+        </>
+      )}
+    </div>
+  );
+};
+
 export default function ProductVisual({ product, size = 'card' }) {
+  if (product.teaser) return <Teaser product={product} size={size} />;
+  return <PhotoOrDrawing product={product} size={size} />;
+}
+
+function PhotoOrDrawing({ product, size }) {
   const [broken, setBroken] = useState(false);
   const [backBroken, setBackBroken] = useState(false);
   const hasBack = product.imageBack && !backBroken && size !== 'thumb';
