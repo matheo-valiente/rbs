@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useShop } from '../context/ShopContext';
 import Countdown from './Countdown';
-import { MEDIA } from '../config';
 import styles from './ProductVisual.module.css';
 
 // Drawn stand-ins until the real product photos arrive: set `image` in
@@ -60,15 +59,7 @@ const Teaser = ({ product, size }) => {
   const showClock = size !== 'thumb' && revealAt && new Date(revealAt).getTime() > Date.now() + (offset || 0);
   return (
     <div className={`${styles.wrap} ${styles[size]} ${styles.teaser}`} role="img" aria-label={`${title} — ${reveal}`}>
-      {size !== 'thumb' && <span className={styles.teaserTitle}>{title}</span>}
-      {product.contains.cd > 0 ? (
-        <>
-          <MysteryShirt className={styles.packShirt} />
-          <img src={MEDIA.coverFront} alt="" className={styles.packCover} loading="lazy" />
-        </>
-      ) : (
-        <MysteryShirt className={styles.single} />
-      )}
+      {size === 'thumb' && <MysteryShirt className={styles.single} />}
       {showClock && (
         <div className={styles.clock}>
           <span className={styles.clockLabel}>RÉVÉLATION DANS</span>

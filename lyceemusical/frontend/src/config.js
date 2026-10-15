@@ -28,7 +28,7 @@ export const MEDIA = {
 
 // Textes de l'accueil — courts et directs.
 export const HOME = {
-  bioTitle: '18e arrondissement.',
+  bioTitle: 'LUVBFK',
   epTagline: '6 titres enregistrés par un groupe de 7 musiciens.',
   offersTitle: 'Le CD, le t-shirt, ou les deux.'
 };

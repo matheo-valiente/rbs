@@ -12,9 +12,9 @@
 // `revealAt` = fin du chrono affiché sur l'image (heure de Paris).
 const TSHIRT_TEASER = {
   title: 'T-SHIRT SURPRISE',
-  reveal: 'DÉVOILÉ CE DIMANCHE',
-  revealAt: '2026-10-18T00:00:00+02:00',
-  priceNote: 'avant dimanche', // affiché sous le prix barré
+  reveal: 'DÉVOILÉ JEUDI 22 OCTOBRE À 18H',
+  revealAt: '2026-10-22T18:00:00+02:00',
+  priceNote: 'avant mercredi', // affiché sous le prix barré
 };
 
 const TSHIRT_SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
@@ -44,8 +44,8 @@ const PRODUCTS = [
     featured: true,
     contains: { cd: 1, tshirt: 1 },
     sizes: TSHIRT_SIZES,
-    includes: ['1 CD de l’EP « Lycée Musical » — 6 titres, dont le bonus « Les mots doux »', '1 T-shirt officiel Lycée Musical (dévoilé ce dimanche)'],
-    description: 'Le CD (avec son titre bonus exclusif) et le t-shirt surprise, dévoilé ce dimanche. Prix réduit pour ceux qui précommandent avant.',
+    includes: ['1 CD de l’EP « Lycée Musical » — 6 titres, dont le bonus « Les mots doux »', '1 T-shirt officiel Lycée Musical (dévoilé le 22 octobre)'],
+    description: 'Le CD (avec son titre bonus exclusif) et le t-shirt surprise, dévoilé le 22 octobre. Prix réduit pour ceux qui précommandent avant.',
     tagline: 'Le CD + le t-shirt surprise',
     teaser: TSHIRT_TEASER,
     image: '/media/products/pack.jpg',
@@ -60,9 +60,9 @@ const PRODUCTS = [
     compareAtPrice: 2000,
     contains: { cd: 0, tshirt: 1 },
     sizes: TSHIRT_SIZES,
-    includes: ['1 T-shirt officiel Lycée Musical (dévoilé ce dimanche)'],
-    description: 'Le t-shirt officiel de l’EP, dévoilé ce dimanche. Prix réduit pour ceux qui précommandent avant.',
-    tagline: 'Dévoilé ce dimanche',
+    includes: ['1 T-shirt officiel Lycée Musical (dévoilé le 22 octobre)'],
+    description: 'Le t-shirt officiel de l’EP, dévoilé le 22 octobre. Prix réduit pour ceux qui précommandent avant.',
+    tagline: 'Dévoilé le 22 octobre',
     teaser: TSHIRT_TEASER,
     image: '/media/products/tshirt.jpg',
     imageBack: '/media/products/tshirt-2.jpg',

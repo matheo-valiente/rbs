@@ -448,6 +448,11 @@
   max-width: 18ch;
 }
 
+.artistTitle {
+  font-size: clamp(56px, 10vw, 128px);
+  line-height: 0.95;
+}
+
 /* ---------- 02 / EP (dark) ---------- */
 
 .ep {
