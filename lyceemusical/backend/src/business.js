@@ -7,12 +7,12 @@
 module.exports = {
   legalName: 'RBS SAS',
   legalForm: 'SAS',
-  capital: '', // ex. '1 000 €'
-  address: '', // ex. '12 rue X, 75018 Paris'
-  rcs: '', // ex. 'RCS Paris 912 345 678'
-  siret: '',
-  vatNumber: '', // ex. 'FR12345678901'
-  publisher: '', // directeur de la publication
+  capital: '400 €',
+  address: '46 B avenue Rabelais, 94120 Fontenay-sous-Bois',
+  rcs: 'RCS Créteil 991 550 468',
+  siret: '991 550 468 00011',
+  vatNumber: 'FR43991550468', // calculé depuis le SIREN
+  publisher: 'Imanol Marticorena, président', // directeur de la publication
 
   // 'normal' = prix TTC, TVA 20 % incluse · 'franchise' = « TVA non applicable, art. 293 B du CGI »
   vatRegime: 'normal',
