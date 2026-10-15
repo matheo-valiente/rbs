@@ -19,7 +19,7 @@ const section = (t) => console.log(`\n${t}`);
 const paris = (d) => d.toLocaleString('fr-FR', { timeZone: 'Europe/Paris', dateStyle: 'full', timeStyle: 'short' });
 
 const publicDir = [path.join(__dirname, '../../frontend/public'), path.join(__dirname, '../../frontend/dist')].find(
-  (d) => fs.existsSync(d)
+  (d) => fs.existsSync(d),
 );
 const mediaExists = (p) => publicDir && fs.existsSync(path.join(publicDir, p));
 
@@ -27,7 +27,9 @@ const mediaExists = (p) => publicDir && fs.existsSync(path.join(publicDir, p));
   console.log('\n=== Lycée Musical — vérification ===');
 
   section('Site');
-  config.publicUrl.startsWith('https://') ? ok(`URL publique : ${config.publicUrl}`) : warn(`URL publique : ${config.publicUrl} (pas https — normal en local)`);
+  config.publicUrl.startsWith('https://')
+    ? ok(`URL publique : ${config.publicUrl}`)
+    : warn(`URL publique : ${config.publicUrl} (pas https — normal en local)`);
   if (config.publicUrl.startsWith('https://')) {
     const host = new URL(config.publicUrl).hostname;
     try {
@@ -99,7 +101,9 @@ const mediaExists = (p) => publicDir && fs.existsSync(path.join(publicDir, p));
     ? ok(`Responsables : ${config.notify.emails.join(', ')}`)
     : fail('NOTIFY_EMAILS vide — personne ne sera prévenu des commandes');
   try {
-    (await verifySmtp()) ? ok(`SMTP ${config.notify.smtp.host} : connexion OK`) : fail('SMTP non configuré (SMTP_HOST / USER / PASS)');
+    (await verifySmtp())
+      ? ok(`SMTP ${config.notify.smtp.host} : connexion OK`)
+      : fail('SMTP non configuré (SMTP_HOST / USER / PASS)');
   } catch (err) {
     fail(`SMTP refusé : ${err.message}`);
   }
@@ -119,25 +123,38 @@ const mediaExists = (p) => publicDir && fs.existsSync(path.join(publicDir, p));
     if (!fs.existsSync(hero)) fail('Vidéo d’accueil manquante (media/video/hero.mp4)');
     else {
       const mb = fs.statSync(hero).size / 1e6;
-      mb > 20 ? warn(`Vidéo d’accueil lourde : ${mb.toFixed(1)} Mo (viser < 15 Mo)`) : ok(`Vidéo d’accueil : ${mb.toFixed(1)} Mo`);
+      mb > 20
+        ? warn(`Vidéo d’accueil lourde : ${mb.toFixed(1)} Mo (viser < 15 Mo)`)
+        : ok(`Vidéo d’accueil : ${mb.toFixed(1)} Mo`);
     }
     for (const [file, label] of [
       ['media/photos/luvbfk.jpg', 'Portrait Luvbfk'],
-      ['media/photos/cover.jpg', 'Pochette'],
+      ['media/photos/cover-front.jpg', 'Pochette (recto)'],
+      ['media/photos/cover-back.jpg', 'Pochette (verso)'],
       ['media/og.jpg', 'Image de partage réseaux (og.jpg)'],
     ]) {
       mediaExists(file) ? ok(label) : warn(`${label} manquante (${file})`);
     }
     for (const p of PRODUCTS) {
-      p.image && mediaExists(p.image.replace(/^\//, '')) ? ok(`Photo ${p.shortName}`) : warn(`Photo ${p.shortName} manquante (${p.image}) → dessin affiché`);
+      p.image && mediaExists(p.image.replace(/^\//, ''))
+        ? ok(`Photo ${p.shortName}`)
+        : warn(`Photo ${p.shortName} manquante (${p.image}) → dessin affiché`);
     }
-    const front = fs.readFileSync(path.join(__dirname, '../../frontend/src/config.js'), 'utf-8');
-    const todo = (front.match(/\[[^\]]*À (COMPLÉTER|VÉRIFIER)[^\]]*\]/g) || []).length;
-    todo ? warn(`frontend/src/config.js : ${todo} élément(s) [À COMPLÉTER]`) : ok('Textes du site complétés');
-    const emptyLinks = (front.match(/^\s+(\w+): '',?/gm) || []).map((l) => l.trim().split(':')[0]);
-    emptyLinks.length ? warn(`Liens vides (affichés « BIENTÔT ») : ${emptyLinks.join(', ')}`) : ok('Tous les liens renseignés');
+    // Sources du frontend absentes de l'image Docker (seul dist/ y est) : on saute ce contrôle sur le serveur.
+    const frontPath = path.join(__dirname, '../../frontend/src/config.js');
+    const front = fs.existsSync(frontPath) ? fs.readFileSync(frontPath, 'utf-8') : null;
+    if (front) {
+      const todo = (front.match(/\[[^\]]*À (COMPLÉTER|VÉRIFIER)[^\]]*\]/g) || []).length;
+      todo ? warn(`frontend/src/config.js : ${todo} élément(s) [À COMPLÉTER]`) : ok('Textes du site complétés');
+      const emptyLinks = (front.match(/^\s+(\w+): '',?/gm) || []).map((l) => l.trim().split(':')[0]);
+      emptyLinks.length
+        ? warn(`Liens vides (affichés « BIENTÔT ») : ${emptyLinks.join(', ')}`)
+        : ok('Tous les liens renseignés');
+    }
   }
 
-  console.log(`\n${failures ? `✗ ${failures} problème(s) bloquant(s)` : '✓ Rien de bloquant'}${warnings ? ` — ${warnings} point(s) à regarder` : ''}\n`);
+  console.log(
+    `\n${failures ? `✗ ${failures} problème(s) bloquant(s)` : '✓ Rien de bloquant'}${warnings ? ` — ${warnings} point(s) à regarder` : ''}\n`,
+  );
   process.exit(failures ? 1 : 0);
 })();
