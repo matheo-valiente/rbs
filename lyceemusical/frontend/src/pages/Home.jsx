@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useShop } from '../context/ShopContext.jsx';
@@ -102,6 +102,41 @@ function CoverFlip() {
   );
 }
 
+// iOS only autoplays when the `muted` *attribute* is present at load, which React
+// doesn't render — so set it by hand, then call play() (and retry on first touch,
+// e.g. in Low Power Mode where autoplay is refused).
+function HeroVideo({ src }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return undefined;
+    v.muted = true;
+    v.defaultMuted = true;
+    v.setAttribute('muted', '');
+    v.setAttribute('playsinline', '');
+    v.setAttribute('webkit-playsinline', '');
+    const tryPlay = () => v.play().catch(() => {});
+    tryPlay();
+    const onTouch = () => tryPlay();
+    window.addEventListener('touchstart', onTouch, { once: true, passive: true });
+    return () => window.removeEventListener('touchstart', onTouch);
+  }, [src]);
+  return (
+    <video
+      ref={ref}
+      className={styles.videoHeroMedia}
+      src={src}
+      poster={MEDIA.heroPoster}
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="auto"
+      disablePictureInPicture
+    />
+  );
+}
+
 export default function Home() {
   const { products, phase } = useShop();
   const [videoSrc] = useState(heroVideoSrc);
@@ -109,16 +144,7 @@ export default function Home() {
   return (
     <div className={styles.page}>
       <section className={styles.videoHero}>
-        <video
-          className={styles.videoHeroMedia}
-          src={videoSrc}
-          poster={MEDIA.heroPoster}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        />
+        <HeroVideo src={videoSrc} />
         <div className={styles.videoHeroOverlay} />
 
         <div className={styles.heroContent}>

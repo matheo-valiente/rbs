@@ -117,8 +117,8 @@ const mediaExists = (p) => publicDir && fs.existsSync(path.join(publicDir, p));
   section('Contenus');
   if (!publicDir) warn('Dossier frontend introuvable — contenus non vérifiés');
   else {
-    const hero = path.join(publicDir, 'media/video/hero.mp4');
-    if (!fs.existsSync(hero)) fail('Vidéo d’accueil manquante (media/video/hero.mp4)');
+    const hero = path.join(publicDir, 'media/video/hero-16s.mp4');
+    if (!fs.existsSync(hero)) fail('Vidéo d’accueil manquante (media/video/hero-16s.mp4)');
     else {
       const mb = fs.statSync(hero).size / 1e6;
       mb > 20

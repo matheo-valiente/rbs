@@ -16,9 +16,9 @@ export const INSTAGRAM_HANDLE = '@LUVBFK';
 export const CONTACT_EMAIL = 'rbs18event@gmail.com';
 
 export const MEDIA = {
-  heroVideo: '/media/video/hero.mp4',
-  heroVideoMobile: '/media/video/hero-mobile.mp4', // version allégée pour téléphone
-  heroPoster: '/media/video/hero-poster.jpg',
+  heroVideo: '/media/video/hero-16s.mp4',
+  heroVideoMobile: '/media/video/hero-16s-mobile.mp4', // version allégée pour téléphone
+  heroPoster: '/media/video/hero-16s-poster.jpg',
   portrait: '/media/photos/luvbfk-groupe.jpg', // Luvbfk et le groupe (changer le nom du fichier à chaque nouvelle photo)
   portraitCaption: '',
   portraitLink: '',
