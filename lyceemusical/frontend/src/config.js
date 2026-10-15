@@ -40,9 +40,8 @@ export const BIO = [
 
 // Texte de la section EP (un élément = un paragraphe)
 export const EP_TEXT = [
-  'À la croisée du jazz contemporain et des nouvelles sonorités de la scène urbaine française, ce projet réunit LUVBFK, chanteur et rappeur, Williamarker2021, producteur et arrangeur, et un sextet de jeunes musiciens issus de la scène jazz parisienne.',
-  'L’ambition est de créer un univers musical qui fusionne les propositions des artistes dès l’écriture et la conception des morceaux.',
-  'Composé de six titres originaux, la musique est portée par un sextet acoustique composé d’une trompette, d’un saxophone alto, d’un Rhodes, d’une guitare, d’une basse et d’une batterie. Aucun sample, aucune programmation ni instrument virtuel : les morceaux sont construits autour du jeu des musiciens et de leurs interactions avec le chanteur.'
+  'À la croisée du jazz contemporain et du rap français : LUVBFK, Williamarker2021 à la production et un sextet de jeunes musiciens de la scène jazz parisienne.',
+  'Trompette, saxophone alto, Rhodes, guitare, basse, batterie. Aucun sample, aucune programmation : tout est joué.'
 ];
 
 // Tracklist (recopiée du verso de la pochette) — laisser vide pour masquer.
