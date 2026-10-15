@@ -218,13 +218,13 @@ export default function Home() {
 
           <motion.div className={styles.epBody} {...reveal}>
             <h2 className={styles.epTitle}>{EP_TITLE}</h2>
-            {HOME.epTagline && <p className={styles.epTagline}>{HOME.epTagline}</p>}
             {EP_TEXT.map((p, i) => (
               <p key={i} className={styles.bodyText}>
                 {p}
               </p>
             ))}
 
+            {HOME.epTagline && <p className={styles.epTagline}>{HOME.epTagline}</p>}
             {TRACKLIST.length > 0 && (
               <ol className={styles.tracklist}>
                 {TRACKLIST.map((t, i) => (
