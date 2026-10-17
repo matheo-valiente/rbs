@@ -18,7 +18,7 @@ export default function Footer() {
       </div>
 
       <div className={`${styles.row} ${styles.legal}`}>
-        <span>© {new Date().getFullYear()} {ARTIST}</span>
+        <span>© {new Date().getFullYear()} RBS SAS</span>
         <nav aria-label="Informations légales">
           <Link to="/mentions-legales">Mentions légales</Link>
           <Link to="/cgv">CGV</Link>
