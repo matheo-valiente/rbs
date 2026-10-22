@@ -80,6 +80,5 @@ export const SIZE_GUIDE = [
   { size: 'S', chest: '—', length: '—' },
   { size: 'M', chest: '—', length: '—' },
   { size: 'L', chest: '—', length: '—' },
-  { size: 'XL', chest: '—', length: '—' },
-  { size: 'XXL', chest: '—', length: '—' }
+  { size: 'XL', chest: '—', length: '—' }
 ];

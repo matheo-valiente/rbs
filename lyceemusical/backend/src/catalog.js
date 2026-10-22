@@ -7,7 +7,7 @@
 // avec ces noms (carré, 1200×1200 conseillé). `imageBack` = 2e photo affichée
 // au survol (dos du t-shirt…). Tant qu'un fichier manque, un dessin le remplace.
 
-const TSHIRT_SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
+const TSHIRT_SIZES = ['S', 'M', 'L', 'XL'];
 
 const PRODUCTS = [
   {
@@ -37,9 +37,9 @@ const PRODUCTS = [
     includes: ['1 CD de l’EP « Lycée Musical » — 6 titres, dont le bonus « Les mots doux »', '1 T-shirt officiel Lycée Musical — blanc'],
     description: 'Le CD (avec son titre bonus exclusif) et le t-shirt officiel blanc Lycée Musical, à prix réduit.',
     tagline: 'Le CD + le t-shirt officiel',
-    image: '/media/products/tshirt.jpg',
-    imageBack: '/media/products/cd.jpg',
-    imageAlt: null,
+    image: '/media/products/pack.jpg',
+    imageBack: null,
+    imageAlt: 'T-shirt blanc « Lycée Musical » et CD de l’EP',
   },
   {
     id: 'tshirt',
