@@ -6,16 +6,6 @@
 // Photos : il suffit de déposer les fichiers dans frontend/public/media/products/
 // avec ces noms (carré, 1200×1200 conseillé). `imageBack` = 2e photo affichée
 // au survol (dos du t-shirt…). Tant qu'un fichier manque, un dessin le remplace.
-// `teaser` = t-shirt pas encore dévoilé : affiche le visuel « surprise » à la
-// place de la photo. Le jour de la révélation, supprimer la ligne `teaser`.
-
-// `revealAt` = fin du chrono affiché sur l'image (heure de Paris).
-const TSHIRT_TEASER = {
-  title: 'T-SHIRT SURPRISE',
-  reveal: 'DÉVOILÉ JEUDI 22 OCTOBRE À 18H',
-  revealAt: '2026-10-22T18:00:00+02:00',
-  priceNote: 'avant mercredi', // affiché sous le prix barré
-};
 
 const TSHIRT_SIZES = ['S', 'M', 'L', 'XL', 'XXL'];
 
@@ -44,12 +34,11 @@ const PRODUCTS = [
     featured: true,
     contains: { cd: 1, tshirt: 1 },
     sizes: TSHIRT_SIZES,
-    includes: ['1 CD de l’EP « Lycée Musical » — 6 titres, dont le bonus « Les mots doux »', '1 T-shirt officiel Lycée Musical (dévoilé le 22 octobre)'],
-    description: 'Le CD (avec son titre bonus exclusif) et le t-shirt surprise, dévoilé le 22 octobre. Prix réduit pour ceux qui précommandent avant.',
-    tagline: 'Le CD + le t-shirt surprise',
-    teaser: TSHIRT_TEASER,
-    image: '/media/products/pack.jpg',
-    imageBack: '/media/products/pack-2.jpg',
+    includes: ['1 CD de l’EP « Lycée Musical » — 6 titres, dont le bonus « Les mots doux »', '1 T-shirt officiel Lycée Musical — blanc'],
+    description: 'Le CD (avec son titre bonus exclusif) et le t-shirt officiel blanc Lycée Musical, à prix réduit.',
+    tagline: 'Le CD + le t-shirt officiel',
+    image: '/media/products/tshirt.jpg',
+    imageBack: '/media/products/cd.jpg',
     imageAlt: null,
   },
   {
@@ -60,13 +49,12 @@ const PRODUCTS = [
     compareAtPrice: 2000,
     contains: { cd: 0, tshirt: 1 },
     sizes: TSHIRT_SIZES,
-    includes: ['1 T-shirt officiel Lycée Musical (dévoilé le 22 octobre)'],
-    description: 'Le t-shirt officiel de l’EP, dévoilé le 22 octobre. Prix réduit pour ceux qui précommandent avant.',
-    tagline: 'Dévoilé le 22 octobre',
-    teaser: TSHIRT_TEASER,
+    includes: ['1 T-shirt officiel Lycée Musical — blanc, logo « Lycée Musical » sur le devant'],
+    description: 'Le t-shirt officiel de l’EP : blanc, avec le logo « Lycée Musical » sur le devant.',
+    tagline: 'T-shirt blanc officiel',
     image: '/media/products/tshirt.jpg',
-    imageBack: '/media/products/tshirt-2.jpg',
-    imageAlt: null,
+    imageBack: null,
+    imageAlt: 'T-shirt blanc « Lycée Musical »',
   },
 ];
 
