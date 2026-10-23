@@ -22,7 +22,7 @@ import {
 import { euros, parisDate } from '../lib/format.js';
 import styles from './Home.module.css';
 
-const MARQUEE = ['PRÉCOMMANDE', EP_TITLE, 'CD + TITRE BONUS', 'T-SHIRT BLANC OFFICIEL', 'PACK CD + T-SHIRT 20 €', ARTIST];
+const MARQUEE = ['PRÉCOMMANDE', EP_TITLE, 'CD + TITRE BONUS', 'T-SHIRT BLANC OFFICIEL', 'PACK CD + T-SHIRT 25 €', ARTIST];
 
 const reveal = {
   initial: { opacity: 0, y: 32 },
